@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Ticket Detail (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .ticket-header-bar {
+      background: #f0f0f0; border: 1px solid #c8c8c8; border-radius: 2px;
+      padding: 16px 24px; margin-bottom: 20px;
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .ticket-subject { font-size: 17px; font-weight: 700; color: #111; margin-bottom: 6px; }
+    .ticket-tags { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .priority-tag {
+      font-size: 10px; font-weight: 700; padding: 2px 8px;
+      background: #ddd; color: #555; border-radius: 2px;
+    }
+    .priority-tag.high { background: #bbb; color: #222; }
+    .msg-thread { padding: 0 4px; }
+    .msg-bubble {
+      margin-bottom: 16px; max-width: 90%;
+    }
+    .msg-bubble.admin { margin-left: auto; }
+    .msg-meta {
+      font-size: 10px; color: #aaa; margin-bottom: 4px;
+      display: flex; gap: 8px; align-items: center;
+    }
+    .msg-bubble.admin .msg-meta { justify-content: flex-end; }
+    .msg-avatar {
+      width: 20px; height: 20px; background: #c8c8c8; border-radius: 50%; flex-shrink: 0;
+    }
+    .msg-avatar.admin-av { background: #aaa; }
+    .msg-body {
+      background: #eee; border: 1px solid #d4d4d4; border-radius: 2px;
+      padding: 12px 14px; font-size: 12px; color: #333; line-height: 1.5;
+    }
+    .msg-bubble.admin .msg-body { background: #e0e0e0; border-color: #c4c4c4; }
+    .reply-area {
+      background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px;
+      width: 100%; min-height: 80px; display: block;
+      padding: 10px 12px; font-size: 12px; color: #333; resize: vertical;
+    }
+    .reply-toolbar {
+      display: flex; justify-content: space-between; align-items: center; margin-top: 8px;
+    }
+    .info-row {
+      display: flex; justify-content: space-between; font-size: 12px;
+      padding: 8px 0; border-bottom: 1px solid #eee;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-label { color: #888; font-size: 11px; }
+    .info-val { font-weight: 600; color: #222; font-size: 11px; }
+    .assign-select {
+      width: 100%; height: 30px; background: #e4e4e4; border: 1px solid #bbb; border-radius: 2px;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item active" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Support &rsaquo; <a href="support-tickets.html" style="color:#666; text-decoration:none;">Support Tickets</a> &rsaquo; TKT-00284</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Ticket #TKT-00284</div>
+          <div class="page-date">Opened Jan 22, 2025 · 3 replies</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Escalate</div>
+          <div class="btn-outline">Close Ticket</div>
+          <div class="btn-solid">Mark Resolved</div>
+        </div>
+      </div>
+
+      <!-- Ticket subject bar -->
+      <div class="ticket-header-bar">
+        <div>
+          <div class="ticket-subject">Cannot access subscribed content after payment</div>
+          <div class="ticket-tags">
+            <span class="priority-tag high">High Priority</span>
+            <span class="status-tag">Open</span>
+            <span style="font-size:11px; color:#888;">Billing &amp; Payments</span>
+            <span style="font-size:11px; color:#888;">·</span>
+            <span style="font-size:11px; color:#888;">Player</span>
+          </div>
+        </div>
+        <div style="text-align:right; font-size:11px; color:#888;">
+          <div>Assigned to: <strong style="color:#444;">Sarah Admin</strong></div>
+          <div style="margin-top:4px;">SLA: <strong style="color:#c00; font-size:11px;">2h remaining</strong></div>
+        </div>
+      </div>
+
+      <div class="row-2col wide-left">
+
+        <!-- Thread + reply -->
+        <div>
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Conversation Thread</div>
+            <div style="padding:20px 24px;">
+              <div class="msg-thread">
+
+                <!-- User message 1 -->
+                <div class="msg-bubble">
+                  <div class="msg-meta">
+                    <div class="msg-avatar"></div>
+                    <strong style="color:#444;">Alex Morgan</strong>
+                    <span>Jan 22, 2025 · 09:14</span>
+                  </div>
+                  <div class="msg-body">
+                    Hi, I subscribed to Jerome Parker's Pro plan yesterday and was charged $29.00 (transaction TXN-00284892),
+                    but when I try to watch his training videos it still shows a paywall.
+                    I've tried logging out and back in but the issue persists. Can you help?
+                  </div>
+                </div>
+
+                <!-- Admin reply 1 -->
+                <div class="msg-bubble admin">
+                  <div class="msg-meta">
+                    <span>Jan 22, 2025 · 10:42</span>
+                    <strong style="color:#444;">Sarah Admin</strong>
+                    <div class="msg-avatar admin-av"></div>
+                  </div>
+                  <div class="msg-body">
+                    Hi Alex, thanks for reaching out. I've looked up your account and can see the payment was
+                    processed successfully. It looks like there may have been a delay in propagating subscription
+                    access. I've manually refreshed your entitlements — could you log out, clear app cache,
+                    and try again? Let me know if the issue continues.
+                  </div>
+                </div>
+
+                <!-- User message 2 -->
+                <div class="msg-bubble">
+                  <div class="msg-meta">
+                    <div class="msg-avatar"></div>
+                    <strong style="color:#444;">Alex Morgan</strong>
+                    <span>Jan 22, 2025 · 11:05</span>
+                  </div>
+                  <div class="msg-body">
+                    I just tried that and it's still not working. Still showing the paywall on all of Jerome's videos.
+                    I'm on iOS 17.2 using the latest app version (4.1.2).
+                  </div>
+                </div>
+
+                <!-- Admin reply 2 -->
+                <div class="msg-bubble admin">
+                  <div class="msg-meta">
+                    <span>Jan 22, 2025 · 11:28</span>
+                    <strong style="color:#444;">Sarah Admin</strong>
+                    <div class="msg-avatar admin-av"></div>
+                  </div>
+                  <div class="msg-body">
+                    Understood — I've escalated this to our engineering team as it appears to be an entitlement
+                    sync issue. I've applied a temporary content pass to your account which should give you
+                    immediate access while we investigate. This may take up to 24 hours to fully resolve.
+                    We'll follow up here with an update. Apologies for the inconvenience.
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Reply box -->
+          <div class="card">
+            <div class="card-head">Reply</div>
+            <div style="padding:16px 20px;">
+              <div style="display:flex; gap:8px; margin-bottom:10px;">
+                <div class="btn-outline" style="font-size:11px; padding:4px 10px;">Reply</div>
+                <div class="btn-outline" style="font-size:11px; padding:4px 10px; color:#888;">Internal Note</div>
+              </div>
+              <div class="reply-area"></div>
+              <div class="reply-toolbar">
+                <div style="font-size:11px; color:#aaa;">Attach file</div>
+                <div style="display:flex; gap:8px;">
+                  <div class="btn-outline" style="padding:5px 12px; font-size:11px;">Save Draft</div>
+                  <div class="btn-solid" style="padding:5px 12px; font-size:11px;">Send Reply</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right panel -->
+        <div>
+          <div class="card" style="margin-bottom:12px;">
+            <div class="card-head">Ticket Info</div>
+            <div style="padding:4px 16px;">
+              <div class="info-row"><span class="info-label">Ticket ID</span><span class="info-val" style="font-family:monospace;">TKT-00284</span></div>
+              <div class="info-row"><span class="info-label">Category</span><span class="info-val">Billing &amp; Payments</span></div>
+              <div class="info-row"><span class="info-label">Priority</span><span class="info-val">High</span></div>
+              <div class="info-row"><span class="info-label">Status</span><span class="info-val">Open</span></div>
+              <div class="info-row"><span class="info-label">Created</span><span class="info-val">Jan 22, 09:14</span></div>
+              <div class="info-row"><span class="info-label">Last Reply</span><span class="info-val">Jan 22, 11:28</span></div>
+              <div class="info-row"><span class="info-label">Replies</span><span class="info-val">4</span></div>
+              <div class="info-row"><span class="info-label">SLA Deadline</span><span class="info-val" style="color:#c00;">Jan 22, 13:14</span></div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:12px;">
+            <div class="card-head">Submitter</div>
+            <div style="padding:14px 16px;">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                <div style="width:32px; height:32px; background:#c8c8c8; border-radius:50%;"></div>
+                <div>
+                  <div style="font-weight:700; font-size:12px;">Alex Morgan</div>
+                  <div style="font-size:11px; color:#888;">Player</div>
+                </div>
+              </div>
+              <div class="info-row"><span class="info-label">Email</span><span class="info-val">alex.m@email.com</span></div>
+              <div class="info-row"><span class="info-label">Member Since</span><span class="info-val">Sep 2024</span></div>
+              <div class="info-row"><span class="info-label">Total Tickets</span><span class="info-val">3</span></div>
+              <a href="player-profile.html" style="font-size:11px; color:#555; text-decoration:none; display:block; margin-top:8px;">View Profile →</a>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:12px;">
+            <div class="card-head">Assigned Admin</div>
+            <div style="padding:14px 16px;">
+              <div style="font-size:12px; font-weight:600; margin-bottom:8px;">Sarah Admin</div>
+              <div style="font-size:11px; color:#888; margin-bottom:10px;">Customer Support Team</div>
+              <div class="assign-select"></div>
+              <div style="font-size:11px; color:#888; margin-top:6px;">Reassign to:</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">Related</div>
+            <div style="padding:12px 16px; font-size:11px; color:#666;">
+              <div style="margin-bottom:8px;">
+                <div style="font-weight:600; color:#333;">TXN-00284892</div>
+                <div style="color:#888;">$29.00 · Jan 21, 2025 · Paid</div>
+              </div>
+              <div style="margin-bottom:8px;">
+                <div style="font-weight:600; color:#333;">Coach: Jerome Parker</div>
+                <div style="color:#888;">Pro Monthly Plan</div>
+              </div>
+              <a href="transactions.html" style="font-size:11px; color:#555; text-decoration:none;">View Transaction →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

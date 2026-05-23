@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Email Templates (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .template-card {
+      background: #f5f5f5; border: 1px solid #c8c8c8; border-radius: 2px;
+      padding: 16px 20px; margin-bottom: 12px;
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+    }
+    .template-card:last-child { margin-bottom: 0; }
+    .template-icon {
+      width: 40px; height: 40px; background: #d8d8d8; border-radius: 2px;
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .template-info { flex: 1; }
+    .template-name { font-size: 13px; font-weight: 700; color: #222; margin-bottom: 4px; }
+    .template-trigger {
+      font-size: 11px; color: #666; margin-bottom: 6px;
+    }
+    .template-meta { display: flex; gap: 12px; align-items: center; }
+    .trigger-tag {
+      font-size: 10px; font-weight: 700; padding: 2px 7px;
+      background: #e4e4e4; border: 1px solid #ccc; color: #555; border-radius: 2px;
+    }
+    .template-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+    .act-link { font-size: 11px; color: #555; cursor: default; }
+    .preview-panel {
+      background: #ececec; border: 1px solid #d0d0d0; border-radius: 2px;
+      padding: 20px 24px;
+    }
+    .preview-header {
+      border-bottom: 1px solid #d0d0d0; padding-bottom: 12px; margin-bottom: 16px;
+    }
+    .preview-from { font-size: 11px; color: #888; margin-bottom: 3px; }
+    .preview-subject { font-size: 14px; font-weight: 700; color: #222; }
+    .preview-body {
+      font-size: 12px; color: #444; line-height: 1.6;
+    }
+    .preview-var {
+      background: #ddd; border-radius: 2px; padding: 1px 5px;
+      font-family: monospace; font-size: 11px; color: #555;
+    }
+    .preview-footer {
+      margin-top: 20px; padding-top: 12px; border-top: 1px solid #d0d0d0;
+      font-size: 10px; color: #aaa; text-align: center;
+    }
+    .field-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 0; border-bottom: 1px solid #eee; font-size: 12px;
+    }
+    .field-row:last-child { border-bottom: none; }
+    .field-label { font-weight: 600; color: #333; }
+    .field-input {
+      height: 28px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; flex-shrink: 0; width: 200px;
+    }
+    .toggle-box {
+      width: 36px; height: 20px; background: #bbb; border-radius: 10px; flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub active" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Settings &rsaquo; Email Templates</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Email Templates</div>
+          <div class="page-date">Transactional &amp; system emails &nbsp;·&nbsp; 14 templates</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Send Test Email</div>
+        </div>
+      </div>
+
+      <div class="row-2col wide-left">
+
+        <!-- Template list -->
+        <div>
+
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#888; margin-bottom:8px;">Player Emails</div>
+
+          <div class="template-card">
+            <div class="template-icon">✉</div>
+            <div class="template-info">
+              <div class="template-name">Welcome — New Player</div>
+              <div class="template-trigger">Trigger: Player account created</div>
+              <div class="template-meta">
+                <span class="trigger-tag">Auto</span>
+                <span style="font-size:10px; color:#aaa;">Last edited Jan 10, 2025</span>
+              </div>
+            </div>
+            <div class="template-actions">
+              <span class="status-tag">Active</span>
+              <span class="act-link">Edit</span>
+              <span class="act-link">Preview</span>
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div class="template-icon">✉</div>
+            <div class="template-info">
+              <div class="template-name">Subscription Confirmed</div>
+              <div class="template-trigger">Trigger: Successful subscription payment</div>
+              <div class="template-meta">
+                <span class="trigger-tag">Auto</span>
+                <span style="font-size:10px; color:#aaa;">Last edited Dec 18, 2024</span>
+              </div>
+            </div>
+            <div class="template-actions">
+              <span class="status-tag">Active</span>
+              <span class="act-link">Edit</span>
+              <span class="act-link">Preview</span>
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div class="template-icon">✉</div>
+            <div class="template-info">
+              <div class="template-name">Payment Receipt</div>
+              <div class="template-trigger">Trigger: Any completed transaction</div>
+              <div class="template-meta">
+                <span class="trigger-tag">Auto</span>
+                <span style="font-size:10px; color:#aaa;">Last edited Dec 18, 2024</span>
+              </div>
+            </div>
+            <div class="template-actions">
+              <span class="status-tag">Active</span>
+              <span class="act-link">Edit</span>
+              <span class="act-link">Preview</span>
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div class="template-icon">✉</div>
+            <div class="template-info">
+              <div class="template-name">Subscription Renewal Reminder</div>
+              <div class="template-trigger">Trigger: 3 days before renewal date</div>
+              <div class="template-meta">
+                <span class="trigger-tag">Auto</span>
+                <span style="font-size:10px; color:#aaa;">Last edited Nov 4, 2024</span>
+              </div>
+            </div>
+            <div class="template-actions">
+              <span class="status-tag">Active</span>
+              <span class="act-link">Edit</span>
+              <span class="act-link">Preview</span>
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div class="template-icon">✉</div>
+            <div class="template-info">
+              <div class="template-name">Cancellation Confirmation</div>
+              <div class="template-trigger">Trigger: Player cancels subscription</div>
+              <div class="template-meta">
+                <span class="trigger-tag">Auto</span>
+                <span style="font-size:10px; color:#aaa;">Last edited Oct 22, 2024</span>
+              </div>
+            </div>
+            <div class="template-actions">
+              <span class="status-tag">Active</span>
+              <span class="act-link">Edit</span>
+              <span class="act-link">Preview</span>
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div class="template-icon">✉</div>
+            <div class="template-info">
+              <div class="template-name">Password Reset</div>
+              <div class="template-trigger">Trigger: Forgot password request</div>
+              <div class="template-meta">
+                <span class="trigger-tag">Auto</span>
+                <span style="font-size:10px; color:#aaa;">Last edited Sep 5, 2024</span>
+              </div>
+            </div>
+            <div class="template-actions">
+              <span class="status-tag">Active</span>
+              <span class="act-link">Edit</span>
+              <span class="act-link">Preview</span>
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div class="template-icon">✉</div>
+            <div class="template-info">
+              <div class="template-name">Refund Issued</div>
+              <div class="template-trigger">Trigger: Refund approved and processed</div>
+              <div class="template-meta">
+                <span class="trigger-tag">Auto</span>
+                <span style="font-size:10px; color:#aaa;">Last edited Oct 22, 2024</span>
+              </div>
+            </div>
+            <div class="template-actions">
+              <span class="status-tag">Active</span>
+              <span class="act-link">Edit</span>
+              <span class="act-link">Preview</span>
+            </div>
+          </div>
+
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:#888; margin:16px 0 8px;">Coach Emails</div>
+
+          <div class="template-card">
+            <div class="template-icon">✉</div>
+            <div class="template-info">
+              <div class="template-name">Welcome — New Coach</div>
+              <div class="template-trigger">Trigger: Coach account approved</div>
+              <div class="template-meta">
+                <span class="trigger-tag">Auto</span>
+                <span style="font-size:10px; color:#aaa;">Last edited Jan 10, 2025</span>
+              </div>
+            </div>
+            <div class="template-actions">
+              <span class="status-tag">Active</span>
+              <span class="act-link">Edit</span>
+              <span class="act-link">Preview</span>
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div class="template-icon">✉</div>
+            <div class="template-info">
+              <div class="template-name">Payout Sent</div>
+              <div class="template-trigger">Trigger: Coach payout initiated</div>
+              <div class="template-meta">
+                <span class="trigger-tag">Auto</span>
+                <span style="font-size:10px; color:#aaa;">Last edited Dec 18, 2024</span>
+              </div>
+            </div>
+            <div class="template-actions">
+              <span class="status-tag">Active</span>
+              <span class="act-link">Edit</span>
+              <span class="act-link">Preview</span>
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div class="template-icon">✉</div>
+            <div class="template-info">
+              <div class="template-name">New Subscriber Notification</div>
+              <div class="template-trigger">Trigger: Player subscribes to coach</div>
+              <div class="template-meta">
+                <span class="trigger-tag">Auto</span>
+                <span style="font-size:10px; color:#aaa;">Last edited Nov 14, 2024</span>
+              </div>
+            </div>
+            <div class="template-actions">
+              <span class="status-tag">Active</span>
+              <span class="act-link">Edit</span>
+              <span class="act-link">Preview</span>
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div class="template-icon">✉</div>
+            <div class="template-info">
+              <div class="template-name">Tier Promotion</div>
+              <div class="template-trigger">Trigger: Coach promoted to higher tier</div>
+              <div class="template-meta">
+                <span class="trigger-tag">Auto</span>
+                <span style="font-size:10px; color:#aaa;">Last edited Oct 5, 2024</span>
+              </div>
+            </div>
+            <div class="template-actions">
+              <span class="status-tag">Active</span>
+              <span class="act-link">Edit</span>
+              <span class="act-link">Preview</span>
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div class="template-icon">✉</div>
+            <div class="template-info">
+              <div class="template-name">Underperformance Warning</div>
+              <div class="template-trigger">Trigger: Coach flagged by underperformer alert</div>
+              <div class="template-meta">
+                <span class="trigger-tag">Manual</span>
+                <span style="font-size:10px; color:#aaa;">Last edited Oct 5, 2024</span>
+              </div>
+            </div>
+            <div class="template-actions">
+              <span class="status-tag">Active</span>
+              <span class="act-link">Edit</span>
+              <span class="act-link">Preview</span>
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div class="template-icon">✉</div>
+            <div class="template-info">
+              <div class="template-name">Verification Approved</div>
+              <div class="template-trigger">Trigger: Coach documents approved by admin</div>
+              <div class="template-meta">
+                <span class="trigger-tag">Auto</span>
+                <span style="font-size:10px; color:#aaa;">Last edited Sep 5, 2024</span>
+              </div>
+            </div>
+            <div class="template-actions">
+              <span class="status-tag">Active</span>
+              <span class="act-link">Edit</span>
+              <span class="act-link">Preview</span>
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div class="template-icon">✉</div>
+            <div class="template-info">
+              <div class="template-name">Monthly Earnings Summary</div>
+              <div class="template-trigger">Trigger: 1st of every month</div>
+              <div class="template-meta">
+                <span class="trigger-tag">Scheduled</span>
+                <span style="font-size:10px; color:#aaa;">Last edited Jan 2, 2025</span>
+              </div>
+            </div>
+            <div class="template-actions">
+              <span class="status-tag" style="background:#e8e8e8; color:#aaa;">Draft</span>
+              <span class="act-link">Edit</span>
+              <span class="act-link">Preview</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Preview panel + settings -->
+        <div>
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Preview — Subscription Confirmed</div>
+            <div style="padding:16px 20px;">
+              <div class="preview-panel">
+                <div class="preview-header">
+                  <div class="preview-from">From: AthletX &lt;noreply@athletx.com&gt;</div>
+                  <div class="preview-subject">Your subscription to <span class="preview-var">{{coach_name}}</span> is active 🏆</div>
+                </div>
+                <div class="preview-body">
+                  <p style="margin-bottom:10px;">Hi <span class="preview-var">{{player_name}}</span>,</p>
+                  <p style="margin-bottom:10px;">
+                    You're now subscribed to <strong><span class="preview-var">{{coach_name}}</span></strong>'s
+                    <span class="preview-var">{{plan_name}}</span> plan. Your access is now active.
+                  </p>
+                  <p style="margin-bottom:10px;">
+                    Amount charged: <strong><span class="preview-var">{{amount}}</span></strong><br>
+                    Next renewal: <span class="preview-var">{{renewal_date}}</span><br>
+                    Transaction ID: <span class="preview-var" style="font-size:10px;">{{txn_id}}</span>
+                  </p>
+                  <div style="background:#ddd; height:36px; border-radius:2px; margin:12px 0; display:flex; align-items:center; justify-content:center; font-size:11px; color:#555;">
+                    [ View Your Content → ]
+                  </div>
+                  <p style="font-size:11px; color:#888;">
+                    Questions? Reply to this email or visit our Help Centre.
+                  </p>
+                </div>
+                <div class="preview-footer">
+                  AthletX Inc. · Unsubscribe · Privacy Policy
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">Sending Settings</div>
+            <div style="padding: 4px 16px;">
+              <div class="field-row">
+                <span style="font-weight:600; font-size:12px; color:#333;">From Name</span>
+                <div class="field-input" style="width:160px;"></div>
+              </div>
+              <div class="field-row">
+                <span style="font-weight:600; font-size:12px; color:#333;">From Address</span>
+                <div class="field-input" style="width:160px;"></div>
+              </div>
+              <div class="field-row">
+                <span style="font-weight:600; font-size:12px; color:#333;">Reply-To</span>
+                <div class="field-input" style="width:160px;"></div>
+              </div>
+              <div class="field-row">
+                <span style="font-weight:600; font-size:12px; color:#333;">BCC Admin</span>
+                <div class="toggle-box"></div>
+              </div>
+              <div style="padding:12px 0; display:flex; justify-content:flex-end;">
+                <div class="btn-solid" style="font-size:12px; padding:6px 14px;">Save Settings</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

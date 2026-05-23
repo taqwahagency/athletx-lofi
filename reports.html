@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Reports (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .report-type-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px;
+    }
+    .report-type-card {
+      background: #f0f0f0; border: 1px solid #c8c8c8; border-radius: 2px;
+      padding: 16px; cursor: default;
+    }
+    .report-type-card.selected { border-color: #999; background: #e8e8e8; }
+    .report-type-icon {
+      width: 32px; height: 32px; background: #d0d0d0; border-radius: 2px;
+      margin-bottom: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+    }
+    .report-type-name { font-size: 12px; font-weight: 700; color: #222; margin-bottom: 3px; }
+    .report-type-desc { font-size: 10px; color: #888; line-height: 1.4; }
+    .builder-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 11px 0; border-bottom: 1px solid #eee; font-size: 12px;
+    }
+    .builder-row:last-child { border-bottom: none; }
+    .builder-label { font-weight: 600; color: #333; }
+    .builder-desc { font-size: 11px; color: #888; margin-top: 2px; }
+    .builder-input {
+      height: 30px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; flex-shrink: 0;
+    }
+    .builder-input.wide { width: 200px; }
+    .builder-input.short { width: 120px; }
+    .check-group { display: flex; gap: 16px; flex-wrap: wrap; }
+    .check-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #555; }
+    .check-box {
+      width: 14px; height: 14px; background: #bbb; border-radius: 2px; flex-shrink: 0;
+    }
+    .check-box.empty { background: transparent; border: 1px solid #bbb; }
+    .scheduled-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 0; border-bottom: 1px solid #eee; font-size: 12px;
+    }
+    .scheduled-row:last-child { border-bottom: none; }
+    .freq-tag {
+      font-size: 10px; font-weight: 700; padding: 2px 7px;
+      background: #e4e4e4; color: #555; border-radius: 2px;
+    }
+    .dl-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 0; border-bottom: 1px solid #eee; font-size: 12px;
+    }
+    .dl-row:last-child { border-bottom: none; }
+    .dl-icon {
+      width: 28px; height: 28px; background: #d8d8d8; border-radius: 2px;
+      display: flex; align-items: center; justify-content: center; font-size: 11px; color: #888; flex-shrink: 0;
+    }
+    .fmt-tag {
+      font-size: 10px; font-weight: 700; padding: 2px 6px;
+      background: #ddd; color: #666; border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub active" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Analytics &rsaquo; Reports</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Reports</div>
+          <div class="page-date">Generate &amp; schedule platform reports</div>
+        </div>
+      </div>
+
+      <!-- Report type selector -->
+      <div style="font-size:13px; font-weight:600; color:#333; margin-bottom:12px;">1. Choose Report Type</div>
+      <div class="report-type-grid">
+        <div class="report-type-card selected">
+          <div class="report-type-icon">$</div>
+          <div class="report-type-name">Revenue Report</div>
+          <div class="report-type-desc">MRR, transactions, refunds, payout totals by period</div>
+        </div>
+        <div class="report-type-card">
+          <div class="report-type-icon">↑</div>
+          <div class="report-type-name">Growth Report</div>
+          <div class="report-type-desc">Player / coach signups, churn, retention metrics</div>
+        </div>
+        <div class="report-type-card">
+          <div class="report-type-icon">★</div>
+          <div class="report-type-name">Coach Performance</div>
+          <div class="report-type-desc">Revenue, subscribers, content published per coach</div>
+        </div>
+        <div class="report-type-card">
+          <div class="report-type-icon">▶</div>
+          <div class="report-type-name">Content Report</div>
+          <div class="report-type-desc">Views, likes, engagement across all content</div>
+        </div>
+        <div class="report-type-card">
+          <div class="report-type-icon">🔗</div>
+          <div class="report-type-name">Referral Report</div>
+          <div class="report-type-desc">Referral codes, conversions, commission paid</div>
+        </div>
+        <div class="report-type-card">
+          <div class="report-type-icon">❗</div>
+          <div class="report-type-name">Support Report</div>
+          <div class="report-type-desc">Ticket volume, resolution times, CSAT scores</div>
+        </div>
+      </div>
+
+      <div class="row-2col wide-left">
+
+        <!-- Builder -->
+        <div>
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">2. Configure Report</div>
+            <div style="padding:4px 20px;">
+              <div class="builder-row">
+                <div>
+                  <div class="builder-label">Date Range</div>
+                  <div class="builder-desc">Start and end date for the report</div>
+                </div>
+                <div style="display:flex; gap:8px;">
+                  <div class="builder-input short"></div>
+                  <div style="font-size:12px; color:#888; line-height:30px;">→</div>
+                  <div class="builder-input short"></div>
+                </div>
+              </div>
+              <div class="builder-row">
+                <div>
+                  <div class="builder-label">Granularity</div>
+                  <div class="builder-desc">Daily, Weekly, or Monthly breakdowns</div>
+                </div>
+                <div class="builder-input short"></div>
+              </div>
+              <div class="builder-row">
+                <div>
+                  <div class="builder-label">Filter by Coach</div>
+                  <div class="builder-desc">Leave blank for all coaches</div>
+                </div>
+                <div class="builder-input wide"></div>
+              </div>
+              <div class="builder-row">
+                <div>
+                  <div class="builder-label">Filter by Sport</div>
+                  <div class="builder-desc">Leave blank for all sports</div>
+                </div>
+                <div class="builder-input short"></div>
+              </div>
+              <div class="builder-row">
+                <div>
+                  <div class="builder-label">Metrics to Include</div>
+                  <div class="builder-desc">Select one or more</div>
+                </div>
+                <div class="check-group">
+                  <div class="check-item"><div class="check-box"></div> MRR</div>
+                  <div class="check-item"><div class="check-box"></div> Transactions</div>
+                  <div class="check-item"><div class="check-box"></div> Refunds</div>
+                  <div class="check-item"><div class="check-box"></div> Payouts</div>
+                  <div class="check-item"><div class="check-box empty"></div> Tax</div>
+                  <div class="check-item"><div class="check-box empty"></div> Fees</div>
+                </div>
+              </div>
+              <div class="builder-row">
+                <div>
+                  <div class="builder-label">Export Format</div>
+                  <div class="builder-desc">CSV, XLSX, or PDF</div>
+                </div>
+                <div class="builder-input short"></div>
+              </div>
+              <div class="builder-row">
+                <div>
+                  <div class="builder-label">Delivery</div>
+                  <div class="builder-desc">Download now or email to admin</div>
+                </div>
+                <div class="builder-input short"></div>
+              </div>
+            </div>
+            <div style="padding:14px 20px; border-top:1px solid #e4e4e4; display:flex; justify-content:flex-end; gap:8px;">
+              <div class="btn-outline">Save as Scheduled</div>
+              <div class="btn-solid">Generate Report</div>
+            </div>
+          </div>
+
+          <!-- Recent downloads -->
+          <div class="card">
+            <div class="card-head">
+              Recent Reports
+              <span class="card-head-sub">Last 30 days</span>
+            </div>
+            <div style="padding:4px 20px;">
+              <div class="dl-row">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="dl-icon">CSV</div>
+                  <div>
+                    <div style="font-weight:600; font-size:12px;">Revenue Report — Jan 2025</div>
+                    <div style="font-size:10px; color:#aaa;">Generated Jan 25, 2025 by Imran A.</div>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span class="fmt-tag">CSV</span>
+                  <span style="font-size:11px; color:#666;">Download</span>
+                </div>
+              </div>
+              <div class="dl-row">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="dl-icon">XLS</div>
+                  <div>
+                    <div style="font-weight:600; font-size:12px;">Coach Performance — Q4 2024</div>
+                    <div style="font-size:10px; color:#aaa;">Generated Jan 15, 2025 by Sarah A.</div>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span class="fmt-tag">XLSX</span>
+                  <span style="font-size:11px; color:#666;">Download</span>
+                </div>
+              </div>
+              <div class="dl-row">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="dl-icon">PDF</div>
+                  <div>
+                    <div style="font-weight:600; font-size:12px;">Growth Report — Dec 2024</div>
+                    <div style="font-size:10px; color:#aaa;">Generated Jan 5, 2025 by Imran A.</div>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span class="fmt-tag">PDF</span>
+                  <span style="font-size:11px; color:#666;">Download</span>
+                </div>
+              </div>
+              <div class="dl-row">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="dl-icon">CSV</div>
+                  <div>
+                    <div style="font-weight:600; font-size:12px;">Referral Report — Dec 2024</div>
+                    <div style="font-size:10px; color:#aaa;">Generated Jan 3, 2025 by Imran A.</div>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span class="fmt-tag">CSV</span>
+                  <span style="font-size:11px; color:#666;">Download</span>
+                </div>
+              </div>
+              <div class="dl-row">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="dl-icon">XLS</div>
+                  <div>
+                    <div style="font-weight:600; font-size:12px;">Transactions — Nov 2024</div>
+                    <div style="font-size:10px; color:#aaa;">Generated Dec 2, 2024 by Sarah A.</div>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span class="fmt-tag">XLSX</span>
+                  <span style="font-size:11px; color:#666;">Download</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: scheduled reports -->
+        <div>
+          <div class="card">
+            <div class="card-head">
+              Scheduled Reports
+              <div class="btn-outline" style="font-size:11px; padding:4px 10px;">+ Add</div>
+            </div>
+            <div style="padding: 4px 16px;">
+
+              <div class="scheduled-row">
+                <div>
+                  <div style="font-weight:600; font-size:12px; margin-bottom:3px;">Monthly Revenue</div>
+                  <div style="font-size:10px; color:#888;">CSV · 1st of month · to imran@athletx.com</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span class="freq-tag">Monthly</span>
+                  <span style="font-size:11px; color:#888;">Edit</span>
+                </div>
+              </div>
+
+              <div class="scheduled-row">
+                <div>
+                  <div style="font-weight:600; font-size:12px; margin-bottom:3px;">Weekly Transactions</div>
+                  <div style="font-size:10px; color:#888;">CSV · Every Monday · to finance@athletx.com</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span class="freq-tag">Weekly</span>
+                  <span style="font-size:11px; color:#888;">Edit</span>
+                </div>
+              </div>
+
+              <div class="scheduled-row">
+                <div>
+                  <div style="font-weight:600; font-size:12px; margin-bottom:3px;">Coach Performance — Q</div>
+                  <div style="font-size:10px; color:#888;">XLSX · End of quarter · to team@athletx.com</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span class="freq-tag">Quarterly</span>
+                  <span style="font-size:11px; color:#888;">Edit</span>
+                </div>
+              </div>
+
+              <div class="scheduled-row">
+                <div>
+                  <div style="font-weight:600; font-size:12px; margin-bottom:3px;">Support Summary</div>
+                  <div style="font-size:10px; color:#888;">PDF · Every Friday · to support@athletx.com</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span class="freq-tag">Weekly</span>
+                  <span style="font-size:11px; color:#888;">Edit</span>
+                </div>
+              </div>
+
+              <div class="scheduled-row">
+                <div>
+                  <div style="font-weight:600; font-size:12px; margin-bottom:3px;">Annual Revenue Summary</div>
+                  <div style="font-size:10px; color:#888;">PDF · Jan 1 annually · to board@athletx.com</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span class="freq-tag">Annual</span>
+                  <span style="font-size:11px; color:#888;">Edit</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

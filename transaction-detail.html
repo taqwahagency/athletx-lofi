@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Transaction Detail (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .txn-hero {
+      background: #f5f5f5; border: 1px solid #c8c8c8; border-radius: 2px;
+      padding: 24px 28px; margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .txn-amount { font-size: 36px; font-weight: 700; color: #111; }
+    .txn-id { font-family: monospace; font-size: 13px; color: #888; margin-top: 4px; }
+    .txn-meta { display: flex; gap: 20px; align-items: center; }
+    .txn-meta-item { text-align: right; }
+    .txn-meta-label { font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.6px; }
+    .txn-meta-val { font-size: 13px; font-weight: 600; color: #333; margin-top: 2px; }
+    .timeline { padding: 4px 0; }
+    .tl-row {
+      display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 12px;
+    }
+    .tl-row:last-child { border-bottom: none; }
+    .tl-dot {
+      width: 10px; height: 10px; background: #bbb; border-radius: 50%;
+      flex-shrink: 0; margin-top: 3px;
+    }
+    .tl-dot.filled { background: #888; }
+    .tl-time { width: 80px; flex-shrink: 0; font-size: 10px; color: #aaa; }
+    .tl-label { color: #333; font-weight: 600; }
+    .tl-sub { font-size: 11px; color: #888; margin-top: 2px; }
+    .mini-card {
+      background: #f0f0f0; border: 1px solid #ccc; border-radius: 2px;
+      padding: 14px 16px; margin-bottom: 12px;
+    }
+    .mini-card-title { font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.6px; color: #888; margin-bottom: 10px; }
+    .mini-row { display: flex; justify-content: space-between; font-size: 12px;
+      padding: 5px 0; border-bottom: 1px solid #e4e4e4; }
+    .mini-row:last-child { border-bottom: none; }
+    .mini-row-label { color: #666; }
+    .mini-row-val { font-weight: 600; color: #222; }
+    .action-row { display: flex; gap: 8px; margin-top: 4px; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub active" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Revenue &rsaquo; <a href="transactions.html" style="color:#666; text-decoration:none;">Transactions</a> &rsaquo; TXN-00284910</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Transaction Detail</div>
+          <div class="page-date">TXN-00284910 &nbsp;·&nbsp; Jan 24, 2025</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Issue Refund</div>
+          <div class="btn-outline">Export Receipt</div>
+        </div>
+      </div>
+
+      <!-- Hero bar -->
+      <div class="txn-hero">
+        <div>
+          <div class="txn-amount">$29.00</div>
+          <div class="txn-id">TXN-00284910</div>
+        </div>
+        <div class="txn-meta">
+          <div class="txn-meta-item">
+            <div class="txn-meta-label">Status</div>
+            <div class="txn-meta-val"><span class="status-tag">Paid</span></div>
+          </div>
+          <div class="txn-meta-item">
+            <div class="txn-meta-label">Type</div>
+            <div class="txn-meta-val">Subscription</div>
+          </div>
+          <div class="txn-meta-item">
+            <div class="txn-meta-label">Date</div>
+            <div class="txn-meta-val">Jan 24, 2025 · 14:32 UTC</div>
+          </div>
+          <div class="txn-meta-item">
+            <div class="txn-meta-label">Processor</div>
+            <div class="txn-meta-val">Stripe</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-2col wide-left">
+
+        <!-- Left: details + timeline -->
+        <div>
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Transaction Details</div>
+            <div style="padding: 4px 20px;">
+              <div class="detail-row">
+                <div class="detail-key">Transaction ID</div>
+                <div class="detail-val" style="font-family:monospace; font-size:12px;">TXN-00284910</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Stripe Charge ID</div>
+                <div class="detail-val" style="font-family:monospace; font-size:12px; color:#888;">ch_3OhQ2bLkdIwHu7ix0KkAbCdE</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Type</div>
+                <div class="detail-val">Subscription — Monthly</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Gross Amount</div>
+                <div class="detail-val" style="font-weight:700;">$29.00</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Platform Fee (20%)</div>
+                <div class="detail-val">$5.80</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Coach Payout (80%)</div>
+                <div class="detail-val">$23.20</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Stripe Fee</div>
+                <div class="detail-val" style="color:#888;">$0.84 (2.9% + $0.30)</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Payment Method</div>
+                <div class="detail-val">Visa •••• 4242</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Billing Country</div>
+                <div class="detail-val">United States</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Currency</div>
+                <div class="detail-val">USD</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Promo Code</div>
+                <div class="detail-val" style="color:#aaa;">None applied</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Refundable Until</div>
+                <div class="detail-val">Feb 7, 2025</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">Event Timeline</div>
+            <div style="padding: 8px 20px;">
+              <div class="tl-row">
+                <div class="tl-dot filled"></div>
+                <div class="tl-time">14:32:04</div>
+                <div>
+                  <div class="tl-label">Payment Initiated</div>
+                  <div class="tl-sub">Player clicked Subscribe — plan: Pro Monthly</div>
+                </div>
+              </div>
+              <div class="tl-row">
+                <div class="tl-dot filled"></div>
+                <div class="tl-time">14:32:05</div>
+                <div>
+                  <div class="tl-label">Stripe Charge Created</div>
+                  <div class="tl-sub">ch_3OhQ2bLkdIwHu7ix0KkAbCdE · $29.00</div>
+                </div>
+              </div>
+              <div class="tl-row">
+                <div class="tl-dot filled"></div>
+                <div class="tl-time">14:32:07</div>
+                <div>
+                  <div class="tl-label">Payment Succeeded</div>
+                  <div class="tl-sub">Card authorised · Visa •••• 4242</div>
+                </div>
+              </div>
+              <div class="tl-row">
+                <div class="tl-dot filled"></div>
+                <div class="tl-time">14:32:08</div>
+                <div>
+                  <div class="tl-label">Subscription Activated</div>
+                  <div class="tl-sub">Access granted · next renewal Feb 24, 2025</div>
+                </div>
+              </div>
+              <div class="tl-row">
+                <div class="tl-dot filled"></div>
+                <div class="tl-time">14:32:09</div>
+                <div>
+                  <div class="tl-label">Confirmation Email Sent</div>
+                  <div class="tl-sub">alex.morgan@email.com · receipt #R-48291</div>
+                </div>
+              </div>
+              <div class="tl-row">
+                <div class="tl-dot"></div>
+                <div class="tl-time">Pending</div>
+                <div>
+                  <div class="tl-label" style="color:#aaa;">Payout to Coach</div>
+                  <div class="tl-sub">Scheduled for Feb 1, 2025 payout run</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: player, coach, related -->
+        <div>
+          <div class="mini-card" style="margin-bottom:12px;">
+            <div class="mini-card-title">Player</div>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+              <div style="width:36px; height:36px; background:#c8c8c8; border-radius:50%;"></div>
+              <div>
+                <div style="font-weight:700; font-size:13px;">Alex Morgan</div>
+                <div style="font-size:11px; color:#888;">alex.morgan@email.com</div>
+              </div>
+            </div>
+            <div class="mini-row"><span class="mini-row-label">Player ID</span><span class="mini-row-val" style="font-family:monospace; font-size:11px;">PLY-00482</span></div>
+            <div class="mini-row"><span class="mini-row-label">Joined</span><span class="mini-row-val">Sep 14, 2024</span></div>
+            <div class="mini-row"><span class="mini-row-label">Total Spent</span><span class="mini-row-val">$87.00</span></div>
+            <div class="action-row">
+              <a href="player-profile.html" style="font-size:11px; color:#555; text-decoration:none;">View Player →</a>
+            </div>
+          </div>
+
+          <div class="mini-card" style="margin-bottom:12px;">
+            <div class="mini-card-title">Coach</div>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+              <div style="width:36px; height:36px; background:#c8c8c8; border-radius:50%;"></div>
+              <div>
+                <div style="font-weight:700; font-size:13px;">Jerome Parker</div>
+                <div style="font-size:11px; color:#888;">Football · Tier 1</div>
+              </div>
+            </div>
+            <div class="mini-row"><span class="mini-row-label">Coach ID</span><span class="mini-row-val" style="font-family:monospace; font-size:11px;">COA-00124</span></div>
+            <div class="mini-row"><span class="mini-row-label">Revenue This Txn</span><span class="mini-row-val">$23.20</span></div>
+            <div class="mini-row"><span class="mini-row-label">Payout Status</span><span class="mini-row-val" style="color:#888;">Pending Feb run</span></div>
+            <div class="action-row">
+              <a href="coach-profile.html" style="font-size:11px; color:#555; text-decoration:none;">View Coach →</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">Related Transactions</div>
+            <div style="padding:4px 16px;">
+              <div class="mini-row">
+                <span style="font-family:monospace; font-size:10px; color:#888;">TXN-00282140</span>
+                <span style="font-size:11px; color:#555;">$29.00 · Dec 24</span>
+              </div>
+              <div class="mini-row">
+                <span style="font-family:monospace; font-size:10px; color:#888;">TXN-00279831</span>
+                <span style="font-size:11px; color:#555;">$29.00 · Nov 24</span>
+              </div>
+              <div class="mini-row">
+                <span style="font-family:monospace; font-size:10px; color:#888;">TXN-00277204</span>
+                <span style="font-size:11px; color:#555;">$29.00 · Oct 24</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

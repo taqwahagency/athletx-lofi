@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Platform Settings (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .settings-section { margin-bottom: 20px; }
+    .field-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 0; border-bottom: 1px solid #eee; font-size: 12px;
+    }
+    .field-row:last-child { border-bottom: none; }
+    .field-label { font-weight: 600; color: #333; }
+    .field-desc { font-size: 11px; color: #888; margin-top: 2px; }
+    .field-input {
+      height: 30px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; flex-shrink: 0;
+    }
+    .field-input.wide  { width: 220px; }
+    .field-input.short { width: 100px; }
+    .field-input.xshort { width: 70px; }
+    .toggle-box {
+      width: 36px; height: 20px; background: #bbb; border-radius: 10px; flex-shrink: 0;
+    }
+    .toggle-box.off { background: #ddd; }
+    .section-hdr {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 0;
+    }
+    .save-btn {
+      padding: 6px 16px; background: #bbb; border: 1px solid #888; border-radius: 2px;
+      font-size: 12px; font-weight: 600; color: #222; cursor: default;
+    }
+    .danger-zone {
+      border: 1px dashed #bbb; border-radius: 2px; padding: 20px 24px; background: #f0f0f0;
+    }
+    .danger-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0; border-bottom: 1px solid #e4e4e4; font-size: 12px;
+    }
+    .danger-row:last-child { border-bottom: none; }
+    .masked-val {
+      font-family: monospace; font-size: 12px; color: #888; letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item active" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Settings &rsaquo; Platform Settings</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Platform Settings</div>
+          <div class="page-date">Global configuration &nbsp;·&nbsp; Super Admin only</div>
+        </div>
+      </div>
+
+      <!-- General -->
+      <div class="settings-section">
+        <div class="card">
+          <div class="card-head">
+            <span>General</span>
+            <div class="save-btn">Save</div>
+          </div>
+          <div style="padding: 4px 20px;">
+            <div class="field-row">
+              <div>
+                <div class="field-label">Platform Name</div>
+                <div class="field-desc">Displayed in emails and receipts</div>
+              </div>
+              <div class="field-input wide"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Support Email</div>
+                <div class="field-desc">Default reply-to for outbound emails</div>
+              </div>
+              <div class="field-input wide"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Default Currency</div>
+                <div class="field-desc">ISO 4217 code (e.g. USD, GBP)</div>
+              </div>
+              <div class="field-input xshort"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Default Time Zone</div>
+                <div class="field-desc">Used for scheduled posts and payouts</div>
+              </div>
+              <div class="field-input wide"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Terms of Service URL</div>
+                <div class="field-desc">Shown at registration</div>
+              </div>
+              <div class="field-input wide"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Privacy Policy URL</div>
+                <div class="field-desc">Shown at registration</div>
+              </div>
+              <div class="field-input wide"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fees & Billing -->
+      <div class="settings-section">
+        <div class="card">
+          <div class="card-head">
+            <span>Fees &amp; Billing</span>
+            <div class="save-btn">Save</div>
+          </div>
+          <div style="padding: 4px 20px;">
+            <div class="field-row">
+              <div>
+                <div class="field-label">Platform Fee (%)</div>
+                <div class="field-desc">Platform cut from each subscription transaction</div>
+              </div>
+              <div class="field-input xshort"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Coach Payout Rate (%)</div>
+                <div class="field-desc">Percentage retained by coach (calculated automatically)</div>
+              </div>
+              <div class="field-input xshort"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Payout Schedule</div>
+                <div class="field-desc">Monthly (1st), Bi-weekly, or Weekly</div>
+              </div>
+              <div class="field-input short"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Minimum Payout Threshold</div>
+                <div class="field-desc">Minimum balance before payout is triggered</div>
+              </div>
+              <div class="field-input short"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Refund Window (days)</div>
+                <div class="field-desc">Days after purchase a refund can be issued</div>
+              </div>
+              <div class="field-input xshort"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Tax Collection</div>
+                <div class="field-desc">Enable automatic tax calculation via Stripe Tax</div>
+              </div>
+              <div class="toggle-box"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Gateway -->
+      <div class="settings-section">
+        <div class="card">
+          <div class="card-head">
+            <span>Payment Gateway (Stripe)</span>
+            <div class="save-btn">Update Keys</div>
+          </div>
+          <div style="padding: 4px 20px;">
+            <div class="field-row">
+              <div>
+                <div class="field-label">Publishable Key</div>
+                <div class="field-desc">Safe to expose in client-side code</div>
+              </div>
+              <div class="masked-val">pk_live_••••••••••••••••••2Kx9</div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Secret Key</div>
+                <div class="field-desc">Never expose publicly</div>
+              </div>
+              <div class="masked-val">sk_live_••••••••••••••••••7Rq2</div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Webhook Secret</div>
+                <div class="field-desc">Used to verify Stripe webhook events</div>
+              </div>
+              <div class="masked-val">whsec_••••••••••••••••••4Pm8</div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Stripe Account ID</div>
+                <div class="field-desc">Connected platform account</div>
+              </div>
+              <div style="font-family:monospace; font-size:12px; color:#888;">acct_1OgX2bLkdIwHu7ix</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Flags -->
+      <div class="settings-section">
+        <div class="card">
+          <div class="card-head">
+            <span>Feature Flags</span>
+            <div class="save-btn">Save</div>
+          </div>
+          <div style="padding: 4px 20px;">
+            <div class="field-row">
+              <div>
+                <div class="field-label">Referral Program</div>
+                <div class="field-desc">Allow coaches to generate referral codes</div>
+              </div>
+              <div class="toggle-box"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Shop / Products</div>
+                <div class="field-desc">Enable the product marketplace for coaches</div>
+              </div>
+              <div class="toggle-box"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Free Trials</div>
+                <div class="field-desc">Allow coaches to offer trial subscriptions</div>
+              </div>
+              <div class="toggle-box"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Promo Codes</div>
+                <div class="field-desc">Enable discount code redemption at checkout</div>
+              </div>
+              <div class="toggle-box"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">Push Notifications</div>
+                <div class="field-desc">Allow broadcast notifications to players and coaches</div>
+              </div>
+              <div class="toggle-box"></div>
+            </div>
+            <div class="field-row">
+              <div>
+                <div class="field-label">New Coach Registration</div>
+                <div class="field-desc">Allow new coaches to apply (disable to pause onboarding)</div>
+              </div>
+              <div class="toggle-box"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="settings-section">
+        <div class="danger-zone">
+          <div style="font-size:13px; font-weight:700; color:#444; margin-bottom:4px;">Danger Zone</div>
+          <div style="font-size:11px; color:#888; margin-bottom:16px;">These actions are irreversible. Proceed with extreme caution.</div>
+
+          <div class="danger-row">
+            <div>
+              <div class="field-label">Maintenance Mode</div>
+              <div class="field-desc">Disable all player/coach access — admin only. Shows a maintenance banner.</div>
+            </div>
+            <div class="toggle-box off"></div>
+          </div>
+          <div class="danger-row">
+            <div>
+              <div class="field-label">Suspend All Payouts</div>
+              <div class="field-desc">Halt all pending and scheduled payout runs immediately.</div>
+            </div>
+            <div class="btn-outline" style="font-size:11px; padding:5px 10px; color:#888;">Suspend</div>
+          </div>
+          <div class="danger-row">
+            <div>
+              <div class="field-label">Clear CDN Cache</div>
+              <div class="field-desc">Force-purge all cached content from the CDN (may cause brief slowdowns).</div>
+            </div>
+            <div class="btn-outline" style="font-size:11px; padding:5px 10px;">Purge Cache</div>
+          </div>
+          <div class="danger-row">
+            <div>
+              <div class="field-label">Export All Data</div>
+              <div class="field-desc">Request a full platform data export (GDPR / compliance). Delivered via email.</div>
+            </div>
+            <div class="btn-outline" style="font-size:11px; padding:5px 10px;">Request Export</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

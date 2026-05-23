@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Promo Codes (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar {
+      display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .toolbar-search { flex: 0 0 220px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .code-tag {
+      font-family: monospace; font-size: 12px; font-weight: 700;
+      background: #e4e4e4; border: 1px solid #ccc; border-radius: 2px;
+      padding: 2px 8px; color: #333; letter-spacing: 1px;
+    }
+    .discount-tag {
+      font-size: 10px; font-weight: 700; padding: 2px 7px;
+      background: #ddd; color: #555; border-radius: 2px;
+    }
+    .usage-bar {
+      display: flex; align-items: center; gap: 8px; font-size: 11px; color: #666;
+    }
+    .usage-track {
+      width: 80px; height: 6px; background: #e8e8e8; border-radius: 3px; overflow: hidden;
+    }
+    .usage-fill { height: 100%; background: #aaa; border-radius: 3px; }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn {
+      width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc;
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #555;
+    }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+    .create-form { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .form-row {
+      padding: 10px 0; border-bottom: 1px solid #eee; font-size: 12px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .form-row:last-child { border-bottom: none; }
+    .form-label { font-weight: 600; color: #333; min-width: 130px; }
+    .form-input {
+      flex: 1; max-width: 200px; height: 28px; background: #e8e8e8;
+      border: 1px solid #bbb; border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub active" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Revenue &rsaquo; Promo Codes</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Promo Codes</div>
+          <div class="page-date">Discount &amp; coupon management</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export</div>
+          <div class="btn-solid">+ Create Code</div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Active Codes</div>
+          <div class="kpi-value">12</div>
+          <div class="kpi-trend">3 expiring this week</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Total Redemptions</div>
+          <div class="kpi-value">1,840</div>
+          <div class="kpi-trend">↑ <span>22%</span> vs last month</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Discount Given</div>
+          <div class="kpi-value">$18,240</div>
+          <div class="kpi-trend">Avg $9.91 per use</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Revenue w/ Promo</div>
+          <div class="kpi-value">$84,200</div>
+          <div class="kpi-trend">17.8% used a code</div>
+        </div>
+      </div>
+
+      <!-- Create new code (collapsed-look form) -->
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-head">
+          Create New Promo Code
+          <span class="card-head-sub">Fill all fields then click Create</span>
+        </div>
+        <div style="padding: 4px 20px;">
+          <div class="form-row">
+            <span class="form-label">Code</span>
+            <div class="form-input"></div>
+            <span style="font-size:11px; color:#aaa; margin-left:4px;">e.g. SAVE20</span>
+          </div>
+          <div class="form-row">
+            <span class="form-label">Discount Type</span>
+            <div class="form-input"></div>
+            <span style="font-size:11px; color:#aaa; margin-left:4px;">% off or $ off</span>
+          </div>
+          <div class="form-row">
+            <span class="form-label">Discount Value</span>
+            <div class="form-input" style="max-width:100px;"></div>
+          </div>
+          <div class="form-row">
+            <span class="form-label">Applies To</span>
+            <div class="form-input"></div>
+            <span style="font-size:11px; color:#aaa; margin-left:4px;">All plans / specific coach</span>
+          </div>
+          <div class="form-row">
+            <span class="form-label">Max Redemptions</span>
+            <div class="form-input" style="max-width:100px;"></div>
+            <span style="font-size:11px; color:#aaa; margin-left:4px;">Leave blank for unlimited</span>
+          </div>
+          <div class="form-row">
+            <span class="form-label">Expiry Date</span>
+            <div class="form-input"></div>
+          </div>
+          <div style="padding: 14px 0; display:flex; justify-content:flex-end; gap:8px;">
+            <div class="btn-outline" style="font-size:12px; padding:6px 14px;">Cancel</div>
+            <div class="btn-solid" style="font-size:12px; padding:6px 14px;">Create Code</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="toolbar-search"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-spacer"></div>
+        <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Filter</div>
+      </div>
+
+      <!-- Codes table -->
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Discount</th>
+              <th>Applies To</th>
+              <th>Redemptions</th>
+              <th>Usage</th>
+              <th>Expires</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="code-tag">WELCOME20</span></td>
+              <td><span class="discount-tag">20% off</span></td>
+              <td>All Plans</td>
+              <td>482 / 1,000</td>
+              <td>
+                <div class="usage-bar">
+                  <div class="usage-track"><div class="usage-fill" style="width:48%;"></div></div>
+                  <span>48%</span>
+                </div>
+              </td>
+              <td>Mar 31, 2025</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit · Disable</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">SAVE10</span></td>
+              <td><span class="discount-tag">$10 off</span></td>
+              <td>Pro Monthly</td>
+              <td>314 / 500</td>
+              <td>
+                <div class="usage-bar">
+                  <div class="usage-track"><div class="usage-fill" style="width:63%;"></div></div>
+                  <span>63%</span>
+                </div>
+              </td>
+              <td>Feb 28, 2025</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit · Disable</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">JEROME15</span></td>
+              <td><span class="discount-tag">15% off</span></td>
+              <td>Jerome Parker</td>
+              <td>188 / unlimited</td>
+              <td>
+                <div class="usage-bar">
+                  <div class="usage-track"><div class="usage-fill" style="width:100%; background:#ccc;"></div></div>
+                  <span>—</span>
+                </div>
+              </td>
+              <td>Jan 31, 2025</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit · Disable</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">LAUNCH50</span></td>
+              <td><span class="discount-tag">50% off</span></td>
+              <td>All Plans — 1 month</td>
+              <td>500 / 500</td>
+              <td>
+                <div class="usage-bar">
+                  <div class="usage-track"><div class="usage-fill" style="width:100%;"></div></div>
+                  <span>Full</span>
+                </div>
+              </td>
+              <td>Dec 31, 2024</td>
+              <td><span class="status-tag" style="background:#e8e8e8; color:#aaa;">Expired</span></td>
+              <td><span style="font-size:11px; color:#aaa;">View</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">YOGA25</span></td>
+              <td><span class="discount-tag">25% off</span></td>
+              <td>Yoga Coaches</td>
+              <td>96 / 200</td>
+              <td>
+                <div class="usage-bar">
+                  <div class="usage-track"><div class="usage-fill" style="width:48%;"></div></div>
+                  <span>48%</span>
+                </div>
+              </td>
+              <td>Mar 15, 2025</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit · Disable</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">FREEMONTH</span></td>
+              <td><span class="discount-tag">100% off</span></td>
+              <td>New Players Only</td>
+              <td>220 / 300</td>
+              <td>
+                <div class="usage-bar">
+                  <div class="usage-track"><div class="usage-fill" style="width:73%;"></div></div>
+                  <span>73%</span>
+                </div>
+              </td>
+              <td>Feb 14, 2025</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit · Disable</span></td>
+            </tr>
+            <tr>
+              <td><span class="code-tag">WINTER10</span></td>
+              <td><span class="discount-tag">$10 off</span></td>
+              <td>All Plans</td>
+              <td>0 / 100</td>
+              <td>
+                <div class="usage-bar">
+                  <div class="usage-track"><div class="usage-fill" style="width:0%;"></div></div>
+                  <span>0%</span>
+                </div>
+              </td>
+              <td>Feb 1, 2025</td>
+              <td><span class="status-tag" style="background:#e8e8e8; color:#aaa;">Draft</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit · Activate</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>Showing 1–7 of 12 codes</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

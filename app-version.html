@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — App Versions (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .platform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .platform-card { background: #f4f4f4; border: 1px solid #ddd; border-radius: 2px; padding: 16px; }
+    .platform-icon { width: 40px; height: 40px; background: #d0d0d0; border-radius: 6px; margin-bottom: 10px; }
+    .platform-name { font-size: 13px; font-weight: 700; color: #222; margin-bottom: 4px; }
+    .platform-ver { font-size: 20px; font-weight: 700; color: #111; margin: 6px 0; }
+    .platform-meta { font-size: 11px; color: #888; margin-bottom: 12px; }
+    .force-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #444; margin-bottom: 8px; }
+    .toggle-box { width: 36px; height: 20px; background: #bbb; border-radius: 10px; position: relative; flex-shrink: 0; }
+    .toggle-box.on { background: #888; }
+    .toggle-thumb { width: 16px; height: 16px; background: #fff; border-radius: 50%; position: absolute; top: 2px; left: 2px; }
+    .toggle-box.on .toggle-thumb { left: 18px; }
+    .input-row { display: flex; gap: 8px; align-items: center; margin-top: 10px; }
+    .small-input { flex: 1; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .version-history-table { width: 100%; }
+    .vh-row { display: grid; grid-template-columns: 80px 100px 100px 1fr 100px 80px; gap: 8px; align-items: center; padding: 10px 0; border-bottom: 1px solid #efefef; font-size: 12px; }
+    .vh-head { font-size: 10px; font-weight: 700; color: #888; text-transform: uppercase; padding-bottom: 8px; border-bottom: 1px solid #ddd; }
+    .platform-badge { font-size: 10px; font-weight: 700; padding: 2px 6px; background: #e0e0e0; color: #555; border-radius: 2px; }
+    .platform-badge.android { background: #d4d4d4; }
+    .forced-pill { font-size: 10px; font-weight: 700; padding: 2px 6px; background: #ccc; color: #333; border-radius: 2px; }
+    .release-notes { font-size: 11px; color: #666; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="content-list.html">Content List</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="referral-expiry.html">Referral Expiry</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+      <a class="sb-sub" href="tier-history.html">Tier History</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="categories.html">Categories</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+      <a class="sb-sub" href="inventory-alerts.html">Inventory Alerts <span class="badge">4</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+      <a class="sb-sub" href="notification-history.html">Notification History</a>
+      <a class="sb-sub" href="reported-content.html">Reported Content</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="qr-management.html">QR Management</a>
+      <a class="sb-sub" href="bulk-export.html">Bulk Export</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+      <a class="sb-sub" href="legal-editor.html">Legal Pages</a>
+      <a class="sb-sub" href="about-editor.html">About Pages</a>
+      <a class="sb-sub active" href="app-version.html">App Versions</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Settings &rsaquo; App Versions</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">App Version Management</div>
+          <div class="page-date">Control minimum supported versions and force-update settings</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline" style="font-weight:700; background:#bbb; border-color:#999;">Save Changes</div>
+        </div>
+      </div>
+
+      <!-- Current Version Cards -->
+      <div class="platform-grid">
+
+        <!-- iOS -->
+        <div class="platform-card">
+          <div class="platform-icon" style="border-radius:8px;"></div>
+          <div class="platform-name">iOS (App Store)</div>
+          <div class="platform-ver">3.4.1</div>
+          <div class="platform-meta">Released Jan 15, 2025 &nbsp;·&nbsp; Build 341</div>
+
+          <div class="force-row">
+            <div class="toggle-box on"><div class="toggle-thumb"></div></div>
+            <span>Force update for versions below</span>
+          </div>
+          <div class="input-row">
+            <span style="font-size:11px; color:#666; white-space:nowrap;">Min version:</span>
+            <div class="small-input"></div>
+            <div style="font-size:11px; color:#555; background:#e4e4e4; border:1px solid #ccc; border-radius:2px; padding:0 10px; height:32px; display:flex; align-items:center;">3.2.0</div>
+          </div>
+
+          <div style="margin-top:12px; padding-top:10px; border-top:1px solid #ddd;">
+            <div class="force-row">
+              <div class="toggle-box"><div class="toggle-thumb"></div></div>
+              <span>Maintenance mode (iOS)</span>
+            </div>
+            <div class="force-row">
+              <div class="toggle-box on"><div class="toggle-thumb"></div></div>
+              <span>Show update banner (soft)</span>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <div style="font-size:10px; font-weight:700; color:#888; text-transform:uppercase; margin-bottom:4px;">App Store URL</div>
+            <div style="height:28px; background:#e8e8e8; border:1px solid #bbb; border-radius:2px;"></div>
+          </div>
+        </div>
+
+        <!-- Android -->
+        <div class="platform-card">
+          <div class="platform-icon" style="border-radius:4px;"></div>
+          <div class="platform-name">Android (Google Play)</div>
+          <div class="platform-ver">3.4.0</div>
+          <div class="platform-meta">Released Jan 12, 2025 &nbsp;·&nbsp; Build 340</div>
+
+          <div class="force-row">
+            <div class="toggle-box on"><div class="toggle-thumb"></div></div>
+            <span>Force update for versions below</span>
+          </div>
+          <div class="input-row">
+            <span style="font-size:11px; color:#666; white-space:nowrap;">Min version:</span>
+            <div class="small-input"></div>
+            <div style="font-size:11px; color:#555; background:#e4e4e4; border:1px solid #ccc; border-radius:2px; padding:0 10px; height:32px; display:flex; align-items:center;">3.2.0</div>
+          </div>
+
+          <div style="margin-top:12px; padding-top:10px; border-top:1px solid #ddd;">
+            <div class="force-row">
+              <div class="toggle-box"><div class="toggle-thumb"></div></div>
+              <span>Maintenance mode (Android)</span>
+            </div>
+            <div class="force-row">
+              <div class="toggle-box on"><div class="toggle-thumb"></div></div>
+              <span>Show update banner (soft)</span>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <div style="font-size:10px; font-weight:700; color:#888; text-transform:uppercase; margin-bottom:4px;">Play Store URL</div>
+            <div style="height:28px; background:#e8e8e8; border:1px solid #bbb; border-radius:2px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Version History -->
+      <div class="card">
+        <div class="card-head">Version History</div>
+        <div class="card-body" style="padding:0 16px;">
+          <div class="vh-row vh-head">
+            <div>Version</div>
+            <div>Platform</div>
+            <div>Released</div>
+            <div>Release Notes</div>
+            <div>Force Update</div>
+            <div>Active Users</div>
+          </div>
+          <div class="vh-row">
+            <div style="font-weight:700;">3.4.1</div>
+            <div><span class="platform-badge">iOS</span></div>
+            <div>Jan 15, 2025</div>
+            <div class="release-notes">Bug fixes, performance improvements</div>
+            <div>—</div>
+            <div>68%</div>
+          </div>
+          <div class="vh-row">
+            <div style="font-weight:700;">3.4.0</div>
+            <div><span class="platform-badge android">Android</span></div>
+            <div>Jan 12, 2025</div>
+            <div class="release-notes">New referral flow, UI polish</div>
+            <div>—</div>
+            <div>71%</div>
+          </div>
+          <div class="vh-row">
+            <div style="font-weight:700;">3.3.2</div>
+            <div><span class="platform-badge">iOS</span></div>
+            <div>Dec 20, 2024</div>
+            <div class="release-notes">Payment fixes, coach onboarding</div>
+            <div><span class="forced-pill">Forced</span></div>
+            <div>18%</div>
+          </div>
+          <div class="vh-row">
+            <div style="font-weight:700;">3.3.1</div>
+            <div><span class="platform-badge android">Android</span></div>
+            <div>Dec 18, 2024</div>
+            <div class="release-notes">Payment fixes, notification patch</div>
+            <div><span class="forced-pill">Forced</span></div>
+            <div>22%</div>
+          </div>
+          <div class="vh-row">
+            <div style="font-weight:700;">3.3.0</div>
+            <div><span class="platform-badge">iOS</span></div>
+            <div>Nov 30, 2024</div>
+            <div class="release-notes">Shop launch, tier badges</div>
+            <div>—</div>
+            <div>9%</div>
+          </div>
+          <div class="vh-row" style="border-bottom:none;">
+            <div style="font-weight:700;">3.3.0</div>
+            <div><span class="platform-badge android">Android</span></div>
+            <div>Nov 30, 2024</div>
+            <div class="release-notes">Shop launch, tier badges</div>
+            <div>—</div>
+            <div>7%</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

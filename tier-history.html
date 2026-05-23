@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Tier History (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .toolbar-search { flex: 0 0 220px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .change-pill {
+      display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700;
+      padding: 3px 8px; border-radius: 2px;
+    }
+    .change-pill.up { background: #d0d0d0; color: #222; }
+    .change-pill.down { background: #e8e8e8; color: #888; }
+    .tier-badge {
+      font-size: 10px; font-weight: 700; padding: 2px 7px;
+      border-radius: 2px;
+    }
+    .tier-badge.t1 { background: #bbb; color: #111; }
+    .tier-badge.t2 { background: #d0d0d0; color: #333; }
+    .tier-badge.t3 { background: #e4e4e4; color: #555; }
+    .tier-badge.t4 { background: #f0f0f0; color: #777; border: 1px solid #ddd; }
+    .arrow { font-size: 12px; color: #999; }
+    .reason-text { font-size: 11px; color: #666; }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn { width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #555; }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+    .date-chips { display: flex; gap: 6px; margin-bottom: 20px; }
+    .date-chip { padding: 5px 14px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; font-size: 11px; font-weight: 600; color: #666; }
+    .date-chip.active { background: #bbb; border-color: #999; color: #111; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="content-list.html">Content List</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="referral-expiry.html">Referral Expiry</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+      <a class="sb-sub active" href="tier-history.html">Tier History</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="categories.html">Categories</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+      <a class="sb-sub" href="inventory-alerts.html">Inventory Alerts <span class="badge">4</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+      <a class="sb-sub" href="notification-history.html">Notification History</a>
+      <a class="sb-sub" href="reported-content.html">Reported Content</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="qr-management.html">QR Management</a>
+      <a class="sb-sub" href="bulk-export.html">Bulk Export</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+      <a class="sb-sub" href="legal-editor.html">Legal Pages</a>
+      <a class="sb-sub" href="about-editor.html">About Pages</a>
+      <a class="sb-sub" href="app-version.html">App Versions</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Coach Tiers &rsaquo; Tier History</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Coach Tier History</div>
+          <div class="page-date">Log of all tier promotions and demotions across coaches</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export CSV</div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Promotions (30D)</div>
+          <div class="kpi-value">18</div>
+          <div class="kpi-trend">↑ 4 vs prior 30D</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Demotions (30D)</div>
+          <div class="kpi-value">7</div>
+          <div class="kpi-trend">↓ 2 vs prior 30D</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Admin Overrides (30D)</div>
+          <div class="kpi-value">3</div>
+          <div class="kpi-trend">Manual tier changes</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Coaches in Tier 1</div>
+          <div class="kpi-value">24</div>
+          <div class="kpi-trend">Elite tier</div>
+        </div>
+      </div>
+
+      <div class="date-chips">
+        <div class="date-chip">7D</div>
+        <div class="date-chip active">30D</div>
+        <div class="date-chip">90D</div>
+        <div class="date-chip">All Time</div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-search"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-spacer"></div>
+        <div style="display:flex; gap:8px;">
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px; background:#bbb; border-color:#999; font-weight:600;">All Changes</div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Promotions</div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Demotions</div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Overrides</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Coach</th>
+              <th>Change</th>
+              <th>From Tier</th>
+              <th></th>
+              <th>To Tier</th>
+              <th>Trigger</th>
+              <th>Reason / Metric</th>
+              <th>Changed By</th>
+              <th>Date</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="coach-profile.html" style="text-decoration:none;"><div class="name-line">Jerome Parker</div><div class="sub-line">COA-00124</div></a></td>
+              <td><span class="change-pill up">↑ Promoted</span></td>
+              <td><span class="tier-badge t2">Tier 2</span></td>
+              <td><span class="arrow">→</span></td>
+              <td><span class="tier-badge t1">Tier 1</span></td>
+              <td><span style="font-size:11px; color:#666;">Automatic</span></td>
+              <td><span class="reason-text">MRR $11,700 ≥ $10,000 threshold · 312 subs</span></td>
+              <td><span style="font-size:11px; color:#888;">System</span></td>
+              <td>Jan 1, 2025</td>
+              <td><a href="coach-profile.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><a href="coach-profile.html" style="text-decoration:none;"><div class="name-line">Sarah Chen</div><div class="sub-line">COA-00218</div></a></td>
+              <td><span class="change-pill up">↑ Promoted</span></td>
+              <td><span class="tier-badge t3">Tier 3</span></td>
+              <td><span class="arrow">→</span></td>
+              <td><span class="tier-badge t2">Tier 2</span></td>
+              <td><span style="font-size:11px; color:#666;">Automatic</span></td>
+              <td><span class="reason-text">MRR $5,860 ≥ $4,000 threshold · 186 subs</span></td>
+              <td><span style="font-size:11px; color:#888;">System</span></td>
+              <td>Jan 1, 2025</td>
+              <td><a href="coach-profile.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><a href="coach-profile.html" style="text-decoration:none;"><div class="name-line">Kevin Wright</div><div class="sub-line">COA-00402</div></a></td>
+              <td><span class="change-pill down">↓ Demoted</span></td>
+              <td><span class="tier-badge t2">Tier 2</span></td>
+              <td><span class="arrow">→</span></td>
+              <td><span class="tier-badge t3">Tier 3</span></td>
+              <td><span style="font-size:11px; color:#666;">Automatic</span></td>
+              <td><span class="reason-text">MRR dropped to $3,200 — below $4,000 for 60D</span></td>
+              <td><span style="font-size:11px; color:#888;">System</span></td>
+              <td>Jan 1, 2025</td>
+              <td><a href="coach-profile.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><a href="coach-profile.html" style="text-decoration:none;"><div class="name-line">Lisa Park</div><div class="sub-line">COA-00519</div></a></td>
+              <td><span class="change-pill up">↑ Promoted</span></td>
+              <td><span class="tier-badge t3">Tier 3</span></td>
+              <td><span class="arrow">→</span></td>
+              <td><span class="tier-badge t2">Tier 2</span></td>
+              <td><span style="font-size:11px; color:#666;">Admin Override</span></td>
+              <td><span class="reason-text">Manual: Early access for featured coach program</span></td>
+              <td><span style="font-size:11px; color:#888;">Admin K.</span></td>
+              <td>Dec 28, 2024</td>
+              <td><a href="coach-profile.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><a href="coach-profile.html" style="text-decoration:none;"><div class="name-line">Marcus Johnson</div><div class="sub-line">COA-00341</div></a></td>
+              <td><span class="change-pill up">↑ Promoted</span></td>
+              <td><span class="tier-badge t2">Tier 2</span></td>
+              <td><span class="arrow">→</span></td>
+              <td><span class="tier-badge t1">Tier 1</span></td>
+              <td><span style="font-size:11px; color:#666;">Automatic</span></td>
+              <td><span class="reason-text">MRR $7,480 ≥ $10,000 threshold met for 30D</span></td>
+              <td><span style="font-size:11px; color:#888;">System</span></td>
+              <td>Dec 15, 2024</td>
+              <td><a href="coach-profile.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><a href="coach-profile.html" style="text-decoration:none;"><div class="name-line">Diane Torres</div><div class="sub-line">COA-00628</div></a></td>
+              <td><span class="change-pill down">↓ Demoted</span></td>
+              <td><span class="tier-badge t3">Tier 3</span></td>
+              <td><span class="arrow">→</span></td>
+              <td><span class="tier-badge t4">Tier 4</span></td>
+              <td><span style="font-size:11px; color:#666;">Automatic</span></td>
+              <td><span class="reason-text">Inactivity — no content posted in 45 days</span></td>
+              <td><span style="font-size:11px; color:#888;">System</span></td>
+              <td>Dec 10, 2024</td>
+              <td><a href="coach-profile.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><a href="coach-profile.html" style="text-decoration:none;"><div class="name-line">Andrew Hierholze</div><div class="sub-line">COA-00089</div></a></td>
+              <td><span class="change-pill up">↑ Promoted</span></td>
+              <td><span class="tier-badge t4">Tier 4</span></td>
+              <td><span class="arrow">→</span></td>
+              <td><span class="tier-badge t3">Tier 3</span></td>
+              <td><span style="font-size:11px; color:#666;">Automatic</span></td>
+              <td><span class="reason-text">First 50 subscribers milestone reached</span></td>
+              <td><span style="font-size:11px; color:#888;">System</span></td>
+              <td>Dec 5, 2024</td>
+              <td><a href="coach-profile.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>Showing 1–7 of 142 tier changes</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <div class="page-btn">…</div>
+            <div class="page-btn">21</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

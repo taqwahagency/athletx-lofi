@@ -3,18 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AthletX — Content Moderation Log (Lo-Fi)</title>
+  <title>AthletX — Content List (Lo-Fi)</title>
   <link rel="stylesheet" href="lofi.css">
   <style>
     .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
     .toolbar-search { flex: 0 0 220px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
-    .toolbar-select { flex: 0 0 120px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
     .toolbar-spacer { flex: 1; }
-    .date-chips { display: flex; gap: 6px; margin-bottom: 20px; }
-    .date-chip { padding: 5px 14px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; font-size: 11px; font-weight: 600; color: #666; }
-    .date-chip.active { background: #bbb; border-color: #999; color: #111; }
-    .reason-tag { font-size: 10px; font-weight: 700; padding: 2px 7px; background: #e0e0e0; color: #555; border-radius: 2px; }
-    .notified-dot { width: 8px; height: 8px; background: #aaa; border-radius: 50%; display: inline-block; margin-right: 4px; }
+    .type-chip { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+    .chip { padding: 5px 14px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; font-size: 11px; font-weight: 600; color: #666; }
+    .chip.active { background: #bbb; border-color: #999; color: #111; }
+    .content-type {
+      font-size: 10px; font-weight: 700; padding: 2px 7px;
+      background: #e4e4e4; color: #555; border-radius: 2px;
+    }
+    .content-type.video { background: #d4d4d4; color: #333; }
+    .content-type.post { background: #e8e8e8; color: #666; }
+    .content-type.plan { background: #c8c8c8; color: #222; }
+    .thumb-box { width: 40px; height: 30px; background: #d0d0d0; border-radius: 2px; flex-shrink: 0; }
     .pagination {
       display: flex; align-items: center; justify-content: space-between;
       padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
@@ -22,6 +28,8 @@
     .page-btns { display: flex; gap: 4px; }
     .page-btn { width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #555; }
     .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+    .flag-dot { width: 8px; height: 8px; border-radius: 50%; background: #bbb; display: inline-block; }
+    .flag-dot.flagged { background: #888; }
   </style>
 </head>
 <body>
@@ -49,8 +57,8 @@
     <div class="sb-section">
       <div class="sb-label">Analytics</div>
       <a class="sb-item" href="coach-performance.html">Coach Performance</a>
-      <a class="sb-sub active" href="content-performance.html">Content Performance</a>
-      <a class="sb-sub" href="content-list.html">Content List</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub active" href="content-list.html">Content List</a>
       <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
       <a class="sb-sub" href="reports.html">Reports</a>
     </div>
@@ -105,7 +113,7 @@
 
   <div class="main">
     <div class="topbar">
-      <div class="topbar-breadcrumb">Analytics &rsaquo; <a href="content-performance.html" style="color:#666;text-decoration:none;">Content Performance</a> &rsaquo; Moderation Log</div>
+      <div class="topbar-breadcrumb">Analytics &rsaquo; Content List</div>
       <div class="topbar-search"></div>
       <div class="topbar-avatar"></div>
     </div>
@@ -113,8 +121,8 @@
 
       <div class="page-hdr">
         <div>
-          <div class="page-title">Content Moderation Log</div>
-          <div class="page-date">History of all removed or flagged content</div>
+          <div class="page-title">Content List</div>
+          <div class="page-date">All content across the platform — videos, posts, training plans</div>
         </div>
         <div class="hdr-actions">
           <div class="btn-outline">Export CSV</div>
@@ -123,32 +131,33 @@
 
       <div class="kpi-row" style="margin-bottom:20px;">
         <div class="kpi-card">
-          <div class="kpi-label">Removed (30D)</div>
-          <div class="kpi-value">24</div>
-          <div class="kpi-trend">↑ <span>4</span> vs last month</div>
+          <div class="kpi-label">Total Content Items</div>
+          <div class="kpi-value">14,820</div>
+          <div class="kpi-trend">↑ 312 this month</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Flagged (30D)</div>
-          <div class="kpi-value">38</div>
-          <div class="kpi-trend">14 auto-detected</div>
+          <div class="kpi-label">Videos</div>
+          <div class="kpi-value">6,441</div>
+          <div class="kpi-trend">43% of total</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Coaches Warned</div>
-          <div class="kpi-value">8</div>
-          <div class="kpi-trend">This month</div>
+          <div class="kpi-label">Training Plans</div>
+          <div class="kpi-value">2,180</div>
+          <div class="kpi-trend">15% of total</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Avg Review Time</div>
-          <div class="kpi-value">4.2h</div>
-          <div class="kpi-trend">Flag to decision</div>
+          <div class="kpi-label">Flagged / Under Review</div>
+          <div class="kpi-value">27</div>
+          <div class="kpi-trend">Awaiting moderation</div>
         </div>
       </div>
 
-      <div class="date-chips">
-        <div class="date-chip">7D</div>
-        <div class="date-chip active">30D</div>
-        <div class="date-chip">90D</div>
-        <div class="date-chip">All Time</div>
+      <div class="type-chip">
+        <div class="chip active">All Types</div>
+        <div class="chip">Video</div>
+        <div class="chip">Post</div>
+        <div class="chip">Training Plan</div>
+        <div class="chip">Live Session</div>
       </div>
 
       <div class="toolbar">
@@ -163,98 +172,130 @@
         <table>
           <thead>
             <tr>
-              <th>Content Title</th>
+              <th style="width:32px;"></th>
+              <th>Title</th>
               <th>Coach</th>
-              <th>Reason</th>
-              <th>Action</th>
-              <th>Removed By</th>
-              <th>Date</th>
-              <th>Coach Notified</th>
+              <th>Type</th>
+              <th>Sport</th>
+              <th>Published</th>
+              <th>Views</th>
+              <th>Likes</th>
+              <th>Comments</th>
+              <th>Flagged</th>
+              <th>Status</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><div class="name-line">Controversial Drill Method</div><div class="sub-line">Video · Premium · 14m 22s</div></td>
+              <td><div class="thumb-box"></div></td>
+              <td><div class="name-line">5-Day Speed Program for Beginners</div><div class="sub-line">CNT-00841</div></td>
               <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Jerome Parker</a></td>
-              <td><span class="reason-tag">Policy Violation</span></td>
-              <td><span class="status-tag">Removed</span></td>
-              <td>Imran A.</td>
-              <td>Jan 22, 2025</td>
-              <td><span class="notified-dot"></span>Yes</td>
+              <td><span class="content-type plan">Plan</span></td>
+              <td>Football</td>
+              <td>Jan 10, 2025</td>
+              <td>4,210</td>
+              <td>318</td>
+              <td>42</td>
+              <td><span class="flag-dot"></span></td>
+              <td><span class="status-tag">Published</span></td>
               <td><span style="font-size:11px; color:#666;">View</span></td>
             </tr>
             <tr>
-              <td><div class="name-line">Extreme Training Method</div><div class="sub-line">Video · Free · 0m 28s</div></td>
-              <td>Mike Torres</td>
-              <td><span class="reason-tag">Safety Concern</span></td>
-              <td><span class="status-tag">Removed</span></td>
-              <td>Sarah A.</td>
-              <td>Jan 20, 2025</td>
-              <td><span class="notified-dot"></span>Yes</td>
-              <td><span style="font-size:11px; color:#666;">View</span></td>
-            </tr>
-            <tr>
-              <td><div class="name-line">Supplement Promotion Video</div><div class="sub-line">Video · Free · 2m 10s</div></td>
-              <td>Andrew Hierholze</td>
-              <td><span class="reason-tag">Prohibited Content</span></td>
-              <td><span class="status-tag">Removed</span></td>
-              <td>Imran A.</td>
-              <td>Jan 18, 2025</td>
-              <td><span class="notified-dot"></span>Yes</td>
-              <td><span style="font-size:11px; color:#666;">View</span></td>
-            </tr>
-            <tr>
-              <td><div class="name-line">Unverified Recovery Tips</div><div class="sub-line">Image · Premium</div></td>
-              <td>Lisa Park</td>
-              <td><span class="reason-tag">Misleading Info</span></td>
-              <td><span class="status-tag" style="background:#e8e8e8; color:#888;">Flagged</span></td>
-              <td>Auto-Scan</td>
-              <td>Jan 17, 2025</td>
-              <td><span style="font-size:11px; color:#aaa;">Pending</span></td>
-              <td><span style="font-size:11px; color:#666;">Review · Remove · Dismiss</span></td>
-            </tr>
-            <tr>
-              <td><div class="name-line">Third-Party Product Ad</div><div class="sub-line">Image · Free</div></td>
-              <td>Sarah Chen</td>
-              <td><span class="reason-tag">Advertising</span></td>
-              <td><span class="status-tag">Removed</span></td>
-              <td>Imran A.</td>
-              <td>Jan 15, 2025</td>
-              <td><span class="notified-dot"></span>Yes</td>
-              <td><span style="font-size:11px; color:#666;">View</span></td>
-            </tr>
-            <tr>
-              <td><div class="name-line">Low-Quality Highlight Reel</div><div class="sub-line">Video · Free · 0m 18s</div></td>
-              <td>Marcus Johnson</td>
-              <td><span class="reason-tag">Quality Standards</span></td>
-              <td><span class="status-tag" style="background:#e8e8e8; color:#888;">Flagged</span></td>
-              <td>Auto-Scan</td>
+              <td><div class="thumb-box"></div></td>
+              <td><div class="name-line">Morning Shooting Drill — 10 Min</div><div class="sub-line">CNT-00912</div></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Andrew Hierholze</a></td>
+              <td><span class="content-type video">Video</span></td>
+              <td>Basketball</td>
               <td>Jan 14, 2025</td>
-              <td><span style="font-size:11px; color:#aaa;">Pending</span></td>
-              <td><span style="font-size:11px; color:#666;">Review · Remove · Dismiss</span></td>
+              <td>8,540</td>
+              <td>621</td>
+              <td>88</td>
+              <td><span class="flag-dot flagged"></span></td>
+              <td><span class="status-tag" style="background:#e8e8e8; color:#888;">Flagged</span></td>
+              <td><a href="reported-content.html" style="font-size:11px; color:#666; text-decoration:none;">Review</a></td>
             </tr>
             <tr>
-              <td><div class="name-line">Offensive Language in Caption</div><div class="sub-line">Image · Premium</div></td>
-              <td>Kevin Wright</td>
-              <td><span class="reason-tag">Community Standards</span></td>
-              <td><span class="status-tag">Removed</span></td>
-              <td>Sarah A.</td>
-              <td>Jan 12, 2025</td>
-              <td><span class="notified-dot"></span>Yes</td>
+              <td><div class="thumb-box"></div></td>
+              <td><div class="name-line">Nutrition Basics for Young Athletes</div><div class="sub-line">CNT-01024</div></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Sarah Chen</a></td>
+              <td><span class="content-type post">Post</span></td>
+              <td>General</td>
+              <td>Jan 18, 2025</td>
+              <td>2,980</td>
+              <td>194</td>
+              <td>23</td>
+              <td><span class="flag-dot"></span></td>
+              <td><span class="status-tag">Published</span></td>
+              <td><span style="font-size:11px; color:#666;">View</span></td>
+            </tr>
+            <tr>
+              <td><div class="thumb-box"></div></td>
+              <td><div class="name-line">Tennis Serve Mechanics Deep Dive</div><div class="sub-line">CNT-01102</div></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Marcus Johnson</a></td>
+              <td><span class="content-type video">Video</span></td>
+              <td>Tennis</td>
+              <td>Jan 20, 2025</td>
+              <td>5,760</td>
+              <td>432</td>
+              <td>61</td>
+              <td><span class="flag-dot"></span></td>
+              <td><span class="status-tag">Published</span></td>
+              <td><span style="font-size:11px; color:#666;">View</span></td>
+            </tr>
+            <tr>
+              <td><div class="thumb-box"></div></td>
+              <td><div class="name-line">4-Week Strength Block — Intermediate</div><div class="sub-line">CNT-01180</div></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Lisa Park</a></td>
+              <td><span class="content-type plan">Plan</span></td>
+              <td>Fitness</td>
+              <td>Jan 22, 2025</td>
+              <td>3,310</td>
+              <td>265</td>
+              <td>35</td>
+              <td><span class="flag-dot"></span></td>
+              <td><span class="status-tag">Published</span></td>
+              <td><span style="font-size:11px; color:#666;">View</span></td>
+            </tr>
+            <tr>
+              <td><div class="thumb-box"></div></td>
+              <td><div class="name-line">Live Q&amp;A: Off-Season Training Tips</div><div class="sub-line">CNT-01241</div></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Kevin Wright</a></td>
+              <td><span class="content-type post">Post</span></td>
+              <td>Football</td>
+              <td>Jan 24, 2025</td>
+              <td>1,420</td>
+              <td>98</td>
+              <td>47</td>
+              <td><span class="flag-dot flagged"></span></td>
+              <td><span class="status-tag" style="background:#e8e8e8; color:#888;">Flagged</span></td>
+              <td><a href="reported-content.html" style="font-size:11px; color:#666; text-decoration:none;">Review</a></td>
+            </tr>
+            <tr>
+              <td><div class="thumb-box"></div></td>
+              <td><div class="name-line">Recovery Stretching Routine</div><div class="sub-line">CNT-01304</div></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Jerome Parker</a></td>
+              <td><span class="content-type video">Video</span></td>
+              <td>Football</td>
+              <td>Jan 26, 2025</td>
+              <td>6,820</td>
+              <td>508</td>
+              <td>71</td>
+              <td><span class="flag-dot"></span></td>
+              <td><span class="status-tag">Published</span></td>
               <td><span style="font-size:11px; color:#666;">View</span></td>
             </tr>
           </tbody>
         </table>
         <div class="pagination">
-          <span>Showing 1–7 of 62 entries</span>
+          <span>Showing 1–7 of 14,820 content items</span>
           <div class="page-btns">
             <div class="page-btn">‹</div>
             <div class="page-btn active">1</div>
             <div class="page-btn">2</div>
             <div class="page-btn">3</div>
             <div class="page-btn">…</div>
-            <div class="page-btn">9</div>
+            <div class="page-btn">2,117</div>
             <div class="page-btn">›</div>
           </div>
         </div>

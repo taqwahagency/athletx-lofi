@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Subscriptions (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar {
+      display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .toolbar-search { flex: 0 0 200px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .date-chips { display: flex; gap: 6px; margin-bottom: 20px; }
+    .date-chip {
+      padding: 5px 14px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px;
+      font-size: 11px; font-weight: 600; color: #666;
+    }
+    .date-chip.active { background: #bbb; border-color: #999; color: #111; }
+    .chart-bars {
+      display: flex; align-items: flex-end; gap: 8px;
+      height: 90px; padding: 0 4px; margin-bottom: 6px;
+    }
+    .chart-bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; }
+    .chart-bar { width: 100%; background: #bbb; border-radius: 2px 2px 0 0; }
+    .chart-x { display: flex; gap: 8px; padding: 0 4px; }
+    .chart-x-lbl { flex: 1; text-align: center; font-size: 9px; color: #bbb; }
+    .plan-bar-row {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 12px;
+    }
+    .plan-label { width: 80px; flex-shrink: 0; color: #444; font-size: 11px; }
+    .plan-track { flex: 1; height: 20px; background: #eee; border-radius: 2px; overflow: hidden; }
+    .plan-fill { height: 100%; background: #bbb; border-radius: 2px; }
+    .plan-val { width: 80px; flex-shrink: 0; font-size: 11px; color: #555; text-align: right; }
+    .event-tag {
+      display: inline-block; padding: 2px 7px;
+      background: #e8e8e8; border: 1px solid #ccc; border-radius: 10px;
+      font-size: 10px; font-weight: 600; color: #555;
+    }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn {
+      width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc;
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #555;
+    }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item active" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <div class="sb-item sb-soon">Tier Overview</div>
+      <div class="sb-sub sb-soon">Underperformer Alerts <span class="badge" style="opacity:0.4;">8</span></div>
+      <div class="sb-sub sb-soon">Tier Settings</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <div class="sb-item sb-soon">Products</div>
+      <div class="sb-sub sb-soon">Orders</div>
+      <div class="sb-sub sb-soon">Refunds <span class="badge" style="opacity:0.4;">6</span></div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <div class="sb-item sb-soon">Support Tickets <span class="badge" style="opacity:0.4;">5</span></div>
+      <div class="sb-sub sb-soon">Push Notifications</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <div class="sb-item sb-soon">Admin Accounts</div>
+      <div class="sb-sub sb-soon">Roles &amp; Permissions</div>
+      <div class="sb-sub sb-soon">Activity Log</div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Revenue &rsaquo; Subscriptions</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Subscriptions</div>
+          <div class="page-date">Platform-wide &nbsp;·&nbsp; Jan 2025</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export</div>
+        </div>
+      </div>
+
+      <div class="date-chips">
+        <div class="date-chip">7D</div>
+        <div class="date-chip active">30D</div>
+        <div class="date-chip">90D</div>
+        <div class="date-chip">6M</div>
+        <div class="date-chip">1Y</div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Active Subscriptions</div>
+          <div class="kpi-value">12,548</div>
+          <div class="kpi-trend">↑ <span>4.8%</span> vs last month</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">MRR</div>
+          <div class="kpi-value">$284,600</div>
+          <div class="kpi-trend">↑ <span>6.2%</span> vs last month</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Churn Rate</div>
+          <div class="kpi-value">2.4%</div>
+          <div class="kpi-trend">↓ <span>0.3%</span> improvement</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">New This Month</div>
+          <div class="kpi-value">1,842</div>
+          <div class="kpi-trend">↑ <span>14.2%</span> vs last month</div>
+        </div>
+      </div>
+
+      <div class="row-2col wide-left">
+
+        <div>
+          <!-- MRR chart -->
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">
+              MRR Over Time
+              <span class="card-head-sub">Monthly</span>
+            </div>
+            <div class="card-body" style="padding:20px 24px 12px;">
+              <div class="chart-bars">
+                <div class="chart-bar-col"><div class="chart-bar" style="height:48%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:55%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:62%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:60%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:68%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:74%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:80%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:78%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:88%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:94%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:90%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:100%;"></div></div>
+              </div>
+              <div class="chart-x">
+                <div class="chart-x-lbl">Feb</div>
+                <div class="chart-x-lbl">Mar</div>
+                <div class="chart-x-lbl">Apr</div>
+                <div class="chart-x-lbl">May</div>
+                <div class="chart-x-lbl">Jun</div>
+                <div class="chart-x-lbl">Jul</div>
+                <div class="chart-x-lbl">Aug</div>
+                <div class="chart-x-lbl">Sep</div>
+                <div class="chart-x-lbl">Oct</div>
+                <div class="chart-x-lbl">Nov</div>
+                <div class="chart-x-lbl">Dec</div>
+                <div class="chart-x-lbl">Jan</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent events -->
+          <div class="card">
+            <div class="card-head">
+              Recent Subscription Events
+              <span class="card-head-sub">Last 24 hours</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Player</th>
+                  <th>Coach</th>
+                  <th>Event</th>
+                  <th>Plan</th>
+                  <th>Value</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a class="name-line" href="player-profile.html" style="text-decoration:none;">Alex Morgan</a></td>
+                  <td>Jerome Parker</td>
+                  <td><span class="event-tag">New</span></td>
+                  <td>Pro — $29/mo</td>
+                  <td>$29</td>
+                  <td>2h ago</td>
+                </tr>
+                <tr>
+                  <td><div class="name-line">Tyler Brooks</div></td>
+                  <td>Andrew Hierholze</td>
+                  <td><span class="event-tag">Upgrade</span></td>
+                  <td>Basic → Pro</td>
+                  <td>+$20/mo</td>
+                  <td>4h ago</td>
+                </tr>
+                <tr>
+                  <td><div class="name-line">Mia Torres</div></td>
+                  <td>Sarah Chen</td>
+                  <td><span class="event-tag">New</span></td>
+                  <td>Basic — $9/mo</td>
+                  <td>$9</td>
+                  <td>5h ago</td>
+                </tr>
+                <tr>
+                  <td><div class="name-line">James Okafor</div></td>
+                  <td>Marcus Johnson</td>
+                  <td><span class="event-tag" style="color:#999;">Cancel</span></td>
+                  <td>Pro — cancelled</td>
+                  <td>−$29/mo</td>
+                  <td>8h ago</td>
+                </tr>
+                <tr>
+                  <td><div class="name-line">Sofia Reyes</div></td>
+                  <td>Lisa Park</td>
+                  <td><span class="event-tag">New</span></td>
+                  <td>Pro — $29/mo</td>
+                  <td>$29</td>
+                  <td>11h ago</td>
+                </tr>
+                <tr>
+                  <td><div class="name-line">Kevin Patel</div></td>
+                  <td>Jerome Parker</td>
+                  <td><span class="event-tag">Renewal</span></td>
+                  <td>Pro — monthly</td>
+                  <td>$29</td>
+                  <td>14h ago</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="pagination">
+              <span>Showing 1–6 of 284 events today</span>
+              <div class="page-btns">
+                <div class="page-btn">‹</div>
+                <div class="page-btn active">1</div>
+                <div class="page-btn">2</div>
+                <div class="page-btn">3</div>
+                <div class="page-btn">›</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: plan breakdown + stats -->
+        <div>
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Plan Breakdown</div>
+            <div class="card-body" style="padding:16px 20px;">
+              <div class="plan-bar-row">
+                <div class="plan-label">Pro ($29)</div>
+                <div class="plan-track"><div class="plan-fill" style="width:62%;"></div></div>
+                <div class="plan-val">7,780 — 62%</div>
+              </div>
+              <div class="plan-bar-row">
+                <div class="plan-label">Basic ($9)</div>
+                <div class="plan-track"><div class="plan-fill" style="width:38%;"></div></div>
+                <div class="plan-val">4,768 — 38%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Subscription Health</div>
+            <div class="card-body">
+              <div class="snap-row"><span class="snap-label">Avg subscription age</span><span class="snap-value">8.2 months</span></div>
+              <div class="snap-row"><span class="snap-label">Avg LTV</span><span class="snap-value">$186</span></div>
+              <div class="snap-row"><span class="snap-label">Upgrade rate</span><span class="snap-value">12.4%</span></div>
+              <div class="snap-row"><span class="snap-label">Downgrade rate</span><span class="snap-value">3.1%</span></div>
+              <div class="snap-row"><span class="snap-label">Cancellation rate</span><span class="snap-value">2.4%</span></div>
+              <div class="snap-row"><span class="snap-label">Paused</span><span class="snap-value">186</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">Top Subscribed Coaches</div>
+            <div class="card-body" style="padding:0;">
+              <div class="pa-row" style="padding:10px 16px;">
+                <div>
+                  <div style="font-size:12px; font-weight:600;">Jerome Parker</div>
+                  <div class="sub-line">Football &nbsp;·&nbsp; Tier 1</div>
+                </div>
+                <span style="font-size:12px; font-weight:700; color:#333;">12.5K</span>
+              </div>
+              <div class="pa-row" style="padding:10px 16px;">
+                <div>
+                  <div style="font-size:12px; font-weight:600;">Andrew Hierholze</div>
+                  <div class="sub-line">Basketball &nbsp;·&nbsp; Tier 1</div>
+                </div>
+                <span style="font-size:12px; font-weight:700; color:#333;">8.2K</span>
+              </div>
+              <div class="pa-row" style="padding:10px 16px;">
+                <div>
+                  <div style="font-size:12px; font-weight:600;">Marcus Johnson</div>
+                  <div class="sub-line">Tennis &nbsp;·&nbsp; Tier 2</div>
+                </div>
+                <span style="font-size:12px; font-weight:700; color:#333;">6.8K</span>
+              </div>
+              <div class="pa-row" style="padding:10px 16px; border-bottom:none;">
+                <div>
+                  <div style="font-size:12px; font-weight:600;">Sarah Chen</div>
+                  <div class="sub-line">Yoga &nbsp;·&nbsp; Tier 2</div>
+                </div>
+                <span style="font-size:12px; font-weight:700; color:#333;">5.1K</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

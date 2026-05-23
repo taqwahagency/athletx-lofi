@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Post Detail (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .post-hero {
+      width: 100%;
+      height: 200px;
+      background: #d8d8d8;
+      border-radius: 2px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: #bbb;
+    }
+    .type-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #e0e0e0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #555;
+    }
+    .body-block {
+      width: 100%;
+      height: 80px;
+      background: #ebebeb;
+      border-radius: 2px;
+      margin-bottom: 8px;
+    }
+    .comment-row {
+      display: flex;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 12px;
+    }
+    .comment-row:last-child { border-bottom: none; }
+    .comment-avatar {
+      width: 28px; height: 28px;
+      background: #ccc; border-radius: 50%; flex-shrink: 0;
+    }
+    .comment-text { color: #444; line-height: 1.4; }
+    .comment-meta { font-size: 10px; color: #aaa; margin-top: 2px; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub active" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <div class="sb-item sb-soon">Tier Overview</div>
+      <div class="sb-sub sb-soon">Underperformer Alerts <span class="badge" style="opacity:0.4;">8</span></div>
+      <div class="sb-sub sb-soon">Tier Settings</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <div class="sb-item sb-soon">Products</div>
+      <div class="sb-sub sb-soon">Orders</div>
+      <div class="sb-sub sb-soon">Refunds <span class="badge" style="opacity:0.4;">6</span></div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <div class="sb-item sb-soon">Support Tickets <span class="badge" style="opacity:0.4;">5</span></div>
+      <div class="sb-sub sb-soon">Push Notifications</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <div class="sb-item sb-soon">Admin Accounts</div>
+      <div class="sb-sub sb-soon">Roles &amp; Permissions</div>
+      <div class="sb-sub sb-soon">Activity Log</div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Coach Management &rsaquo; Scheduled Posts &rsaquo; Post Detail</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Post Detail</div>
+          <div class="page-date">Jerome Parker &nbsp;·&nbsp; Footwork Drills Vol. 4</div>
+        </div>
+        <div class="hdr-actions">
+          <a class="btn-outline" href="scheduled-posts.html">← Back to Posts</a>
+          <div class="btn-outline">Edit Post</div>
+          <div class="btn-solid">Publish Now</div>
+        </div>
+      </div>
+
+      <div class="row-2col wide-left">
+
+        <!-- Left: post content -->
+        <div>
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">
+              Post Preview
+              <div style="display:flex; gap:8px; align-items:center;">
+                <span class="status-tag">Scheduled</span>
+                <span class="type-tag">Video</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="post-hero">▶</div>
+              <div style="font-size:16px; font-weight:700; color:#111; margin-bottom:8px;">Footwork Drills Vol. 4</div>
+              <div style="font-size:12px; color:#666; margin-bottom:16px;">
+                By Jerome Parker &nbsp;·&nbsp; Football &nbsp;·&nbsp; 18 min &nbsp;·&nbsp; Subscribers Only
+              </div>
+              <div class="body-block"></div>
+              <div class="body-block" style="height:50px;"></div>
+              <div class="body-block" style="height:60px;"></div>
+            </div>
+          </div>
+
+          <!-- Comments preview -->
+          <div class="card">
+            <div class="card-head">
+              Comments
+              <span class="card-head-sub">0 pre-publish comments</span>
+            </div>
+            <div class="card-body" style="padding:16px 20px;">
+              <div style="text-align:center; padding:24px 0; font-size:12px; color:#bbb;">
+                No comments yet — post not published
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: metadata + actions -->
+        <div>
+
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Post Details</div>
+            <div class="card-body">
+              <div class="detail-row">
+                <div class="detail-key">Coach</div>
+                <div class="detail-val">Jerome Parker</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Sport</div>
+                <div class="detail-val">Football</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Content Type</div>
+                <div class="detail-val">Video</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Duration</div>
+                <div class="detail-val">18 min</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Access</div>
+                <div class="detail-val">Subscribers Only</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Scheduled For</div>
+                <div class="detail-val">Today, 2:00 PM</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Created</div>
+                <div class="detail-val">Jan 23, 2025</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Last Edited</div>
+                <div class="detail-val">Jan 24, 2025</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Moderation</div>
+            <div class="card-body">
+              <div class="detail-row">
+                <div class="detail-key">Auto-scan</div>
+                <div class="detail-val"><span class="status-tag">Passed</span></div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Flagged</div>
+                <div class="detail-val">No</div>
+              </div>
+              <div class="detail-row">
+                <div class="detail-key">Reviewed by</div>
+                <div class="detail-val">—</div>
+              </div>
+              <div style="margin-top:14px; display:flex; gap:8px;">
+                <div class="btn-outline" style="font-size:11px; padding:5px 12px;">Flag for Review</div>
+                <div class="btn-outline" style="font-size:11px; padding:5px 12px;">Cancel Post</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">Engagement Forecast</div>
+            <div class="card-body">
+              <div class="snap-row">
+                <span class="snap-label">Est. Views (24h)</span>
+                <span class="snap-value">4.2K</span>
+              </div>
+              <div class="snap-row">
+                <span class="snap-label">Est. Likes</span>
+                <span class="snap-value">380</span>
+              </div>
+              <div class="snap-row">
+                <span class="snap-label">Avg for this coach</span>
+                <span class="snap-value">3.8K views</span>
+              </div>
+              <div class="snap-row">
+                <span class="snap-label">Best time to post</span>
+                <span class="snap-value" style="font-size:12px;">Tue 2 PM</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

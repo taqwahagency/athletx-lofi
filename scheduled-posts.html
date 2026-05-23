@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Scheduled Posts (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .toolbar-search { flex: 0 0 200px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn {
+      width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc;
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #555;
+    }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+    .post-thumb {
+      width: 44px; height: 32px; background: #ddd; border-radius: 2px; flex-shrink: 0;
+    }
+    .type-tag {
+      display: inline-block;
+      padding: 2px 7px;
+      background: #e0e0e0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub active" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <div class="sb-item sb-soon">Tier Overview</div>
+      <div class="sb-sub sb-soon">Underperformer Alerts <span class="badge" style="opacity:0.4;">8</span></div>
+      <div class="sb-sub sb-soon">Tier Settings</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <div class="sb-item sb-soon">Products</div>
+      <div class="sb-sub sb-soon">Orders</div>
+      <div class="sb-sub sb-soon">Refunds <span class="badge" style="opacity:0.4;">6</span></div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <div class="sb-item sb-soon">Support Tickets <span class="badge" style="opacity:0.4;">5</span></div>
+      <div class="sb-sub sb-soon">Push Notifications</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <div class="sb-item sb-soon">Admin Accounts</div>
+      <div class="sb-sub sb-soon">Roles &amp; Permissions</div>
+      <div class="sb-sub sb-soon">Activity Log</div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Coach Management &rsaquo; Scheduled Posts</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Scheduled Posts</div>
+          <div class="page-date">148 posts queued across all coaches</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export</div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Scheduled</div>
+          <div class="kpi-value">148</div>
+          <div class="kpi-trend">Across 84 coaches</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Due This Week</div>
+          <div class="kpi-value">32</div>
+          <div class="kpi-trend">Next 7 days</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Pending Approval</div>
+          <div class="kpi-value">7</div>
+          <div class="kpi-trend">Flagged for review</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Published Today</div>
+          <div class="kpi-value">11</div>
+          <div class="kpi-trend">↑ 3 vs yesterday</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-search"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-spacer"></div>
+        <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Filter</div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Post</th>
+              <th>Coach</th>
+              <th>Sport</th>
+              <th>Type</th>
+              <th>Scheduled For</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="post-thumb"></div>
+                  <div>
+                    <a class="name-line" href="post-detail.html" style="text-decoration:none;">Footwork Drills Vol. 4</a>
+                    <div class="sub-line">Video &nbsp;·&nbsp; 18 min</div>
+                  </div>
+                </div>
+              </td>
+              <td>Jerome Parker</td>
+              <td>Football</td>
+              <td><span class="type-tag">Video</span></td>
+              <td>Today, 2:00 PM</td>
+              <td><span class="status-tag">Scheduled</span></td>
+              <td>
+                <div style="display:flex; gap:8px; font-size:11px; color:#666;">
+                  <span>Edit</span><span>Cancel</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="post-thumb"></div>
+                  <div>
+                    <a class="name-line" href="post-detail.html" style="text-decoration:none;">Pre-Season Nutrition Guide</a>
+                    <div class="sub-line">Article &nbsp;·&nbsp; 8 min read</div>
+                  </div>
+                </div>
+              </td>
+              <td>Andrew Hierholze</td>
+              <td>Basketball</td>
+              <td><span class="type-tag">Article</span></td>
+              <td>Tomorrow, 9:00 AM</td>
+              <td><span class="status-tag">Scheduled</span></td>
+              <td>
+                <div style="display:flex; gap:8px; font-size:11px; color:#666;">
+                  <span>Edit</span><span>Cancel</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="post-thumb"></div>
+                  <div>
+                    <a class="name-line" href="post-detail.html" style="text-decoration:none;">Serve Technique Masterclass</a>
+                    <div class="sub-line">Video &nbsp;·&nbsp; 24 min</div>
+                  </div>
+                </div>
+              </td>
+              <td>Marcus Johnson</td>
+              <td>Tennis</td>
+              <td><span class="type-tag">Video</span></td>
+              <td>Jan 26, 11:00 AM</td>
+              <td><span class="badge">Pending Approval</span></td>
+              <td>
+                <div style="display:flex; gap:8px; font-size:11px; color:#666;">
+                  <span>Review</span><span>Edit</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="post-thumb"></div>
+                  <div>
+                    <a class="name-line" href="post-detail.html" style="text-decoration:none;">Morning Flow: 30-Day Challenge</a>
+                    <div class="sub-line">Series &nbsp;·&nbsp; 6 parts</div>
+                  </div>
+                </div>
+              </td>
+              <td>Sarah Chen</td>
+              <td>Yoga</td>
+              <td><span class="type-tag">Series</span></td>
+              <td>Jan 27, 7:00 AM</td>
+              <td><span class="status-tag">Scheduled</span></td>
+              <td>
+                <div style="display:flex; gap:8px; font-size:11px; color:#666;">
+                  <span>Edit</span><span>Cancel</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="post-thumb"></div>
+                  <div>
+                    <a class="name-line" href="post-detail.html" style="text-decoration:none;">Box-to-Box Movement Drills</a>
+                    <div class="sub-line">Video &nbsp;·&nbsp; 12 min</div>
+                  </div>
+                </div>
+              </td>
+              <td>Mike Torres</td>
+              <td>Soccer</td>
+              <td><span class="type-tag">Video</span></td>
+              <td>Jan 28, 3:00 PM</td>
+              <td><span class="status-tag">Draft</span></td>
+              <td>
+                <div style="display:flex; gap:8px; font-size:11px; color:#666;">
+                  <span>Edit</span><span>Publish</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="post-thumb"></div>
+                  <div>
+                    <a class="name-line" href="post-detail.html" style="text-decoration:none;">Open-Water Technique Breakdown</a>
+                    <div class="sub-line">Video &nbsp;·&nbsp; 20 min</div>
+                  </div>
+                </div>
+              </td>
+              <td>Lisa Park</td>
+              <td>Swimming</td>
+              <td><span class="type-tag">Video</span></td>
+              <td>Jan 29, 8:00 AM</td>
+              <td><span class="status-tag">Scheduled</span></td>
+              <td>
+                <div style="display:flex; gap:8px; font-size:11px; color:#666;">
+                  <span>Edit</span><span>Cancel</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="post-thumb"></div>
+                  <div>
+                    <a class="name-line" href="post-detail.html" style="text-decoration:none;">Speed Training: Advanced Module</a>
+                    <div class="sub-line">Video &nbsp;·&nbsp; 31 min</div>
+                  </div>
+                </div>
+              </td>
+              <td>Jerome Parker</td>
+              <td>Football</td>
+              <td><span class="type-tag">Video</span></td>
+              <td>Feb 1, 10:00 AM</td>
+              <td><span class="status-tag">Scheduled</span></td>
+              <td>
+                <div style="display:flex; gap:8px; font-size:11px; color:#666;">
+                  <span>Edit</span><span>Cancel</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>Showing 1–7 of 148 posts</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <div class="page-btn">…</div>
+            <div class="page-btn">21</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

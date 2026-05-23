@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Payout Management (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar {
+      display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .toolbar-search { flex: 0 0 200px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn {
+      width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc;
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #555;
+    }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+    .run-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      background: #e8e8e8; border: 1px solid #c8c8c8; border-radius: 2px;
+      padding: 12px 20px; margin-bottom: 16px; font-size: 12px; color: #444;
+    }
+    .run-bar strong { color: #111; font-size: 14px; }
+    .cb { width: 14px; height: 14px; background: #ddd; border: 1px solid #bbb; border-radius: 2px; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub active" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <div class="sb-item sb-soon">Tier Overview</div>
+      <div class="sb-sub sb-soon">Underperformer Alerts <span class="badge" style="opacity:0.4;">8</span></div>
+      <div class="sb-sub sb-soon">Tier Settings</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <div class="sb-item sb-soon">Products</div>
+      <div class="sb-sub sb-soon">Orders</div>
+      <div class="sb-sub sb-soon">Refunds <span class="badge" style="opacity:0.4;">6</span></div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <div class="sb-item sb-soon">Support Tickets <span class="badge" style="opacity:0.4;">5</span></div>
+      <div class="sb-sub sb-soon">Push Notifications</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <div class="sb-item sb-soon">Admin Accounts</div>
+      <div class="sb-sub sb-soon">Roles &amp; Permissions</div>
+      <div class="sb-sub sb-soon">Activity Log</div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Coach Management &rsaquo; Payout Management</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Payout Management</div>
+          <div class="page-date">February 2025 &nbsp;·&nbsp; Run scheduled Feb 1</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export CSV</div>
+          <div class="btn-solid">Run Payout Now</div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Pending</div>
+          <div class="kpi-value">$284,600</div>
+          <div class="kpi-trend">1,198 coaches</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Next Run</div>
+          <div class="kpi-value" style="font-size:16px;">Feb 1, 2025</div>
+          <div class="kpi-trend">8 days away</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Paid YTD</div>
+          <div class="kpi-value">$1.84M</div>
+          <div class="kpi-trend">↑ 22% vs last year</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">On Hold</div>
+          <div class="kpi-value">$12,400</div>
+          <div class="kpi-trend">4 coaches flagged</div>
+        </div>
+      </div>
+
+      <!-- Next run info -->
+      <div class="run-bar">
+        <div>
+          <div><strong>Next Payout Run — Feb 1, 2025</strong></div>
+          <div style="margin-top:4px; font-size:11px; color:#888;">1,194 coaches eligible &nbsp;·&nbsp; 4 on hold &nbsp;·&nbsp; Total: $284,600</div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <div class="btn-outline" style="font-size:11px; padding:6px 14px;">Preview Run</div>
+          <div class="btn-solid" style="font-size:11px; padding:6px 14px;">Approve &amp; Schedule</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-search"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-spacer"></div>
+        <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Filter</div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:32px;"><div class="cb"></div></th>
+              <th>Coach</th>
+              <th>Tier</th>
+              <th>Period</th>
+              <th>Gross Revenue</th>
+              <th>Coach Share (80%)</th>
+              <th>Bank</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="cb"></div></td>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <a class="name-line" href="coach-profile.html" style="text-decoration:none;">Jerome Parker</a>
+                    <div class="sub-line">ID #C-00142</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="tier-tag">Tier 1</span></td>
+              <td>Jan 2025</td>
+              <td>$10,250</td>
+              <td><strong>$8,200</strong></td>
+              <td>Chase ••••6821</td>
+              <td><span class="status-tag">Pending</span></td>
+            </tr>
+            <tr>
+              <td><div class="cb"></div></td>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Andrew Hierholze</div>
+                    <div class="sub-line">ID #C-00138</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="tier-tag">Tier 1</span></td>
+              <td>Jan 2025</td>
+              <td>$8,175</td>
+              <td><strong>$6,540</strong></td>
+              <td>BoA ••••4402</td>
+              <td><span class="status-tag">Pending</span></td>
+            </tr>
+            <tr>
+              <td><div class="cb"></div></td>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Marcus Johnson</div>
+                    <div class="sub-line">ID #C-00121</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="tier-tag">Tier 2</span></td>
+              <td>Jan 2025</td>
+              <td>$6,775</td>
+              <td><strong>$5,420</strong></td>
+              <td>Wells ••••9910</td>
+              <td><span class="status-tag">Pending</span></td>
+            </tr>
+            <tr>
+              <td><div class="cb"></div></td>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Sarah Chen</div>
+                    <div class="sub-line">ID #C-00114</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="tier-tag">Tier 2</span></td>
+              <td>Jan 2025</td>
+              <td>$5,250</td>
+              <td><strong>$4,200</strong></td>
+              <td>Chase ••••3301</td>
+              <td><span class="status-tag">Pending</span></td>
+            </tr>
+            <tr>
+              <td><div class="cb"></div></td>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Carlos Vega</div>
+                    <div class="sub-line">ID #C-00091</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="tier-tag">Tier 3</span></td>
+              <td>Jan 2025</td>
+              <td>$1,800</td>
+              <td><strong>$1,440</strong></td>
+              <td>—</td>
+              <td><span class="badge" style="background:#e0e0e0; color:#333;">On Hold</span></td>
+            </tr>
+            <tr>
+              <td><div class="cb"></div></td>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Lisa Park</div>
+                    <div class="sub-line">ID #C-00099</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="tier-tag">Tier 2</span></td>
+              <td>Jan 2025</td>
+              <td>$4,513</td>
+              <td><strong>$3,610</strong></td>
+              <td>BoA ••••7712</td>
+              <td><span class="status-tag">Pending</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>Showing 1–6 of 1,198 coaches</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <div class="page-btn">…</div>
+            <div class="page-btn">200</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

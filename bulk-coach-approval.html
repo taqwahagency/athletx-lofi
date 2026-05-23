@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Bulk Coach Approval (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .toolbar-search {
+      flex: 0 0 200px;
+      height: 32px;
+      background: #e8e8e8;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+    }
+    .toolbar-select {
+      flex: 0 0 130px;
+      height: 32px;
+      background: #e8e8e8;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+    }
+    .toolbar-spacer { flex: 1; }
+    .bulk-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #e0e0e0;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+      padding: 10px 16px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: #444;
+    }
+    .bulk-bar strong { color: #111; }
+    .doc-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+    }
+    .dot-ok  { width: 8px; height: 8px; background: #888; border-radius: 50%; }
+    .dot-mis { width: 8px; height: 8px; background: #ccc; border-radius: 50%; border: 1px solid #aaa; }
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-top: 1px solid #e4e4e4;
+      font-size: 11px;
+      color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn {
+      width: 28px; height: 28px;
+      background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #555;
+    }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+    .cb { width: 14px; height: 14px; background: #ddd; border: 1px solid #bbb; border-radius: 2px; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item active" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <div class="sb-item sb-soon">Tier Overview</div>
+      <div class="sb-sub sb-soon">Underperformer Alerts <span class="badge" style="opacity:0.4;">8</span></div>
+      <div class="sb-sub sb-soon">Tier Settings</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <div class="sb-item sb-soon">Products</div>
+      <div class="sb-sub sb-soon">Orders</div>
+      <div class="sb-sub sb-soon">Refunds <span class="badge" style="opacity:0.4;">6</span></div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <div class="sb-item sb-soon">Support Tickets <span class="badge" style="opacity:0.4;">5</span></div>
+      <div class="sb-sub sb-soon">Push Notifications</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <div class="sb-item sb-soon">Admin Accounts</div>
+      <div class="sb-sub sb-soon">Roles &amp; Permissions</div>
+      <div class="sb-sub sb-soon">Activity Log</div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Coach Management &rsaquo; Pending Verifications &rsaquo; Bulk Approval</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Bulk Coach Approval</div>
+          <div class="page-date">14 pending verifications</div>
+        </div>
+        <div class="hdr-actions">
+          <a class="btn-outline" href="pending-verifications.html">← Back to Queue</a>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Selected</div>
+          <div class="kpi-value">4</div>
+          <div class="kpi-trend">of 14 pending</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">All Docs Complete</div>
+          <div class="kpi-value">9</div>
+          <div class="kpi-trend">Ready to approve</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Missing Docs</div>
+          <div class="kpi-value">5</div>
+          <div class="kpi-trend">Awaiting upload</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Overdue (&gt;7d)</div>
+          <div class="kpi-value">5</div>
+          <div class="kpi-trend">Needs priority</div>
+        </div>
+      </div>
+
+      <!-- Bulk action bar -->
+      <div class="bulk-bar">
+        <div class="cb" style="background:#888;"></div>
+        <span><strong>4 coaches</strong> selected</span>
+        <div style="flex:1;"></div>
+        <div class="btn-solid" style="font-size:11px; padding:6px 14px;">Approve Selected</div>
+        <div class="btn-outline" style="font-size:11px; padding:6px 14px;">Reject Selected</div>
+        <div class="btn-outline" style="font-size:11px; padding:6px 14px;">Request More Info</div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="toolbar-search"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-spacer"></div>
+        <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Filter</div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:32px;"><div class="cb"></div></th>
+              <th>Coach</th>
+              <th>Sport</th>
+              <th>Applied Tier</th>
+              <th>Docs</th>
+              <th>Wait Time</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="cb" style="background:#888;"></div></td>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Jerome Parker</div>
+                    <div class="sub-line">ID #C-00142</div>
+                  </div>
+                </div>
+              </td>
+              <td>Football</td>
+              <td><span class="tier-tag">Tier 1</span></td>
+              <td>
+                <div style="display:flex; gap:4px;">
+                  <div class="dot-ok"></div><div class="dot-ok"></div><div class="dot-ok"></div><div class="dot-ok"></div>
+                </div>
+                <div style="font-size:10px; color:#888; margin-top:2px;">4 / 4</div>
+              </td>
+              <td><span style="color:#333; font-size:12px;">9 days</span> <span class="badge">Urgent</span></td>
+              <td><span class="status-tag">Pending</span></td>
+              <td><a href="coach-verification.html" style="font-size:11px; color:#555;">Review →</a></td>
+            </tr>
+            <tr>
+              <td><div class="cb" style="background:#888;"></div></td>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Andrew Hierholze</div>
+                    <div class="sub-line">ID #C-00138</div>
+                  </div>
+                </div>
+              </td>
+              <td>Basketball</td>
+              <td><span class="tier-tag">Tier 1</span></td>
+              <td>
+                <div style="display:flex; gap:4px;">
+                  <div class="dot-ok"></div><div class="dot-ok"></div><div class="dot-mis"></div><div class="dot-ok"></div>
+                </div>
+                <div style="font-size:10px; color:#888; margin-top:2px;">3 / 4</div>
+              </td>
+              <td><span style="color:#333; font-size:12px;">7 days</span> <span class="badge">Urgent</span></td>
+              <td><span class="status-tag">Pending</span></td>
+              <td><a href="coach-verification.html" style="font-size:11px; color:#555;">Review →</a></td>
+            </tr>
+            <tr>
+              <td><div class="cb" style="background:#888;"></div></td>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Marcus Johnson</div>
+                    <div class="sub-line">ID #C-00121</div>
+                  </div>
+                </div>
+              </td>
+              <td>Tennis</td>
+              <td><span class="tier-tag">Tier 2</span></td>
+              <td>
+                <div style="display:flex; gap:4px;">
+                  <div class="dot-ok"></div><div class="dot-ok"></div><div class="dot-ok"></div><div class="dot-mis"></div>
+                </div>
+                <div style="font-size:10px; color:#888; margin-top:2px;">3 / 4</div>
+              </td>
+              <td><span style="color:#555; font-size:12px;">3 days</span></td>
+              <td><span class="status-tag">Pending</span></td>
+              <td><a href="coach-verification.html" style="font-size:11px; color:#555;">Review →</a></td>
+            </tr>
+            <tr>
+              <td><div class="cb" style="background:#888;"></div></td>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Sarah Chen</div>
+                    <div class="sub-line">ID #C-00114</div>
+                  </div>
+                </div>
+              </td>
+              <td>Yoga</td>
+              <td><span class="tier-tag">Tier 2</span></td>
+              <td>
+                <div style="display:flex; gap:4px;">
+                  <div class="dot-ok"></div><div class="dot-ok"></div><div class="dot-ok"></div><div class="dot-ok"></div>
+                </div>
+                <div style="font-size:10px; color:#888; margin-top:2px;">4 / 4</div>
+              </td>
+              <td><span style="color:#555; font-size:12px;">2 days</span></td>
+              <td><span class="status-tag">Pending</span></td>
+              <td><a href="coach-verification.html" style="font-size:11px; color:#555;">Review →</a></td>
+            </tr>
+            <tr>
+              <td><div class="cb"></div></td>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">David Kim</div>
+                    <div class="sub-line">ID #C-00109</div>
+                  </div>
+                </div>
+              </td>
+              <td>Baseball</td>
+              <td><span class="tier-tag">Tier 3</span></td>
+              <td>
+                <div style="display:flex; gap:4px;">
+                  <div class="dot-ok"></div><div class="dot-ok"></div><div class="dot-ok"></div><div class="dot-ok"></div>
+                </div>
+                <div style="font-size:10px; color:#888; margin-top:2px;">4 / 4</div>
+              </td>
+              <td><span style="color:#555; font-size:12px;">1 day</span></td>
+              <td><span class="status-tag">Pending</span></td>
+              <td><a href="coach-verification.html" style="font-size:11px; color:#555;">Review →</a></td>
+            </tr>
+            <tr>
+              <td><div class="cb"></div></td>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Priya Nair</div>
+                    <div class="sub-line">ID #C-00088</div>
+                  </div>
+                </div>
+              </td>
+              <td>Athletics</td>
+              <td><span class="tier-tag">Tier 3</span></td>
+              <td>
+                <div style="display:flex; gap:4px;">
+                  <div class="dot-ok"></div><div class="dot-mis"></div><div class="dot-mis"></div><div class="dot-ok"></div>
+                </div>
+                <div style="font-size:10px; color:#888; margin-top:2px;">2 / 4</div>
+              </td>
+              <td><span style="color:#555; font-size:12px;">1 day</span></td>
+              <td><span class="status-tag">Pending</span></td>
+              <td><a href="coach-verification.html" style="font-size:11px; color:#555;">Review →</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>Showing 1–6 of 14 pending coaches</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

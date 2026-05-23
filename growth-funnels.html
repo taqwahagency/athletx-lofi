@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Growth &amp; Funnels (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .date-chips { display: flex; gap: 6px; margin-bottom: 20px; }
+    .date-chip {
+      padding: 5px 14px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px;
+      font-size: 11px; font-weight: 600; color: #666;
+    }
+    .date-chip.active { background: #bbb; border-color: #999; color: #111; }
+    .funnel-row {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 10px; font-size: 12px;
+    }
+    .funnel-label { width: 160px; flex-shrink: 0; color: #444; font-size: 11px; }
+    .funnel-track { flex: 1; height: 28px; background: #eee; border-radius: 2px; overflow: hidden; }
+    .funnel-fill { height: 100%; background: #bbb; border-radius: 2px; display: flex; align-items: center; padding-left: 8px; }
+    .funnel-fill-text { font-size: 10px; color: #555; font-weight: 600; }
+    .funnel-val { width: 80px; flex-shrink: 0; font-size: 11px; color: #555; text-align: right; }
+    .funnel-pct { width: 50px; flex-shrink: 0; font-size: 10px; color: #aaa; text-align: right; }
+    .chart-bars {
+      display: flex; align-items: flex-end; gap: 8px;
+      height: 90px; padding: 0 4px; margin-bottom: 6px;
+    }
+    .chart-bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; }
+    .chart-bar { width: 100%; background: #bbb; border-radius: 2px 2px 0 0; }
+    .chart-x { display: flex; gap: 8px; padding: 0 4px; }
+    .chart-x-lbl { flex: 1; text-align: center; font-size: 9px; color: #bbb; }
+    .src-row {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 12px;
+    }
+    .src-label { width: 110px; flex-shrink: 0; color: #555; font-size: 11px; }
+    .src-track { flex: 1; height: 14px; background: #eee; border-radius: 2px; overflow: hidden; }
+    .src-fill { height: 100%; background: #ccc; border-radius: 2px; }
+    .src-val { width: 50px; flex-shrink: 0; font-size: 11px; color: #666; text-align: right; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub active" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <div class="sb-item sb-soon">Tier Overview</div>
+      <div class="sb-sub sb-soon">Underperformer Alerts <span class="badge" style="opacity:0.4;">8</span></div>
+      <div class="sb-sub sb-soon">Tier Settings</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <div class="sb-item sb-soon">Products</div>
+      <div class="sb-sub sb-soon">Orders</div>
+      <div class="sb-sub sb-soon">Refunds <span class="badge" style="opacity:0.4;">6</span></div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <div class="sb-item sb-soon">Support Tickets <span class="badge" style="opacity:0.4;">5</span></div>
+      <div class="sb-sub sb-soon">Push Notifications</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <div class="sb-item sb-soon">Admin Accounts</div>
+      <div class="sb-sub sb-soon">Roles &amp; Permissions</div>
+      <div class="sb-sub sb-soon">Activity Log</div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Analytics &rsaquo; Growth &amp; Funnels</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Growth &amp; Funnels</div>
+          <div class="page-date">Platform-wide &nbsp;·&nbsp; Last 30 days</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export Report</div>
+        </div>
+      </div>
+
+      <div class="date-chips">
+        <div class="date-chip">7D</div>
+        <div class="date-chip active">30D</div>
+        <div class="date-chip">90D</div>
+        <div class="date-chip">6M</div>
+        <div class="date-chip">1Y</div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">New Players</div>
+          <div class="kpi-value">1,842</div>
+          <div class="kpi-trend">↑ <span>14.2%</span> vs last month</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">New Coaches</div>
+          <div class="kpi-value">42</div>
+          <div class="kpi-trend">↑ <span>18%</span> vs last month</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Conversion Rate</div>
+          <div class="kpi-value">34.8%</div>
+          <div class="kpi-trend">↑ <span>2.1%</span> vs last month</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Churn Rate</div>
+          <div class="kpi-value">2.4%</div>
+          <div class="kpi-trend">↓ <span>0.3%</span> improvement</div>
+        </div>
+      </div>
+
+      <div class="row-2col">
+
+        <!-- Player funnel -->
+        <div>
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Player Acquisition Funnel</div>
+            <div class="card-body" style="padding:20px 24px;">
+              <div class="funnel-row">
+                <div class="funnel-label">App Downloads</div>
+                <div class="funnel-track"><div class="funnel-fill" style="width:100%;"><span class="funnel-fill-text">5,284</span></div></div>
+                <div class="funnel-pct">100%</div>
+              </div>
+              <div class="funnel-row">
+                <div class="funnel-label">Account Created</div>
+                <div class="funnel-track"><div class="funnel-fill" style="width:82%;"><span class="funnel-fill-text">4,332</span></div></div>
+                <div class="funnel-pct">82%</div>
+              </div>
+              <div class="funnel-row">
+                <div class="funnel-label">Coach Browse</div>
+                <div class="funnel-track"><div class="funnel-fill" style="width:65%;"><span class="funnel-fill-text">3,434</span></div></div>
+                <div class="funnel-pct">65%</div>
+              </div>
+              <div class="funnel-row">
+                <div class="funnel-label">Trial Started</div>
+                <div class="funnel-track"><div class="funnel-fill" style="width:44%;"><span class="funnel-fill-text">2,325</span></div></div>
+                <div class="funnel-pct">44%</div>
+              </div>
+              <div class="funnel-row">
+                <div class="funnel-label">Paid Subscriber</div>
+                <div class="funnel-track"><div class="funnel-fill" style="width:35%;"><span class="funnel-fill-text">1,849</span></div></div>
+                <div class="funnel-pct">35%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Player growth chart -->
+          <div class="card">
+            <div class="card-head">
+              New Players Over Time
+              <span class="card-head-sub">Monthly</span>
+            </div>
+            <div class="card-body" style="padding:20px 24px 12px;">
+              <div class="chart-bars">
+                <div class="chart-bar-col"><div class="chart-bar" style="height:42%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:55%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:62%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:70%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:65%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:80%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:88%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:75%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:92%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:100%;"></div></div>
+              </div>
+              <div class="chart-x">
+                <div class="chart-x-lbl">Apr</div>
+                <div class="chart-x-lbl">May</div>
+                <div class="chart-x-lbl">Jun</div>
+                <div class="chart-x-lbl">Jul</div>
+                <div class="chart-x-lbl">Aug</div>
+                <div class="chart-x-lbl">Sep</div>
+                <div class="chart-x-lbl">Oct</div>
+                <div class="chart-x-lbl">Nov</div>
+                <div class="chart-x-lbl">Dec</div>
+                <div class="chart-x-lbl">Jan</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sources + coach growth -->
+        <div>
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Acquisition Sources</div>
+            <div class="card-body" style="padding:16px 20px;">
+              <div class="src-row">
+                <div class="src-label">Organic Search</div>
+                <div class="src-track"><div class="src-fill" style="width:72%;"></div></div>
+                <div class="src-val">38%</div>
+              </div>
+              <div class="src-row">
+                <div class="src-label">Referral</div>
+                <div class="src-track"><div class="src-fill" style="width:52%;"></div></div>
+                <div class="src-val">28%</div>
+              </div>
+              <div class="src-row">
+                <div class="src-label">Social Media</div>
+                <div class="src-track"><div class="src-fill" style="width:30%;"></div></div>
+                <div class="src-val">16%</div>
+              </div>
+              <div class="src-row">
+                <div class="src-label">Direct</div>
+                <div class="src-track"><div class="src-fill" style="width:22%;"></div></div>
+                <div class="src-val">12%</div>
+              </div>
+              <div class="src-row">
+                <div class="src-label">Paid Ads</div>
+                <div class="src-track"><div class="src-fill" style="width:11%;"></div></div>
+                <div class="src-val">6%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Retention Overview</div>
+            <div class="card-body">
+              <div class="snap-row"><span class="snap-label">30-day retention</span><span class="snap-value">78%</span></div>
+              <div class="snap-row"><span class="snap-label">60-day retention</span><span class="snap-value">64%</span></div>
+              <div class="snap-row"><span class="snap-label">90-day retention</span><span class="snap-value">54%</span></div>
+              <div class="snap-row"><span class="snap-label">Avg LTV</span><span class="snap-value">$186</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">Coach Growth</div>
+            <div class="card-body" style="padding:20px 24px 12px;">
+              <div class="chart-bars">
+                <div class="chart-bar-col"><div class="chart-bar" style="height:30%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:45%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:52%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:60%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:68%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:72%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:80%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:76%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:90%;"></div></div>
+                <div class="chart-bar-col"><div class="chart-bar" style="height:100%;"></div></div>
+              </div>
+              <div class="chart-x">
+                <div class="chart-x-lbl">Apr</div>
+                <div class="chart-x-lbl">May</div>
+                <div class="chart-x-lbl">Jun</div>
+                <div class="chart-x-lbl">Jul</div>
+                <div class="chart-x-lbl">Aug</div>
+                <div class="chart-x-lbl">Sep</div>
+                <div class="chart-x-lbl">Oct</div>
+                <div class="chart-x-lbl">Nov</div>
+                <div class="chart-x-lbl">Dec</div>
+                <div class="chart-x-lbl">Jan</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

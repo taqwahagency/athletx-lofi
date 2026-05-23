@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Player Activity (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-select {
+      flex: 0 0 150px;
+      height: 32px;
+      background: #e8e8e8;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+    }
+
+    .toolbar-date {
+      flex: 0 0 130px;
+      height: 32px;
+      background: #e8e8e8;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+    }
+
+    .toolbar-spacer { flex: 1; }
+
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 6px;
+      bottom: 6px;
+      width: 1px;
+      background: #ccc;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -25px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      background: #bbb;
+      border-radius: 50%;
+      border: 2px solid #f5f5f5;
+    }
+
+    .timeline-time {
+      font-size: 10px;
+      color: #aaa;
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 2px;
+    }
+
+    .timeline-desc {
+      font-size: 11px;
+      color: #777;
+    }
+
+    .timeline-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      padding: 1px 6px;
+      background: #ddd;
+      color: #555;
+      border-radius: 2px;
+      margin-right: 6px;
+    }
+
+    .day-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #888;
+      margin: 0 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e4e4e4;
+    }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-top: 1px solid #e4e4e4;
+      font-size: 11px;
+      color: #888;
+    }
+
+    .page-btns { display: flex; gap: 4px; }
+
+    .page-btn {
+      width: 28px;
+      height: 28px;
+      background: #e8e8e8;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #555;
+    }
+
+    .page-btn.active {
+      background: #bbb;
+      border-color: #999;
+      color: #111;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sb-logo">AthletX Admin</div>
+      <div class="sb-section">
+        <div class="sb-label">Main</div>
+        <a class="sb-item" href="index.html">Dashboard</a>
+        <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+        <a class="sb-item" href="search.html">Search</a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Players</div>
+        <a class="sb-item active" href="player-list.html">Player List</a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Coach Management</div>
+        <a class="sb-item" href="coach-list.html">Coach List</a>
+        <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+        <div class="sb-sub sb-soon">Scheduled Posts</div>
+        <div class="sb-sub sb-soon">Payout Management</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Analytics</div>
+        <div class="sb-item sb-soon">Coach Performance</div>
+        <div class="sb-sub sb-soon">Content Performance</div>
+        <div class="sb-sub sb-soon">Growth & Funnels</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Revenue</div>
+        <div class="sb-item sb-soon">Subscriptions</div>
+        <div class="sb-sub sb-soon">Revenue Split</div>
+        <div class="sb-sub sb-soon">Transactions</div>
+        <div class="sb-sub sb-soon">Referral Overview</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Coach Tiers</div>
+        <div class="sb-item sb-soon">Tier Overview</div>
+        <div class="sb-sub sb-soon">Underperformer Alerts <span class="badge" style="opacity:0.4;">8</span></div>
+        <div class="sb-sub sb-soon">Tier Settings</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Shop</div>
+        <div class="sb-item sb-soon">Products</div>
+        <div class="sb-sub sb-soon">Orders</div>
+        <div class="sb-sub sb-soon">Refunds <span class="badge" style="opacity:0.4;">6</span></div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Support</div>
+        <div class="sb-item sb-soon">Support Tickets <span class="badge" style="opacity:0.4;">5</span></div>
+        <div class="sb-sub sb-soon">Push Notifications</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Settings</div>
+        <div class="sb-item sb-soon">Admin Accounts</div>
+        <div class="sb-sub sb-soon">Roles & Permissions</div>
+        <div class="sb-sub sb-soon">Activity Log</div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+      <div class="topbar">
+        <div class="topbar-breadcrumb">Players &rsaquo; Alex Morgan &rsaquo; Activity</div>
+        <div class="topbar-search"></div>
+        <div class="topbar-avatar"></div>
+      </div>
+
+      <div class="content">
+
+        <div class="page-hdr">
+          <div>
+            <div class="page-title">Player Activity</div>
+            <div class="page-date">Alex Morgan &nbsp;·&nbsp; ID #P-10482 &nbsp;·&nbsp; 48 total sessions</div>
+          </div>
+          <div class="hdr-actions">
+            <div class="btn-outline">Export Log</div>
+            <a class="btn-outline" href="player-profile.html">← Back to Profile</a>
+          </div>
+        </div>
+
+        <!-- KPI row -->
+        <div class="kpi-row" style="grid-template-columns:repeat(4,1fr); margin-bottom:20px;">
+          <div class="kpi-card">
+            <div class="kpi-label">Sessions This Month</div>
+            <div class="kpi-value">6</div>
+            <div class="kpi-trend">↑ 2 vs last month</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Content Watched</div>
+            <div class="kpi-value">34</div>
+            <div class="kpi-trend">Videos & modules</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Last Active</div>
+            <div class="kpi-value" style="font-size:16px;">Today</div>
+            <div class="kpi-trend">9:14 AM</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Avg. Session</div>
+            <div class="kpi-value">24m</div>
+            <div class="kpi-trend">Per visit</div>
+          </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar-select"></div>
+          <div class="toolbar-date"></div>
+          <div class="toolbar-date"></div>
+          <div class="toolbar-spacer"></div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Filter</div>
+        </div>
+
+        <!-- Activity Timeline -->
+        <div class="card">
+          <div class="card-body">
+
+            <!-- Today -->
+            <div class="day-label">Today — May 22, 2026</div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">9:14 AM</div>
+                <div class="timeline-title"><span class="timeline-tag">Content</span>Watched: Footwork Drills Vol. 3</div>
+                <div class="timeline-desc">Coach Jerome Parker &nbsp;·&nbsp; 18 min watch time</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">9:02 AM</div>
+                <div class="timeline-title"><span class="timeline-tag">Login</span>Session started</div>
+                <div class="timeline-desc">iOS App &nbsp;·&nbsp; Austin, TX</div>
+              </div>
+            </div>
+
+            <!-- Yesterday -->
+            <div class="day-label" style="margin-top:8px;">Yesterday — May 21, 2026</div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">4:32 PM</div>
+                <div class="timeline-title"><span class="timeline-tag">Module</span>Completed: Speed Training Module</div>
+                <div class="timeline-desc">Coach Jerome Parker &nbsp;·&nbsp; 42 min</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">4:08 PM</div>
+                <div class="timeline-title"><span class="timeline-tag">Content</span>Watched: Agility Fundamentals</div>
+                <div class="timeline-desc">Coach Jerome Parker &nbsp;·&nbsp; 22 min watch time</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">3:55 PM</div>
+                <div class="timeline-title"><span class="timeline-tag">Login</span>Session started</div>
+                <div class="timeline-desc">Web Browser &nbsp;·&nbsp; Austin, TX</div>
+              </div>
+            </div>
+
+            <!-- Jan 18 -->
+            <div class="day-label" style="margin-top:8px;">January 18, 2025</div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">2:10 PM</div>
+                <div class="timeline-title"><span class="timeline-tag">Purchase</span>Purchased: Performance Pack — $49.99</div>
+                <div class="timeline-desc">Order #ORD-4821</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">1:48 PM</div>
+                <div class="timeline-title"><span class="timeline-tag">Content</span>Watched: Strength & Conditioning Intro</div>
+                <div class="timeline-desc">Coach Jerome Parker &nbsp;·&nbsp; 31 min watch time</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">1:30 PM</div>
+                <div class="timeline-title"><span class="timeline-tag">Login</span>Session started</div>
+                <div class="timeline-desc">iOS App &nbsp;·&nbsp; Austin, TX</div>
+              </div>
+            </div>
+
+            <!-- Jan 12 -->
+            <div class="day-label" style="margin-top:8px;">January 12, 2025</div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">10:05 AM</div>
+                <div class="timeline-title"><span class="timeline-tag">Account</span>Account created & onboarding completed</div>
+                <div class="timeline-desc">Subscribed to Pro plan &nbsp;·&nbsp; Assigned to Jerome Parker</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination">
+            <span>Showing 1–15 of 48 events</span>
+            <div class="page-btns">
+              <div class="page-btn">‹</div>
+              <div class="page-btn active">1</div>
+              <div class="page-btn">2</div>
+              <div class="page-btn">3</div>
+              <div class="page-btn">4</div>
+              <div class="page-btn">›</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /content -->
+    </div><!-- /main -->
+  </div><!-- /shell -->
+</body>
+</html>

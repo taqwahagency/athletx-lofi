@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Coach List (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .toolbar-search {
+      flex: 0 0 220px;
+      height: 32px;
+      background: #e8e8e8;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+    }
+    .toolbar-select {
+      flex: 0 0 130px;
+      height: 32px;
+      background: #e8e8e8;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+    }
+    .toolbar-spacer { flex: 1; }
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-top: 1px solid #e4e4e4;
+      font-size: 11px;
+      color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn {
+      width: 28px;
+      height: 28px;
+      background: #e8e8e8;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #555;
+    }
+    .page-btn.active {
+      background: #bbb;
+      border-color: #999;
+      color: #111;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sb-logo">AthletX Admin</div>
+      <div class="sb-section">
+        <div class="sb-label">Main</div>
+        <a class="sb-item" href="index.html">Dashboard</a>
+        <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+        <a class="sb-item" href="search.html">Search</a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Players</div>
+        <a class="sb-item" href="player-list.html">Player List</a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Coach Management</div>
+        <a class="sb-item active" href="coach-list.html">Coach List</a>
+        <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+        <div class="sb-sub sb-soon">Scheduled Posts</div>
+        <div class="sb-sub sb-soon">Payout Management</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Analytics</div>
+        <div class="sb-item sb-soon">Coach Performance</div>
+        <div class="sb-sub sb-soon">Content Performance</div>
+        <div class="sb-sub sb-soon">Growth & Funnels</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Revenue</div>
+        <div class="sb-item sb-soon">Subscriptions</div>
+        <div class="sb-sub sb-soon">Revenue Split</div>
+        <div class="sb-sub sb-soon">Transactions</div>
+        <div class="sb-sub sb-soon">Referral Overview</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Coach Tiers</div>
+        <div class="sb-item sb-soon">Tier Overview</div>
+        <div class="sb-sub sb-soon">Underperformer Alerts <span class="badge" style="opacity:0.4;">8</span></div>
+        <div class="sb-sub sb-soon">Tier Settings</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Shop</div>
+        <div class="sb-item sb-soon">Products</div>
+        <div class="sb-sub sb-soon">Orders</div>
+        <div class="sb-sub sb-soon">Refunds <span class="badge" style="opacity:0.4;">6</span></div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Support</div>
+        <div class="sb-item sb-soon">Support Tickets <span class="badge" style="opacity:0.4;">5</span></div>
+        <div class="sb-sub sb-soon">Push Notifications</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Settings</div>
+        <div class="sb-item sb-soon">Admin Accounts</div>
+        <div class="sb-sub sb-soon">Roles & Permissions</div>
+        <div class="sb-sub sb-soon">Activity Log</div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+      <div class="topbar">
+        <div class="topbar-breadcrumb">Coach Management &rsaquo; Coach List</div>
+        <div class="topbar-search"></div>
+        <div class="topbar-avatar"></div>
+      </div>
+
+      <div class="content">
+
+        <div class="page-hdr">
+          <div>
+            <div class="page-title">Coach List</div>
+            <div class="page-date">1,284 total coaches</div>
+          </div>
+          <div class="hdr-actions">
+            <div class="btn-outline">Export CSV</div>
+            <div class="btn-solid">+ Invite Coach</div>
+          </div>
+        </div>
+
+        <!-- KPI row -->
+        <div class="kpi-row" style="margin-bottom:20px;">
+          <div class="kpi-card">
+            <div class="kpi-label">Total Coaches</div>
+            <div class="kpi-value">1,284</div>
+            <div class="kpi-trend">↑ <span>3.4%</span> this month</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Active</div>
+            <div class="kpi-value">1,198</div>
+            <div class="kpi-trend">93% of total</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Pending Verification</div>
+            <div class="kpi-value">14</div>
+            <div class="kpi-trend">Awaiting review</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">New This Month</div>
+            <div class="kpi-value">42</div>
+            <div class="kpi-trend">↑ <span>18%</span> vs last month</div>
+          </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar-search"></div>
+          <div class="toolbar-select"></div>
+          <div class="toolbar-select"></div>
+          <div class="toolbar-spacer"></div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Filter</div>
+        </div>
+
+        <!-- Table -->
+        <div class="card">
+          <table>
+            <thead>
+              <tr>
+                <th>Coach</th>
+                <th>Sport</th>
+                <th>Tier</th>
+                <th>Subscribers</th>
+                <th>Earnings</th>
+                <th>Status</th>
+                <th>Joined</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <a class="name-line" href="coach-profile.html" style="text-decoration:none;">Jerome Parker</a>
+                      <div class="sub-line">ID #C-00142</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Football</td>
+                <td><span class="tier-tag">Tier 1</span></td>
+                <td>12.5K</td>
+                <td>$8,200</td>
+                <td><span class="status-tag">Active</span></td>
+                <td>Mar 4, 2023</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <div class="name-line">Andrew Hierholze</div>
+                      <div class="sub-line">ID #C-00138</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Basketball</td>
+                <td><span class="tier-tag">Tier 1</span></td>
+                <td>8.2K</td>
+                <td>$6,540</td>
+                <td><span class="status-tag">Active</span></td>
+                <td>Apr 12, 2023</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <div class="name-line">Marcus Johnson</div>
+                      <div class="sub-line">ID #C-00121</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Tennis</td>
+                <td><span class="tier-tag">Tier 2</span></td>
+                <td>6.8K</td>
+                <td>$5,420</td>
+                <td><span class="status-tag">Active</span></td>
+                <td>Jun 8, 2023</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <div class="name-line">Sarah Chen</div>
+                      <div class="sub-line">ID #C-00114</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Yoga</td>
+                <td><span class="tier-tag">Tier 2</span></td>
+                <td>5.1K</td>
+                <td>$4,200</td>
+                <td><span class="status-tag">Active</span></td>
+                <td>Jul 22, 2023</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <div class="name-line">Mike Torres</div>
+                      <div class="sub-line">ID #C-00108</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Soccer</td>
+                <td><span class="tier-tag">Tier 3</span></td>
+                <td>3.2K</td>
+                <td>$2,800</td>
+                <td><span class="status-tag">Active</span></td>
+                <td>Sep 15, 2023</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <div class="name-line">Lisa Park</div>
+                      <div class="sub-line">ID #C-00099</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Swimming</td>
+                <td><span class="tier-tag">Tier 2</span></td>
+                <td>4.4K</td>
+                <td>$3,610</td>
+                <td><span class="status-tag">Active</span></td>
+                <td>Oct 3, 2023</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <div class="name-line">Carlos Vega</div>
+                      <div class="sub-line">ID #C-00091</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Boxing</td>
+                <td><span class="tier-tag">Tier 3</span></td>
+                <td>1.8K</td>
+                <td>$1,440</td>
+                <td><span class="status-tag">Inactive</span></td>
+                <td>Nov 18, 2023</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <div class="name-line">Priya Nair</div>
+                      <div class="sub-line">ID #C-00088</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Athletics</td>
+                <td><span class="tier-tag">Tier 3</span></td>
+                <td>2.1K</td>
+                <td>$1,680</td>
+                <td><span class="status-tag">Pending</span></td>
+                <td>Jan 9, 2025</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="pagination">
+            <span>Showing 1–8 of 1,284 coaches</span>
+            <div class="page-btns">
+              <div class="page-btn">‹</div>
+              <div class="page-btn active">1</div>
+              <div class="page-btn">2</div>
+              <div class="page-btn">3</div>
+              <div class="page-btn">…</div>
+              <div class="page-btn">161</div>
+              <div class="page-btn">›</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /content -->
+    </div><!-- /main -->
+  </div><!-- /shell -->
+</body>
+</html>

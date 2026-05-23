@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Player List (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-search {
+      flex: 0 0 220px;
+      height: 32px;
+      background: #e8e8e8;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+    }
+
+    .toolbar-select {
+      flex: 0 0 130px;
+      height: 32px;
+      background: #e8e8e8;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+    }
+
+    .toolbar-spacer { flex: 1; }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-top: 1px solid #e4e4e4;
+      font-size: 11px;
+      color: #888;
+    }
+
+    .page-btns {
+      display: flex;
+      gap: 4px;
+    }
+
+    .page-btn {
+      width: 28px;
+      height: 28px;
+      background: #e8e8e8;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #555;
+    }
+
+    .page-btn.active {
+      background: #bbb;
+      border-color: #999;
+      color: #111;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sb-logo">AthletX Admin</div>
+      <div class="sb-section">
+        <div class="sb-label">Main</div>
+        <a class="sb-item" href="index.html">Dashboard</a>
+        <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+        <a class="sb-item" href="search.html">Search</a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Players</div>
+        <a class="sb-item active" href="player-list.html">Player List</a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Coach Management</div>
+        <a class="sb-item" href="coach-list.html">Coach List</a>
+        <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+        <div class="sb-sub sb-soon">Scheduled Posts</div>
+        <div class="sb-sub sb-soon">Payout Management</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Analytics</div>
+        <div class="sb-item sb-soon">Coach Performance</div>
+        <div class="sb-sub sb-soon">Content Performance</div>
+        <div class="sb-sub sb-soon">Growth & Funnels</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Revenue</div>
+        <div class="sb-item sb-soon">Subscriptions</div>
+        <div class="sb-sub sb-soon">Revenue Split</div>
+        <div class="sb-sub sb-soon">Transactions</div>
+        <div class="sb-sub sb-soon">Referral Overview</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Coach Tiers</div>
+        <div class="sb-item sb-soon">Tier Overview</div>
+        <div class="sb-sub sb-soon">Underperformer Alerts <span class="badge" style="opacity:0.4;">8</span></div>
+        <div class="sb-sub sb-soon">Tier Settings</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Shop</div>
+        <div class="sb-item sb-soon">Products</div>
+        <div class="sb-sub sb-soon">Orders</div>
+        <div class="sb-sub sb-soon">Refunds <span class="badge" style="opacity:0.4;">6</span></div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Support</div>
+        <div class="sb-item sb-soon">Support Tickets <span class="badge" style="opacity:0.4;">5</span></div>
+        <div class="sb-sub sb-soon">Push Notifications</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Settings</div>
+        <div class="sb-item sb-soon">Admin Accounts</div>
+        <div class="sb-sub sb-soon">Roles & Permissions</div>
+        <div class="sb-sub sb-soon">Activity Log</div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+      <div class="topbar">
+        <div class="topbar-breadcrumb">Players &rsaquo; Player List</div>
+        <div class="topbar-search"></div>
+        <div class="topbar-avatar"></div>
+      </div>
+
+      <div class="content">
+
+        <div class="page-hdr">
+          <div>
+            <div class="page-title">Player List</div>
+            <div class="page-date">12,548 total players</div>
+          </div>
+          <div class="hdr-actions">
+            <div class="btn-outline">Export CSV</div>
+            <div class="btn-solid">+ Add Player</div>
+          </div>
+        </div>
+
+        <!-- KPI row -->
+        <div class="kpi-row" style="grid-template-columns:repeat(4,1fr); margin-bottom:20px;">
+          <div class="kpi-card">
+            <div class="kpi-label">Total Players</div>
+            <div class="kpi-value">12,548</div>
+            <div class="kpi-trend">↑ <span>8.2%</span> this month</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Active</div>
+            <div class="kpi-value">10,914</div>
+            <div class="kpi-trend">87% of total</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Inactive</div>
+            <div class="kpi-value">1,634</div>
+            <div class="kpi-trend">13% of total</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">New This Month</div>
+            <div class="kpi-value">284</div>
+            <div class="kpi-trend">↑ <span>14%</span> vs last month</div>
+          </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar-search"></div>
+          <div class="toolbar-select"></div>
+          <div class="toolbar-select"></div>
+          <div class="toolbar-spacer"></div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center;">Filter</div>
+        </div>
+
+        <!-- Table -->
+        <div class="card">
+          <table>
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>Email</th>
+                <th>Sport</th>
+                <th>Coach</th>
+                <th>Subscription</th>
+                <th>Status</th>
+                <th>Joined</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <a class="name-line" href="player-profile.html" style="text-decoration:none;">Alex Morgan</a>
+                      <div class="sub-line">ID #P-10482</div>
+                    </div>
+                  </div>
+                </td>
+                <td>alex.morgan@email.com</td>
+                <td>Football</td>
+                <td>Jerome Parker</td>
+                <td><span class="status-tag">Pro</span></td>
+                <td><span class="status-tag">Active</span></td>
+                <td>Jan 12, 2025</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <div class="name-line">Jordan Smith</div>
+                      <div class="sub-line">ID #P-10391</div>
+                    </div>
+                  </div>
+                </td>
+                <td>jordan.smith@email.com</td>
+                <td>Basketball</td>
+                <td>Andrew Hierholze</td>
+                <td><span class="status-tag">Basic</span></td>
+                <td><span class="status-tag">Active</span></td>
+                <td>Jan 8, 2025</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <div class="name-line">Taylor Reed</div>
+                      <div class="sub-line">ID #P-10374</div>
+                    </div>
+                  </div>
+                </td>
+                <td>taylor.reed@email.com</td>
+                <td>Tennis</td>
+                <td>Marcus Johnson</td>
+                <td><span class="status-tag">Pro</span></td>
+                <td><span class="status-tag">Active</span></td>
+                <td>Dec 29, 2024</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <div class="name-line">Casey Williams</div>
+                      <div class="sub-line">ID #P-10298</div>
+                    </div>
+                  </div>
+                </td>
+                <td>casey.w@email.com</td>
+                <td>Yoga</td>
+                <td>Sarah Chen</td>
+                <td><span class="status-tag">Basic</span></td>
+                <td><span class="status-tag">Inactive</span></td>
+                <td>Dec 14, 2024</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <div class="name-line">Morgan Lee</div>
+                      <div class="sub-line">ID #P-10244</div>
+                    </div>
+                  </div>
+                </td>
+                <td>morgan.lee@email.com</td>
+                <td>Soccer</td>
+                <td>Mike Torres</td>
+                <td><span class="status-tag">Pro</span></td>
+                <td><span class="status-tag">Active</span></td>
+                <td>Dec 5, 2024</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <div class="name-line">Riley Johnson</div>
+                      <div class="sub-line">ID #P-10188</div>
+                    </div>
+                  </div>
+                </td>
+                <td>riley.j@email.com</td>
+                <td>Football</td>
+                <td>Jerome Parker</td>
+                <td><span class="status-tag">Pro</span></td>
+                <td><span class="status-tag">Active</span></td>
+                <td>Nov 28, 2024</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <div class="name-line">Drew Martinez</div>
+                      <div class="sub-line">ID #P-10102</div>
+                    </div>
+                  </div>
+                </td>
+                <td>drew.m@email.com</td>
+                <td>Basketball</td>
+                <td>Andrew Hierholze</td>
+                <td><span class="status-tag">Basic</span></td>
+                <td><span class="status-tag">Active</span></td>
+                <td>Nov 15, 2024</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="avatar-cell">
+                    <div class="avatar-box"></div>
+                    <div>
+                      <div class="name-line">Sam Torres</div>
+                      <div class="sub-line">ID #P-10041</div>
+                    </div>
+                  </div>
+                </td>
+                <td>sam.torres@email.com</td>
+                <td>Tennis</td>
+                <td>Marcus Johnson</td>
+                <td><span class="status-tag">Basic</span></td>
+                <td><span class="status-tag">Inactive</span></td>
+                <td>Nov 3, 2024</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Pagination -->
+          <div class="pagination">
+            <span>Showing 1–8 of 12,548 players</span>
+            <div class="page-btns">
+              <div class="page-btn">‹</div>
+              <div class="page-btn active">1</div>
+              <div class="page-btn">2</div>
+              <div class="page-btn">3</div>
+              <div class="page-btn">…</div>
+              <div class="page-btn">1569</div>
+              <div class="page-btn">›</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /content -->
+    </div><!-- /main -->
+  </div><!-- /shell -->
+</body>
+</html>

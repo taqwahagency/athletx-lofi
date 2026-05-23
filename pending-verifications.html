@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Pending Verifications (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .toolbar-search {
+      flex: 0 0 220px;
+      height: 32px;
+      background: #e8e8e8;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+    }
+    .toolbar-select {
+      flex: 0 0 140px;
+      height: 32px;
+      background: #e8e8e8;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+    }
+    .toolbar-spacer { flex: 1; }
+
+    .verification-card {
+      background: #f5f5f5;
+      border: 1px solid #c8c8c8;
+      border-radius: 2px;
+      margin-bottom: 12px;
+    }
+    .verification-card.urgent {
+      border-left: 3px solid #999;
+    }
+
+    .vc-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      border-bottom: 1px solid #e4e4e4;
+    }
+
+    .vc-info { flex: 1; }
+    .vc-name { font-size: 13px; font-weight: 700; color: #111; }
+    .vc-meta { font-size: 11px; color: #777; margin-top: 3px; display: flex; gap: 14px; }
+
+    .vc-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn-approve {
+      height: 30px;
+      padding: 0 14px;
+      background: #bbb;
+      border: 1px solid #999;
+      border-radius: 2px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .btn-reject {
+      height: 30px;
+      padding: 0 14px;
+      background: #e4e4e4;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #555;
+    }
+
+    .vc-docs {
+      display: flex;
+      gap: 10px;
+      padding: 12px 20px;
+      flex-wrap: wrap;
+    }
+
+    .doc-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: #e8e8e8;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    .doc-chip.ok { background: #ddd; color: #444; }
+    .doc-chip.missing { background: #eee; color: #aaa; border-style: dashed; }
+
+    .wait-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      background: #ddd;
+      color: #555;
+      border-radius: 2px;
+    }
+    .wait-badge.urgent { background: #bbb; color: #222; }
+
+    .bulk-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: #e8e8e8;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: #555;
+    }
+    .bulk-actions { display: flex; gap: 8px; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sb-logo">AthletX Admin</div>
+      <div class="sb-section">
+        <div class="sb-label">Main</div>
+        <a class="sb-item" href="index.html">Dashboard</a>
+        <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+        <a class="sb-item" href="search.html">Search</a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Players</div>
+        <a class="sb-item" href="player-list.html">Player List</a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Coach Management</div>
+        <a class="sb-item" href="coach-list.html">Coach List</a>
+        <a class="sb-sub active" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+        <div class="sb-sub sb-soon">Scheduled Posts</div>
+        <div class="sb-sub sb-soon">Payout Management</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Analytics</div>
+        <div class="sb-item sb-soon">Coach Performance</div>
+        <div class="sb-sub sb-soon">Content Performance</div>
+        <div class="sb-sub sb-soon">Growth & Funnels</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Revenue</div>
+        <div class="sb-item sb-soon">Subscriptions</div>
+        <div class="sb-sub sb-soon">Revenue Split</div>
+        <div class="sb-sub sb-soon">Transactions</div>
+        <div class="sb-sub sb-soon">Referral Overview</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Coach Tiers</div>
+        <div class="sb-item sb-soon">Tier Overview</div>
+        <div class="sb-sub sb-soon">Underperformer Alerts <span class="badge" style="opacity:0.4;">8</span></div>
+        <div class="sb-sub sb-soon">Tier Settings</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Shop</div>
+        <div class="sb-item sb-soon">Products</div>
+        <div class="sb-sub sb-soon">Orders</div>
+        <div class="sb-sub sb-soon">Refunds <span class="badge" style="opacity:0.4;">6</span></div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Support</div>
+        <div class="sb-item sb-soon">Support Tickets <span class="badge" style="opacity:0.4;">5</span></div>
+        <div class="sb-sub sb-soon">Push Notifications</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Settings</div>
+        <div class="sb-item sb-soon">Admin Accounts</div>
+        <div class="sb-sub sb-soon">Roles & Permissions</div>
+        <div class="sb-sub sb-soon">Activity Log</div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+      <div class="topbar">
+        <div class="topbar-breadcrumb">Coach Management &rsaquo; Pending Verifications</div>
+        <div class="topbar-search"></div>
+        <div class="topbar-avatar"></div>
+      </div>
+
+      <div class="content">
+
+        <div class="page-hdr">
+          <div>
+            <div class="page-title">Pending Verifications</div>
+            <div class="page-date">14 coaches awaiting review</div>
+          </div>
+          <div class="hdr-actions">
+            <a class="btn-outline" href="bulk-coach-approval.html">Bulk Approve</a>
+          </div>
+        </div>
+
+        <!-- KPI row -->
+        <div class="kpi-row" style="margin-bottom:20px;">
+          <div class="kpi-card">
+            <div class="kpi-label">Pending Review</div>
+            <div class="kpi-value">14</div>
+            <div class="kpi-trend">Across all sports</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Waiting > 7 Days</div>
+            <div class="kpi-value">5</div>
+            <div class="kpi-trend">Needs urgent action</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Avg. Wait Time</div>
+            <div class="kpi-value">4.2d</div>
+            <div class="kpi-trend">↑ 0.8d vs last month</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Approved This Month</div>
+            <div class="kpi-value">28</div>
+            <div class="kpi-trend">↑ 12% vs last month</div>
+          </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar-search"></div>
+          <div class="toolbar-select"></div>
+          <div class="toolbar-spacer"></div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Filter</div>
+        </div>
+
+        <!-- Bulk action bar -->
+        <div class="bulk-bar">
+          <span>Select coaches to bulk approve or reject</span>
+          <div class="bulk-actions">
+            <div class="btn-approve">Approve Selected</div>
+            <div class="btn-reject">Reject Selected</div>
+          </div>
+        </div>
+
+        <!-- Verification cards -->
+
+        <!-- Card 1 — Urgent -->
+        <div class="verification-card urgent">
+          <div class="vc-top">
+            <div class="avatar-box"></div>
+            <div class="vc-info">
+              <div class="vc-name">Jerome Parker</div>
+              <div class="vc-meta">
+                <span>Football</span>
+                <span>Submitted Jan 10, 2025</span>
+                <span class="wait-badge urgent">9 days waiting</span>
+              </div>
+            </div>
+            <div class="vc-actions">
+              <span class="pa-tag">Urgent</span>
+              <a href="coach-verification.html" style="font-size:11px; color:#555; text-decoration:none;">Review →</a>
+              <div class="btn-approve">Approve</div>
+              <div class="btn-reject">Reject</div>
+            </div>
+          </div>
+          <div class="vc-docs">
+            <div class="doc-chip ok">✓ Gov ID</div>
+            <div class="doc-chip ok">✓ Certification</div>
+            <div class="doc-chip ok">✓ Background Check</div>
+            <div class="doc-chip ok">✓ W-9</div>
+          </div>
+        </div>
+
+        <!-- Card 2 — Urgent -->
+        <div class="verification-card urgent">
+          <div class="vc-top">
+            <div class="avatar-box"></div>
+            <div class="vc-info">
+              <div class="vc-name">Andrew Hierholze</div>
+              <div class="vc-meta">
+                <span>Basketball</span>
+                <span>Submitted Jan 14, 2025</span>
+                <span class="wait-badge urgent">7 days waiting</span>
+              </div>
+            </div>
+            <div class="vc-actions">
+              <span class="pa-tag">Urgent</span>
+              <a href="coach-verification.html" style="font-size:11px; color:#555; text-decoration:none;">Review →</a>
+              <div class="btn-approve">Approve</div>
+              <div class="btn-reject">Reject</div>
+            </div>
+          </div>
+          <div class="vc-docs">
+            <div class="doc-chip ok">✓ Gov ID</div>
+            <div class="doc-chip ok">✓ Certification</div>
+            <div class="doc-chip missing">✗ Background Check</div>
+            <div class="doc-chip ok">✓ W-9</div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="verification-card">
+          <div class="vc-top">
+            <div class="avatar-box"></div>
+            <div class="vc-info">
+              <div class="vc-name">Marcus Johnson</div>
+              <div class="vc-meta">
+                <span>Tennis</span>
+                <span>Submitted Jan 18, 2025</span>
+                <span class="wait-badge">3 days waiting</span>
+              </div>
+            </div>
+            <div class="vc-actions">
+              <span class="pa-tag">Pending</span>
+              <a href="coach-verification.html" style="font-size:11px; color:#555; text-decoration:none;">Review →</a>
+              <div class="btn-approve">Approve</div>
+              <div class="btn-reject">Reject</div>
+            </div>
+          </div>
+          <div class="vc-docs">
+            <div class="doc-chip ok">✓ Gov ID</div>
+            <div class="doc-chip ok">✓ Certification</div>
+            <div class="doc-chip ok">✓ Background Check</div>
+            <div class="doc-chip missing">✗ W-9</div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="verification-card">
+          <div class="vc-top">
+            <div class="avatar-box"></div>
+            <div class="vc-info">
+              <div class="vc-name">Sarah Chen</div>
+              <div class="vc-meta">
+                <span>Yoga</span>
+                <span>Submitted Jan 19, 2025</span>
+                <span class="wait-badge">2 days waiting</span>
+              </div>
+            </div>
+            <div class="vc-actions">
+              <span class="pa-tag">Pending</span>
+              <a href="coach-verification.html" style="font-size:11px; color:#555; text-decoration:none;">Review →</a>
+              <div class="btn-approve">Approve</div>
+              <div class="btn-reject">Reject</div>
+            </div>
+          </div>
+          <div class="vc-docs">
+            <div class="doc-chip ok">✓ Gov ID</div>
+            <div class="doc-chip ok">✓ Certification</div>
+            <div class="doc-chip ok">✓ Background Check</div>
+            <div class="doc-chip ok">✓ W-9</div>
+          </div>
+        </div>
+
+        <div class="btn-all">View all 14 pending verifications</div>
+
+      </div><!-- /content -->
+    </div><!-- /main -->
+  </div><!-- /shell -->
+</body>
+</html>

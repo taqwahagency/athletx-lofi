@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Player Subscriptions (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .current-plan {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: #ececec;
+      border: 1px solid #c8c8c8;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+
+    .plan-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .plan-meta {
+      font-size: 12px;
+      color: #666;
+      display: flex;
+      gap: 16px;
+      margin-top: 6px;
+    }
+
+    .plan-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-top: 1px solid #e4e4e4;
+      font-size: 11px;
+      color: #888;
+    }
+
+    .page-btns { display: flex; gap: 4px; }
+
+    .page-btn {
+      width: 28px;
+      height: 28px;
+      background: #e8e8e8;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #555;
+    }
+
+    .page-btn.active {
+      background: #bbb;
+      border-color: #999;
+      color: #111;
+      font-weight: 700;
+    }
+
+    .renew-bar {
+      background: #e8e8e8;
+      border: 1px dashed #bbb;
+      border-radius: 2px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sb-logo">AthletX Admin</div>
+      <div class="sb-section">
+        <div class="sb-label">Main</div>
+        <a class="sb-item" href="index.html">Dashboard</a>
+        <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+        <a class="sb-item" href="search.html">Search</a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Players</div>
+        <a class="sb-item active" href="player-list.html">Player List</a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Coach Management</div>
+        <a class="sb-item" href="coach-list.html">Coach List</a>
+        <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+        <div class="sb-sub sb-soon">Scheduled Posts</div>
+        <div class="sb-sub sb-soon">Payout Management</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Analytics</div>
+        <div class="sb-item sb-soon">Coach Performance</div>
+        <div class="sb-sub sb-soon">Content Performance</div>
+        <div class="sb-sub sb-soon">Growth & Funnels</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Revenue</div>
+        <div class="sb-item sb-soon">Subscriptions</div>
+        <div class="sb-sub sb-soon">Revenue Split</div>
+        <div class="sb-sub sb-soon">Transactions</div>
+        <div class="sb-sub sb-soon">Referral Overview</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Coach Tiers</div>
+        <div class="sb-item sb-soon">Tier Overview</div>
+        <div class="sb-sub sb-soon">Underperformer Alerts <span class="badge" style="opacity:0.4;">8</span></div>
+        <div class="sb-sub sb-soon">Tier Settings</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Shop</div>
+        <div class="sb-item sb-soon">Products</div>
+        <div class="sb-sub sb-soon">Orders</div>
+        <div class="sb-sub sb-soon">Refunds <span class="badge" style="opacity:0.4;">6</span></div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Support</div>
+        <div class="sb-item sb-soon">Support Tickets <span class="badge" style="opacity:0.4;">5</span></div>
+        <div class="sb-sub sb-soon">Push Notifications</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Settings</div>
+        <div class="sb-item sb-soon">Admin Accounts</div>
+        <div class="sb-sub sb-soon">Roles & Permissions</div>
+        <div class="sb-sub sb-soon">Activity Log</div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+      <div class="topbar">
+        <div class="topbar-breadcrumb">Players &rsaquo; Alex Morgan &rsaquo; Subscriptions</div>
+        <div class="topbar-search"></div>
+        <div class="topbar-avatar"></div>
+      </div>
+
+      <div class="content">
+
+        <div class="page-hdr">
+          <div>
+            <div class="page-title">Player Subscriptions</div>
+            <div class="page-date">Alex Morgan &nbsp;·&nbsp; ID #P-10482</div>
+          </div>
+          <div class="hdr-actions">
+            <a class="btn-outline" href="player-profile.html">← Back to Profile</a>
+            <div class="btn-solid">Change Plan</div>
+          </div>
+        </div>
+
+        <!-- KPI row -->
+        <div class="kpi-row" style="grid-template-columns:repeat(4,1fr); margin-bottom:20px;">
+          <div class="kpi-card">
+            <div class="kpi-label">Current Plan</div>
+            <div class="kpi-value">Pro</div>
+            <div class="kpi-trend">$29/month</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Total Paid</div>
+            <div class="kpi-value">$261</div>
+            <div class="kpi-trend">9 payments</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Member Since</div>
+            <div class="kpi-value" style="font-size:16px;">Jan 2025</div>
+            <div class="kpi-trend">4 months</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Next Renewal</div>
+            <div class="kpi-value" style="font-size:16px;">Feb 12</div>
+            <div class="kpi-trend">21 days away</div>
+          </div>
+        </div>
+
+        <!-- Current plan card -->
+        <div class="current-plan">
+          <div>
+            <div class="plan-name">Pro Plan</div>
+            <div style="display:flex; gap:8px; margin-top:6px;">
+              <span class="status-tag">Active</span>
+              <span class="tier-tag">Auto-Renew On</span>
+            </div>
+            <div class="plan-meta">
+              <span>$29 / month</span>
+              <span>Started Jan 12, 2025</span>
+              <span>Next billing: Feb 12, 2025</span>
+            </div>
+          </div>
+          <div class="plan-actions">
+            <div class="btn-outline">Pause</div>
+            <div class="btn-outline">Cancel Plan</div>
+            <div class="btn-solid">Change Plan</div>
+          </div>
+        </div>
+
+        <!-- Renewal notice -->
+        <div class="renew-bar">
+          <span>⏱ Auto-renewal is <strong>enabled</strong> — next charge of $29.00 on Feb 12, 2025</span>
+          <div class="btn-outline" style="height:28px; padding:0 12px; display:flex; align-items:center; font-size:11px;">Disable Auto-Renew</div>
+        </div>
+
+        <!-- Two col layout -->
+        <div class="row-2col wide-left">
+
+          <!-- Billing history -->
+          <div class="card">
+            <div class="card-head">
+              Billing History
+              <span class="card-head-sub">9 payments</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Invoice</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Jan 12, 2025</td>
+                  <td>Pro Plan — Monthly</td>
+                  <td>$29.00</td>
+                  <td><span class="status-tag">Paid</span></td>
+                  <td><span style="font-size:11px; color:#666;">Download</span></td>
+                </tr>
+                <tr>
+                  <td>Dec 12, 2024</td>
+                  <td>Pro Plan — Monthly</td>
+                  <td>$29.00</td>
+                  <td><span class="status-tag">Paid</span></td>
+                  <td><span style="font-size:11px; color:#666;">Download</span></td>
+                </tr>
+                <tr>
+                  <td>Nov 12, 2024</td>
+                  <td>Pro Plan — Monthly</td>
+                  <td>$29.00</td>
+                  <td><span class="status-tag">Paid</span></td>
+                  <td><span style="font-size:11px; color:#666;">Download</span></td>
+                </tr>
+                <tr>
+                  <td>Oct 12, 2024</td>
+                  <td>Pro Plan — Monthly</td>
+                  <td>$29.00</td>
+                  <td><span class="status-tag">Paid</span></td>
+                  <td><span style="font-size:11px; color:#666;">Download</span></td>
+                </tr>
+                <tr>
+                  <td>Sep 12, 2024</td>
+                  <td>Basic Plan — Monthly</td>
+                  <td>$9.00</td>
+                  <td><span class="status-tag">Paid</span></td>
+                  <td><span style="font-size:11px; color:#666;">Download</span></td>
+                </tr>
+                <tr>
+                  <td>Aug 12, 2024</td>
+                  <td>Basic Plan — Monthly</td>
+                  <td>$9.00</td>
+                  <td><span class="status-tag">Paid</span></td>
+                  <td><span style="font-size:11px; color:#666;">Download</span></td>
+                </tr>
+                <tr>
+                  <td>Jul 12, 2024</td>
+                  <td>Basic Plan — Monthly</td>
+                  <td>$9.00</td>
+                  <td><span class="status-tag">Paid</span></td>
+                  <td><span style="font-size:11px; color:#666;">Download</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="pagination">
+              <span>Showing 1–7 of 9 payments</span>
+              <div class="page-btns">
+                <div class="page-btn">‹</div>
+                <div class="page-btn active">1</div>
+                <div class="page-btn">2</div>
+                <div class="page-btn">›</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Plan history + Payment method -->
+          <div>
+            <div class="card" style="margin-bottom:16px;">
+              <div class="card-head">Plan History</div>
+              <div class="card-body" style="padding:0;">
+                <div class="pa-row" style="padding:12px 20px;">
+                  <div>
+                    <div style="font-size:12px; font-weight:600; color:#222;">Upgraded to Pro</div>
+                    <div class="sub-line">Sep 12, 2024 &nbsp;·&nbsp; from Basic</div>
+                  </div>
+                  <span class="tier-tag">Pro</span>
+                </div>
+                <div class="pa-row" style="padding:12px 20px;">
+                  <div>
+                    <div style="font-size:12px; font-weight:600; color:#222;">Joined on Basic Plan</div>
+                    <div class="sub-line">Jan 12, 2025</div>
+                  </div>
+                  <span class="tier-tag">Basic</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head">Payment Method</div>
+              <div class="card-body">
+                <div class="detail-row">
+                  <div class="detail-key">Type</div>
+                  <div class="detail-val">Visa ending in 4821</div>
+                </div>
+                <div class="detail-row">
+                  <div class="detail-key">Expires</div>
+                  <div class="detail-val">08 / 2027</div>
+                </div>
+                <div class="detail-row">
+                  <div class="detail-key">Billing Name</div>
+                  <div class="detail-val">Alex Morgan</div>
+                </div>
+                <div style="margin-top:14px;">
+                  <div class="btn-outline" style="display:inline-flex; align-items:center; font-size:11px; padding:5px 12px;">Update Payment</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div><!-- /content -->
+    </div><!-- /main -->
+  </div><!-- /shell -->
+</body>
+</html>

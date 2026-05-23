@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Coach Profile (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .profile-hdr {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+      background: #f5f5f5;
+      border: 1px solid #c8c8c8;
+      border-radius: 2px;
+      padding: 24px;
+    }
+    .profile-avatar {
+      width: 72px;
+      height: 72px;
+      background: #c8c8c8;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .profile-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 4px;
+    }
+    .profile-meta {
+      font-size: 12px;
+      color: #666;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .profile-actions {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .tab-row {
+      display: flex;
+      border-bottom: 1px solid #c8c8c8;
+      margin-bottom: 20px;
+    }
+    .tab {
+      padding: 9px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #888;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tab.active {
+      color: #222;
+      border-bottom-color: #888;
+    }
+    .content-thumb {
+      width: 100%;
+      height: 52px;
+      background: #ddd;
+      border-radius: 2px;
+      margin-bottom: 8px;
+    }
+    .content-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 12px;
+    }
+    .content-row:last-child { border-bottom: none; }
+    .content-thumb-sm {
+      width: 48px;
+      height: 36px;
+      background: #ddd;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sb-logo">AthletX Admin</div>
+      <div class="sb-section">
+        <div class="sb-label">Main</div>
+        <a class="sb-item" href="index.html">Dashboard</a>
+        <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+        <a class="sb-item" href="search.html">Search</a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Players</div>
+        <a class="sb-item" href="player-list.html">Player List</a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Coach Management</div>
+        <a class="sb-item active" href="coach-list.html">Coach List</a>
+        <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+        <div class="sb-sub sb-soon">Scheduled Posts</div>
+        <div class="sb-sub sb-soon">Payout Management</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Analytics</div>
+        <div class="sb-item sb-soon">Coach Performance</div>
+        <div class="sb-sub sb-soon">Content Performance</div>
+        <div class="sb-sub sb-soon">Growth & Funnels</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Revenue</div>
+        <div class="sb-item sb-soon">Subscriptions</div>
+        <div class="sb-sub sb-soon">Revenue Split</div>
+        <div class="sb-sub sb-soon">Transactions</div>
+        <div class="sb-sub sb-soon">Referral Overview</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Coach Tiers</div>
+        <div class="sb-item sb-soon">Tier Overview</div>
+        <div class="sb-sub sb-soon">Underperformer Alerts <span class="badge" style="opacity:0.4;">8</span></div>
+        <div class="sb-sub sb-soon">Tier Settings</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Shop</div>
+        <div class="sb-item sb-soon">Products</div>
+        <div class="sb-sub sb-soon">Orders</div>
+        <div class="sb-sub sb-soon">Refunds <span class="badge" style="opacity:0.4;">6</span></div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Support</div>
+        <div class="sb-item sb-soon">Support Tickets <span class="badge" style="opacity:0.4;">5</span></div>
+        <div class="sb-sub sb-soon">Push Notifications</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Settings</div>
+        <div class="sb-item sb-soon">Admin Accounts</div>
+        <div class="sb-sub sb-soon">Roles & Permissions</div>
+        <div class="sb-sub sb-soon">Activity Log</div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+      <div class="topbar">
+        <div class="topbar-breadcrumb">Coach Management &rsaquo; Coach List &rsaquo; Jerome Parker</div>
+        <div class="topbar-search"></div>
+        <div class="topbar-avatar"></div>
+      </div>
+
+      <div class="content">
+
+        <!-- Profile Header -->
+        <div class="profile-hdr">
+          <div class="profile-avatar"></div>
+          <div>
+            <div class="profile-name">Jerome Parker</div>
+            <div style="display:flex; gap:8px; margin-top:4px;">
+              <span class="status-tag">Active</span>
+              <span class="tier-tag">Tier 1</span>
+              <span class="tier-tag">Verified ✓</span>
+            </div>
+            <div class="profile-meta">
+              <span>ID #C-00142</span>
+              <span>Football</span>
+              <span>jerome.parker@athletx.com</span>
+              <span>Joined Mar 4, 2023</span>
+            </div>
+          </div>
+          <div class="profile-actions">
+            <div class="btn-outline">Message</div>
+            <div class="btn-outline">Suspend</div>
+            <a class="btn-solid" href="coach-detail.html" style="text-decoration:none;">View Detail</a>
+          </div>
+        </div>
+
+        <!-- KPI row -->
+        <div class="kpi-row" style="margin-bottom:20px;">
+          <div class="kpi-card">
+            <div class="kpi-label">Subscribers</div>
+            <div class="kpi-value">12.5K</div>
+            <div class="kpi-trend">↑ <span>4.2%</span> this month</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Monthly Earnings</div>
+            <div class="kpi-value">$8,200</div>
+            <div class="kpi-trend">↑ <span>6.8%</span> vs last month</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Content Pieces</div>
+            <div class="kpi-value">184</div>
+            <div class="kpi-trend">12 posted this month</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Avg. Rating</div>
+            <div class="kpi-value">4.9</div>
+            <div class="kpi-trend">From 2,841 reviews</div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tab-row">
+          <div class="tab active">Overview</div>
+          <div class="tab">Analytics</div>
+          <div class="tab">Content</div>
+          <div class="tab">Subscribers</div>
+          <div class="tab">Payouts</div>
+          <div class="tab">Notes</div>
+        </div>
+
+        <!-- Two col layout -->
+        <div class="row-2col wide-left">
+
+          <!-- Left -->
+          <div>
+            <!-- Profile details -->
+            <div class="card" style="margin-bottom:16px;">
+              <div class="card-head">Coach Details</div>
+              <div class="card-body">
+                <div class="detail-block">
+                  <div class="detail-row">
+                    <div class="detail-key">Full Name</div>
+                    <div class="detail-val">Jerome Parker</div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-key">Email</div>
+                    <div class="detail-val">jerome.parker@athletx.com</div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-key">Phone</div>
+                    <div class="detail-val">+1 (555) 318-9204</div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-key">Location</div>
+                    <div class="detail-val">Dallas, TX</div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-key">Sport</div>
+                    <div class="detail-val">Football</div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-key">Tier</div>
+                    <div class="detail-val"><span class="tier-tag">Tier 1</span></div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-key">Subscription Price</div>
+                    <div class="detail-val">$15 / month</div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-key">Revenue Split</div>
+                    <div class="detail-val">80% Coach / 20% Platform</div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-key">Verification</div>
+                    <div class="detail-val"><span class="status-tag">Verified</span></div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-key">Joined</div>
+                    <div class="detail-val">March 4, 2023</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top content -->
+            <div class="card">
+              <div class="card-head">
+                Top Content
+                <span class="card-head-sub">By views</span>
+              </div>
+              <div class="card-body" style="padding:12px 20px;">
+                <div class="content-row">
+                  <div class="content-thumb-sm"></div>
+                  <div style="flex:1;">
+                    <div style="font-weight:600; color:#222;">Footwork Drills Vol. 3</div>
+                    <div class="sub-line">48.2K views &nbsp;·&nbsp; Jan 10, 2025</div>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="content-thumb-sm"></div>
+                  <div style="flex:1;">
+                    <div style="font-weight:600; color:#222;">Speed Training Module</div>
+                    <div class="sub-line">36.5K views &nbsp;·&nbsp; Dec 22, 2024</div>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="content-thumb-sm"></div>
+                  <div style="flex:1;">
+                    <div style="font-weight:600; color:#222;">Strength & Conditioning Intro</div>
+                    <div class="sub-line">29.1K views &nbsp;·&nbsp; Nov 15, 2024</div>
+                  </div>
+                </div>
+                <div class="content-row">
+                  <div class="content-thumb-sm"></div>
+                  <div style="flex:1;">
+                    <div style="font-weight:600; color:#222;">Agility Fundamentals</div>
+                    <div class="sub-line">22.8K views &nbsp;·&nbsp; Oct 4, 2024</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right -->
+          <div>
+            <!-- Earnings summary -->
+            <div class="card" style="margin-bottom:16px;">
+              <div class="card-head">Earnings Summary</div>
+              <div class="card-body">
+                <div class="snap-row">
+                  <span class="snap-label">This Month</span>
+                  <span class="snap-value">$8,200</span>
+                </div>
+                <div class="snap-row">
+                  <span class="snap-label">Last Month</span>
+                  <span class="snap-value">$7,680</span>
+                </div>
+                <div class="snap-row">
+                  <span class="snap-label">YTD Earnings</span>
+                  <span class="snap-value">$91,440</span>
+                </div>
+                <div class="snap-row">
+                  <span class="snap-label">Pending Payout</span>
+                  <span class="snap-value">$8,200</span>
+                </div>
+                <div class="snap-row">
+                  <span class="snap-label">Next Payout</span>
+                  <span class="snap-value" style="font-size:13px;">Feb 1</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent activity -->
+            <div class="card">
+              <div class="card-head">Recent Activity</div>
+              <div class="card-body" style="padding:0;">
+                <div class="pa-row" style="padding:12px 20px;">
+                  <div>
+                    <div style="font-size:12px; font-weight:600; color:#222;">Posted: Footwork Drills Vol. 4</div>
+                    <div class="sub-line">Today, 8:30 AM</div>
+                  </div>
+                </div>
+                <div class="pa-row" style="padding:12px 20px;">
+                  <div>
+                    <div style="font-size:12px; font-weight:600; color:#222;">Price change request submitted</div>
+                    <div class="sub-line">Jan 20, 2025 &nbsp;·&nbsp; $12 → $15/mo</div>
+                  </div>
+                </div>
+                <div class="pa-row" style="padding:12px 20px;">
+                  <div>
+                    <div style="font-size:12px; font-weight:600; color:#222;">Gained 142 new subscribers</div>
+                    <div class="sub-line">This week</div>
+                  </div>
+                </div>
+                <div class="pa-row" style="padding:12px 20px;">
+                  <div>
+                    <div style="font-size:12px; font-weight:600; color:#222;">Payout processed — $7,680</div>
+                    <div class="sub-line">Jan 1, 2025</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div><!-- /content -->
+    </div><!-- /main -->
+  </div><!-- /shell -->
+</body>
+</html>

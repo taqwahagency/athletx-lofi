@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Coach Detail (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .profile-hdr {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+      background: #f5f5f5;
+      border: 1px solid #c8c8c8;
+      border-radius: 2px;
+      padding: 24px;
+    }
+    .profile-avatar {
+      width: 64px;
+      height: 64px;
+      background: #c8c8c8;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .profile-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #111;
+    }
+    .profile-actions {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .tab-row {
+      display: flex;
+      border-bottom: 1px solid #c8c8c8;
+      margin-bottom: 20px;
+    }
+    .tab {
+      padding: 9px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #888;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tab.active { color: #222; border-bottom-color: #888; }
+
+    .doc-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 12px;
+    }
+    .doc-row:last-child { border-bottom: none; }
+
+    .doc-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .doc-icon {
+      width: 36px;
+      height: 36px;
+      background: #ddd;
+      border-radius: 2px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    .doc-name { font-weight: 600; color: #222; }
+    .doc-meta { font-size: 10px; color: #999; margin-top: 2px; }
+
+    .doc-actions { display: flex; gap: 8px; align-items: center; }
+
+    .flag-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 12px;
+    }
+    .flag-row:last-child { border-bottom: none; }
+
+    .flag-label { font-weight: 600; color: #333; }
+    .flag-desc  { font-size: 11px; color: #888; margin-top: 2px; }
+
+    .toggle-box {
+      width: 36px;
+      height: 20px;
+      background: #bbb;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .audit-row {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 12px;
+    }
+    .audit-row:last-child { border-bottom: none; }
+    .audit-time { color: #aaa; font-size: 10px; width: 100px; flex-shrink: 0; }
+    .audit-actor { font-weight: 600; color: #555; width: 110px; flex-shrink: 0; }
+    .audit-action { color: #333; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sb-logo">AthletX Admin</div>
+      <div class="sb-section">
+        <div class="sb-label">Main</div>
+        <a class="sb-item" href="index.html">Dashboard</a>
+        <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+        <a class="sb-item" href="search.html">Search</a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Players</div>
+        <a class="sb-item" href="player-list.html">Player List</a>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Coach Management</div>
+        <a class="sb-item active" href="coach-list.html">Coach List</a>
+        <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+        <div class="sb-sub sb-soon">Scheduled Posts</div>
+        <div class="sb-sub sb-soon">Payout Management</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Analytics</div>
+        <div class="sb-item sb-soon">Coach Performance</div>
+        <div class="sb-sub sb-soon">Content Performance</div>
+        <div class="sb-sub sb-soon">Growth & Funnels</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Revenue</div>
+        <div class="sb-item sb-soon">Subscriptions</div>
+        <div class="sb-sub sb-soon">Revenue Split</div>
+        <div class="sb-sub sb-soon">Transactions</div>
+        <div class="sb-sub sb-soon">Referral Overview</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Coach Tiers</div>
+        <div class="sb-item sb-soon">Tier Overview</div>
+        <div class="sb-sub sb-soon">Underperformer Alerts <span class="badge" style="opacity:0.4;">8</span></div>
+        <div class="sb-sub sb-soon">Tier Settings</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Shop</div>
+        <div class="sb-item sb-soon">Products</div>
+        <div class="sb-sub sb-soon">Orders</div>
+        <div class="sb-sub sb-soon">Refunds <span class="badge" style="opacity:0.4;">6</span></div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Support</div>
+        <div class="sb-item sb-soon">Support Tickets <span class="badge" style="opacity:0.4;">5</span></div>
+        <div class="sb-sub sb-soon">Push Notifications</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-label">Settings</div>
+        <div class="sb-item sb-soon">Admin Accounts</div>
+        <div class="sb-sub sb-soon">Roles & Permissions</div>
+        <div class="sb-sub sb-soon">Activity Log</div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+      <div class="topbar">
+        <div class="topbar-breadcrumb">Coach Management &rsaquo; Jerome Parker &rsaquo; Detail</div>
+        <div class="topbar-search"></div>
+        <div class="topbar-avatar"></div>
+      </div>
+
+      <div class="content">
+
+        <!-- Profile mini-header -->
+        <div class="profile-hdr">
+          <div class="profile-avatar"></div>
+          <div>
+            <div class="profile-name">Jerome Parker</div>
+            <div style="display:flex; gap:8px; margin-top:6px;">
+              <span class="status-tag">Active</span>
+              <span class="tier-tag">Tier 1</span>
+              <span class="tier-tag">Verified ✓</span>
+            </div>
+            <div style="font-size:12px; color:#666; margin-top:6px;">
+              ID #C-00142 &nbsp;·&nbsp; Football &nbsp;·&nbsp; jerome.parker@athletx.com
+            </div>
+          </div>
+          <div class="profile-actions">
+            <a class="btn-outline" href="coach-profile.html">← Back to Profile</a>
+            <div class="btn-solid">Save Changes</div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tab-row">
+          <div class="tab active">Verification Docs</div>
+          <div class="tab">Payout Settings</div>
+          <div class="tab">Compliance</div>
+          <div class="tab">Admin Notes</div>
+          <div class="tab">Audit Log</div>
+        </div>
+
+        <div class="row-2col wide-left">
+
+          <!-- Left col -->
+          <div>
+
+            <!-- Verification Documents -->
+            <div class="card" style="margin-bottom:16px;">
+              <div class="card-head">
+                Verification Documents
+                <span class="status-tag">Verified</span>
+              </div>
+              <div class="card-body">
+                <div class="doc-row">
+                  <div class="doc-left">
+                    <div class="doc-icon">📄</div>
+                    <div>
+                      <div class="doc-name">Government ID</div>
+                      <div class="doc-meta">Uploaded Jan 8, 2023 &nbsp;·&nbsp; PDF &nbsp;·&nbsp; 1.2 MB</div>
+                    </div>
+                  </div>
+                  <div class="doc-actions">
+                    <span class="status-tag">Approved</span>
+                    <span style="font-size:11px; color:#666;">View</span>
+                  </div>
+                </div>
+                <div class="doc-row">
+                  <div class="doc-left">
+                    <div class="doc-icon">📄</div>
+                    <div>
+                      <div class="doc-name">Coaching Certification</div>
+                      <div class="doc-meta">Uploaded Jan 8, 2023 &nbsp;·&nbsp; PDF &nbsp;·&nbsp; 2.4 MB</div>
+                    </div>
+                  </div>
+                  <div class="doc-actions">
+                    <span class="status-tag">Approved</span>
+                    <span style="font-size:11px; color:#666;">View</span>
+                  </div>
+                </div>
+                <div class="doc-row">
+                  <div class="doc-left">
+                    <div class="doc-icon">📄</div>
+                    <div>
+                      <div class="doc-name">Background Check Consent</div>
+                      <div class="doc-meta">Uploaded Jan 9, 2023 &nbsp;·&nbsp; PDF &nbsp;·&nbsp; 0.8 MB</div>
+                    </div>
+                  </div>
+                  <div class="doc-actions">
+                    <span class="status-tag">Approved</span>
+                    <span style="font-size:11px; color:#666;">View</span>
+                  </div>
+                </div>
+                <div class="doc-row">
+                  <div class="doc-left">
+                    <div class="doc-icon">📄</div>
+                    <div>
+                      <div class="doc-name">Tax Form (W-9)</div>
+                      <div class="doc-meta">Uploaded Feb 1, 2023 &nbsp;·&nbsp; PDF &nbsp;·&nbsp; 0.5 MB</div>
+                    </div>
+                  </div>
+                  <div class="doc-actions">
+                    <span class="status-tag">Approved</span>
+                    <span style="font-size:11px; color:#666;">View</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Compliance Flags -->
+            <div class="card">
+              <div class="card-head">Compliance & Flags</div>
+              <div class="card-body">
+                <div class="flag-row">
+                  <div>
+                    <div class="flag-label">Content Moderation</div>
+                    <div class="flag-desc">Auto-flag content for review before publishing</div>
+                  </div>
+                  <div class="toggle-box"></div>
+                </div>
+                <div class="flag-row">
+                  <div>
+                    <div class="flag-label">Payout Hold</div>
+                    <div class="flag-desc">Block scheduled payouts until manually released</div>
+                  </div>
+                  <div class="toggle-box"></div>
+                </div>
+                <div class="flag-row">
+                  <div>
+                    <div class="flag-label">Underperformer Watch</div>
+                    <div class="flag-desc">Flag account for tier demotion review</div>
+                  </div>
+                  <div class="toggle-box"></div>
+                </div>
+                <div class="flag-row">
+                  <div>
+                    <div class="flag-label">Restricted Mode</div>
+                    <div class="flag-desc">Limit posting to 3 pieces per week</div>
+                  </div>
+                  <div class="toggle-box"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right col -->
+          <div>
+
+            <!-- Payout Settings -->
+            <div class="card" style="margin-bottom:16px;">
+              <div class="card-head">Payout Settings</div>
+              <div class="card-body">
+                <div class="detail-row">
+                  <div class="detail-key">Bank</div>
+                  <div class="detail-val">Chase ••••6821</div>
+                </div>
+                <div class="detail-row">
+                  <div class="detail-key">Schedule</div>
+                  <div class="detail-val">Monthly (1st)</div>
+                </div>
+                <div class="detail-row">
+                  <div class="detail-key">Revenue Split</div>
+                  <div class="detail-val">80% / 20%</div>
+                </div>
+                <div class="detail-row">
+                  <div class="detail-key">Pending</div>
+                  <div class="detail-val">$8,200.00</div>
+                </div>
+                <div class="detail-row">
+                  <div class="detail-key">Next Payout</div>
+                  <div class="detail-val">Feb 1, 2025</div>
+                </div>
+                <div style="margin-top:14px;">
+                  <div class="btn-outline" style="display:inline-flex; align-items:center; font-size:11px; padding:5px 12px;">Edit Payout Settings</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Admin Notes -->
+            <div class="card" style="margin-bottom:16px;">
+              <div class="card-head">Admin Notes</div>
+              <div class="card-body">
+                <div class="pa-row" style="padding:10px 0; flex-direction:column; align-items:flex-start; gap:4px;">
+                  <div style="font-size:11px; color:#aaa;">Jan 20, 2025 &nbsp;·&nbsp; Admin: Sarah K.</div>
+                  <div style="font-size:12px; color:#333;">Price change request approved pending review. Subscriber notification scheduled for Jan 25.</div>
+                </div>
+                <div class="pa-row" style="padding:10px 0; flex-direction:column; align-items:flex-start; gap:4px; border-bottom:none;">
+                  <div style="font-size:11px; color:#aaa;">Dec 5, 2024 &nbsp;·&nbsp; Admin: Mike R.</div>
+                  <div style="font-size:12px; color:#333;">Top performer review completed. Tier 1 status confirmed for Q1 2025.</div>
+                </div>
+                <div style="margin-top:10px;">
+                  <div style="width:100%; height:60px; background:#e8e8e8; border:1px solid #bbb; border-radius:2px;"></div>
+                  <div style="margin-top:8px; text-align:right;">
+                    <div class="btn-solid" style="display:inline-flex; align-items:center; font-size:11px;">Add Note</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Audit Log -->
+            <div class="card">
+              <div class="card-head">Recent Audit Log</div>
+              <div class="card-body" style="padding:12px 20px;">
+                <div class="audit-row">
+                  <div class="audit-time">Jan 20, 2025</div>
+                  <div class="audit-actor">Admin: Sarah K.</div>
+                  <div class="audit-action">Approved price change request</div>
+                </div>
+                <div class="audit-row">
+                  <div class="audit-time">Jan 1, 2025</div>
+                  <div class="audit-actor">System</div>
+                  <div class="audit-action">Payout processed — $7,680</div>
+                </div>
+                <div class="audit-row">
+                  <div class="audit-time">Dec 5, 2024</div>
+                  <div class="audit-actor">Admin: Mike R.</div>
+                  <div class="audit-action">Tier 1 status confirmed</div>
+                </div>
+                <div class="audit-row">
+                  <div class="audit-time">Mar 4, 2023</div>
+                  <div class="audit-actor">Admin: System</div>
+                  <div class="audit-action">Account verified & activated</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /content -->
+    </div><!-- /main -->
+  </div><!-- /shell -->
+</body>
+</html>

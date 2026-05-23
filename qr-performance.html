@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — QR Code Performance (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .chart-placeholder {
+      width: 100%; height: 160px; background: #f0f0f0; border: 1px solid #d8d8d8;
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #aaa;
+    }
+    .bar-chart-row { display: flex; align-items: flex-end; gap: 6px; height: 80px; padding: 0 16px; }
+    .bar-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
+    .bar-seg { width: 100%; background: #c8c8c8; border-radius: 2px 2px 0 0; }
+    .bar-label { font-size: 9px; color: #aaa; }
+    .qr-preview-box {
+      width: 120px; height: 120px; background: #e0e0e0; border: 1px solid #ccc;
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: #aaa;
+    }
+    .date-chips { display: flex; gap: 6px; margin-bottom: 20px; }
+    .date-chip { padding: 5px 14px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; font-size: 11px; font-weight: 600; color: #666; }
+    .date-chip.active { background: #bbb; border-color: #999; color: #111; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="categories.html">Categories</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+      <a class="sb-sub" href="inventory-alerts.html">Inventory Alerts <span class="badge">4</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+      <a class="sb-sub" href="notification-history.html">Notification History</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub active" href="qr-management.html">QR Management</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Settings &rsaquo; <a href="qr-management.html" style="color:#666;text-decoration:none;">QR Management</a> &rsaquo; Performance</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">QR Code Performance</div>
+          <div class="page-date">Jerome Parker — Referral QR · athletx.app/ref/jerome-parker</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-solid">Download QR</div>
+          <div class="btn-outline">Deactivate</div>
+          <a href="qr-management.html" style="text-decoration:none;"><div class="btn-outline">← Back</div></a>
+        </div>
+      </div>
+
+      <div class="date-chips">
+        <div class="date-chip">7D</div>
+        <div class="date-chip active">30D</div>
+        <div class="date-chip">90D</div>
+        <div class="date-chip">All Time</div>
+      </div>
+
+      <div class="row-2col wide-left" style="margin-bottom:20px;">
+        <div>
+          <div class="kpi-row" style="margin-bottom:16px;">
+            <div class="kpi-card">
+              <div class="kpi-label">Total Scans</div>
+              <div class="kpi-value">4,820</div>
+              <div class="kpi-trend">↑ <span>18%</span> vs last month</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Unique Scans</div>
+              <div class="kpi-value">4,210</div>
+              <div class="kpi-trend">87.3% unique</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Conversions</div>
+              <div class="kpi-value">742</div>
+              <div class="kpi-trend">15.4% scan-to-sub</div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Daily Scans — January 2025</div>
+            <div style="padding:12px 16px;">
+              <div class="bar-chart-row">
+                <div class="bar-col"><div class="bar-seg" style="height:30%;"></div><div class="bar-label">1</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:45%;"></div><div class="bar-label">2</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:38%;"></div><div class="bar-label">3</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:52%;"></div><div class="bar-label">4</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:40%;"></div><div class="bar-label">5</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:62%;"></div><div class="bar-label">6</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:55%;"></div><div class="bar-label">7</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:48%;"></div><div class="bar-label">8</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:70%;"></div><div class="bar-label">9</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:65%;"></div><div class="bar-label">10</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:80%;"></div><div class="bar-label">11</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:75%;"></div><div class="bar-label">12</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:58%;"></div><div class="bar-label">13</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:66%;"></div><div class="bar-label">14</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:90%;"></div><div class="bar-label">15</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:84%;"></div><div class="bar-label">16</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:72%;"></div><div class="bar-label">17</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:60%;"></div><div class="bar-label">18</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:78%;"></div><div class="bar-label">19</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:100%;"></div><div class="bar-label">20</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:88%;"></div><div class="bar-label">21</div></div>
+                <div class="bar-col"><div class="bar-seg" style="height:70%;"></div><div class="bar-label">22</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">Recent Scans</div>
+            <table>
+              <thead>
+                <tr><th>Date &amp; Time</th><th>Location</th><th>Device</th><th>Converted</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Jan 22, 2025 · 3:41 PM</td><td>New York, US</td><td>iOS</td><td><span class="status-tag">Yes</span></td></tr>
+                <tr><td>Jan 22, 2025 · 3:28 PM</td><td>Los Angeles, US</td><td>Android</td><td><span style="font-size:11px; color:#aaa;">No</span></td></tr>
+                <tr><td>Jan 22, 2025 · 2:55 PM</td><td>Chicago, US</td><td>iOS</td><td><span class="status-tag">Yes</span></td></tr>
+                <tr><td>Jan 22, 2025 · 2:14 PM</td><td>Houston, US</td><td>iOS</td><td><span style="font-size:11px; color:#aaa;">No</span></td></tr>
+                <tr><td>Jan 22, 2025 · 1:48 PM</td><td>Miami, US</td><td>Android</td><td><span class="status-tag">Yes</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="padding:16px 20px; margin-bottom:16px; text-align:center;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:#888; margin-bottom:12px; text-align:left;">QR Code Preview</div>
+            <div class="qr-preview-box" style="margin:0 auto;">QR CODE</div>
+            <div style="margin-top:12px; font-size:11px; color:#888;">athletx.app/ref/jerome-parker</div>
+            <div style="margin-top:12px; display:flex; gap:8px; justify-content:center;">
+              <div class="btn-solid" style="font-size:11px; padding:6px 12px;">Download PNG</div>
+              <div class="btn-outline" style="font-size:11px; padding:6px 12px;">Download SVG</div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:16px 20px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:#888; letter-spacing:0.5px; margin-bottom:12px;">QR Details</div>
+            <div class="detail-row"><span>Code ID</span><span style="font-family:monospace;">QR-00124-REF</span></div>
+            <div class="detail-row"><span>Type</span><span>Coach Referral</span></div>
+            <div class="detail-row"><span>Coach</span><span>Jerome Parker</span></div>
+            <div class="detail-row"><span>Created</span><span>Jan 1, 2025</span></div>
+            <div class="detail-row"><span>Expires</span><span>Never</span></div>
+            <div class="detail-row"><span>Status</span><span><span class="status-tag">Active</span></span></div>
+            <div class="detail-row"><span>Scan Limit</span><span>Unlimited</span></div>
+            <div class="detail-row"><span>Destination</span><span style="font-size:10px; color:#666;">Coach profile page</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

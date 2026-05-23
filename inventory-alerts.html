@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Inventory Alerts (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .toolbar-search { flex: 0 0 220px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .stock-bar-track { width: 80px; height: 6px; background: #e8e8e8; border-radius: 3px; overflow: hidden; display: inline-block; vertical-align: middle; }
+    .stock-bar-fill { height: 100%; border-radius: 3px; }
+    .stock-bar-fill.critical { background: #aaa; }
+    .stock-bar-fill.low { background: #bbb; }
+    .stock-bar-fill.ok { background: #c8c8c8; }
+    .urgency-tag { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 2px; }
+    .urgency-tag.critical { background: #d0d0d0; color: #333; }
+    .urgency-tag.low { background: #e0e0e0; color: #555; }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn { width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #555; }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="categories.html">Categories</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+      <a class="sb-sub active" href="inventory-alerts.html">Inventory Alerts <span class="badge">4</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+      <a class="sb-sub" href="notification-history.html">Notification History</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="qr-management.html">QR Management</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Shop &rsaquo; Inventory Alerts</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Inventory Alerts</div>
+          <div class="page-date">Products at or below low-stock thresholds</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export</div>
+          <div class="btn-outline">Dismiss All</div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Critical (0–5 units)</div>
+          <div class="kpi-value">4</div>
+          <div class="kpi-trend">Immediate restock needed</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Low Stock (6–20 units)</div>
+          <div class="kpi-value">11</div>
+          <div class="kpi-trend">Restock soon</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Out of Stock</div>
+          <div class="kpi-value">2</div>
+          <div class="kpi-trend">Orders paused</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Avg Days to Stockout</div>
+          <div class="kpi-value">6.2d</div>
+          <div class="kpi-trend">At current sales rate</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-search"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-spacer"></div>
+        <div style="display:flex; gap:8px;">
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px; background:#bbb; border-color:#999; font-weight:600;">All Alerts</div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Critical</div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Out of Stock</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Product</th>
+              <th>SKU</th>
+              <th>Category</th>
+              <th>Stock Left</th>
+              <th>Threshold</th>
+              <th>Daily Sales</th>
+              <th>Days Left</th>
+              <th>Urgency</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="width:44px; padding-right:0;"><div style="width:36px; height:36px; background:#d8d8d8; border-radius:2px;"></div></td>
+              <td><div class="name-line">AthletX Performance Tee — XL Black</div><div class="sub-line">ATX-TEE-001-XL-BLK</div></td>
+              <td style="font-family:monospace; font-size:10px;">ATX-TEE-001</td>
+              <td>Apparel</td>
+              <td>
+                <strong style="color:#c00;">3</strong>
+                <div class="stock-bar-track" style="margin-left:6px;"><div class="stock-bar-fill critical" style="width:15%;"></div></div>
+              </td>
+              <td>20</td>
+              <td>0.5 / day</td>
+              <td style="color:#c00; font-weight:700;">6 days</td>
+              <td><span class="urgency-tag critical">Critical</span></td>
+              <td><a href="product-detail.html" style="font-size:11px; color:#666; text-decoration:none;">Restock · View</a></td>
+            </tr>
+            <tr>
+              <td style="width:44px; padding-right:0;"><div style="width:36px; height:36px; background:#d8d8d8; border-radius:2px;"></div></td>
+              <td><div class="name-line">Resistance Band Set — Heavy</div><div class="sub-line">ATX-BAND-003-H</div></td>
+              <td style="font-family:monospace; font-size:10px;">ATX-BAND-003</td>
+              <td>Equipment</td>
+              <td>
+                <strong style="color:#c00;">0</strong>
+                <div class="stock-bar-track" style="margin-left:6px;"><div class="stock-bar-fill critical" style="width:0%;"></div></div>
+              </td>
+              <td>10</td>
+              <td>1.2 / day</td>
+              <td style="color:#c00; font-weight:700;">Out of stock</td>
+              <td><span class="urgency-tag critical">Out of Stock</span></td>
+              <td><a href="product-detail.html" style="font-size:11px; color:#666; text-decoration:none;">Restock · View</a></td>
+            </tr>
+            <tr>
+              <td style="width:44px; padding-right:0;"><div style="width:36px; height:36px; background:#d8d8d8; border-radius:2px;"></div></td>
+              <td><div class="name-line">AthletX Protein Powder — Vanilla 1kg</div><div class="sub-line">ATX-NUT-002-V</div></td>
+              <td style="font-family:monospace; font-size:10px;">ATX-NUT-002</td>
+              <td>Nutrition</td>
+              <td>
+                <strong>8</strong>
+                <div class="stock-bar-track" style="margin-left:6px;"><div class="stock-bar-fill low" style="width:40%;"></div></div>
+              </td>
+              <td>20</td>
+              <td>0.8 / day</td>
+              <td>10 days</td>
+              <td><span class="urgency-tag low">Low</span></td>
+              <td><a href="product-detail.html" style="font-size:11px; color:#666; text-decoration:none;">Restock · View</a></td>
+            </tr>
+            <tr>
+              <td style="width:44px; padding-right:0;"><div style="width:36px; height:36px; background:#d8d8d8; border-radius:2px;"></div></td>
+              <td><div class="name-line">AthletX Hoodie — S Grey</div><div class="sub-line">ATX-HOOD-001-S-GRY</div></td>
+              <td style="font-family:monospace; font-size:10px;">ATX-HOOD-001</td>
+              <td>Apparel</td>
+              <td>
+                <strong style="color:#c00;">2</strong>
+                <div class="stock-bar-track" style="margin-left:6px;"><div class="stock-bar-fill critical" style="width:10%;"></div></div>
+              </td>
+              <td>20</td>
+              <td>0.3 / day</td>
+              <td style="color:#c00; font-weight:700;">7 days</td>
+              <td><span class="urgency-tag critical">Critical</span></td>
+              <td><a href="product-detail.html" style="font-size:11px; color:#666; text-decoration:none;">Restock · View</a></td>
+            </tr>
+            <tr>
+              <td style="width:44px; padding-right:0;"><div style="width:36px; height:36px; background:#d8d8d8; border-radius:2px;"></div></td>
+              <td><div class="name-line">Foam Roller — Standard</div><div class="sub-line">ATX-EQ-008</div></td>
+              <td style="font-family:monospace; font-size:10px;">ATX-EQ-008</td>
+              <td>Equipment</td>
+              <td>
+                <strong style="color:#c00;">0</strong>
+                <div class="stock-bar-track" style="margin-left:6px;"><div class="stock-bar-fill critical" style="width:0%;"></div></div>
+              </td>
+              <td>15</td>
+              <td>0.6 / day</td>
+              <td style="color:#c00; font-weight:700;">Out of stock</td>
+              <td><span class="urgency-tag critical">Out of Stock</span></td>
+              <td><a href="product-detail.html" style="font-size:11px; color:#666; text-decoration:none;">Restock · View</a></td>
+            </tr>
+            <tr>
+              <td style="width:44px; padding-right:0;"><div style="width:36px; height:36px; background:#d8d8d8; border-radius:2px;"></div></td>
+              <td><div class="name-line">Electrolyte Drink Mix — Box of 30</div><div class="sub-line">ATX-NUT-007</div></td>
+              <td style="font-family:monospace; font-size:10px;">ATX-NUT-007</td>
+              <td>Nutrition</td>
+              <td>
+                <strong>14</strong>
+                <div class="stock-bar-track" style="margin-left:6px;"><div class="stock-bar-fill low" style="width:70%;"></div></div>
+              </td>
+              <td>20</td>
+              <td>1.1 / day</td>
+              <td>13 days</td>
+              <td><span class="urgency-tag low">Low</span></td>
+              <td><a href="product-detail.html" style="font-size:11px; color:#666; text-decoration:none;">Restock · View</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>Showing 1–6 of 17 alerts</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

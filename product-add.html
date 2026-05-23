@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Add Product (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .form-group { margin-bottom: 18px; }
+    .form-label { font-size: 11px; font-weight: 700; color: #555; margin-bottom: 5px; display: block; }
+    .form-label .req { color: #aaa; font-weight: 400; }
+    .form-input {
+      width: 100%; height: 34px; background: #f0f0f0; border: 1px solid #c8c8c8;
+      border-radius: 2px; box-sizing: border-box; padding: 0 10px; font-size: 12px; color: #333;
+    }
+    .form-textarea {
+      width: 100%; height: 80px; background: #f0f0f0; border: 1px solid #c8c8c8;
+      border-radius: 2px; box-sizing: border-box; padding: 8px 10px; font-size: 12px;
+      color: #333; resize: vertical;
+    }
+    .form-select {
+      width: 100%; height: 34px; background: #f0f0f0; border: 1px solid #c8c8c8;
+      border-radius: 2px; box-sizing: border-box; padding: 0 10px; font-size: 12px; color: #555;
+    }
+    .form-hint { font-size: 10px; color: #aaa; margin-top: 4px; }
+    .img-upload-box {
+      width: 100%; height: 120px; background: #f0f0f0; border: 1px dashed #c8c8c8;
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 6px; color: #aaa; font-size: 11px;
+    }
+    .size-chip {
+      display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+      background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; font-size: 11px;
+      font-weight: 600; margin-right: 6px; margin-bottom: 6px;
+    }
+    .size-chip.active { background: #bbb; border-color: #999; color: #111; }
+    .section-divider {
+      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;
+      color: #888; padding: 14px 0 8px; border-top: 1px solid #ececec; margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item active" href="products.html">Products</a>
+      <a class="sb-sub" href="categories.html">Categories</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+      <a class="sb-sub" href="inventory-alerts.html">Inventory Alerts <span class="badge">4</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+      <a class="sb-sub" href="notification-history.html">Notification History</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="qr-management.html">QR Management</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Shop &rsaquo; <a href="products.html" style="color:#666;text-decoration:none;">Products</a> &rsaquo; Add Product</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Add New Product</div>
+          <div class="page-date">Create a new shop listing</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-solid">Publish Product</div>
+          <div class="btn-outline">Save Draft</div>
+          <a href="products.html" style="text-decoration:none;"><div class="btn-outline">← Cancel</div></a>
+        </div>
+      </div>
+
+      <div class="row-2col wide-left">
+        <!-- Left column: main form -->
+        <div>
+          <div class="card" style="padding:20px;">
+            <div class="section-divider" style="border-top:none; padding-top:0; margin-top:0;">Basic Info</div>
+
+            <div class="form-group">
+              <label class="form-label">Product Name <span class="req">*</span></label>
+              <div class="form-input" style="display:flex; align-items:center; color:#bbb;">AthletX Performance Tee</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Description</label>
+              <div class="form-textarea" style="display:flex; align-items:flex-start; color:#bbb; padding-top:8px;">Premium athletic wear for serious athletes...</div>
+            </div>
+
+            <div style="display:flex; gap:12px;">
+              <div class="form-group" style="flex:1;">
+                <label class="form-label">Price <span class="req">*</span></label>
+                <div class="form-input" style="display:flex; align-items:center; color:#333;">$34.99</div>
+              </div>
+              <div class="form-group" style="flex:1;">
+                <label class="form-label">Compare-at Price</label>
+                <div class="form-input" style="display:flex; align-items:center; color:#aaa;">$44.99</div>
+                <div class="form-hint">Shows as crossed-out original price</div>
+              </div>
+            </div>
+
+            <div class="section-divider">Product Images</div>
+            <div style="display:flex; gap:10px; margin-bottom:18px;">
+              <div class="img-upload-box" style="width:120px; height:100px; flex-shrink:0;">
+                <div style="font-size:22px; color:#ccc;">+</div>
+                <div>Add image</div>
+              </div>
+              <div class="img-upload-box" style="width:120px; height:100px; flex-shrink:0;"></div>
+              <div class="img-upload-box" style="width:120px; height:100px; flex-shrink:0;"></div>
+              <div class="img-upload-box" style="width:120px; height:100px; flex-shrink:0;"></div>
+            </div>
+
+            <div class="section-divider">Variants</div>
+            <div class="form-group">
+              <label class="form-label">Available Sizes</label>
+              <div>
+                <span class="size-chip">XS</span>
+                <span class="size-chip active">S</span>
+                <span class="size-chip active">M</span>
+                <span class="size-chip active">L</span>
+                <span class="size-chip active">XL</span>
+                <span class="size-chip">XXL</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Available Colors</label>
+              <div>
+                <span class="size-chip active">Black</span>
+                <span class="size-chip active">White</span>
+                <span class="size-chip">Grey</span>
+                <span class="size-chip">Navy</span>
+              </div>
+            </div>
+
+            <div class="section-divider">Inventory</div>
+            <div style="display:flex; gap:12px;">
+              <div class="form-group" style="flex:1;">
+                <label class="form-label">SKU</label>
+                <div class="form-input" style="display:flex; align-items:center; color:#333; font-family:monospace; font-size:11px;">ATX-TEE-001</div>
+              </div>
+              <div class="form-group" style="flex:1;">
+                <label class="form-label">Stock Quantity <span class="req">*</span></label>
+                <div class="form-input" style="display:flex; align-items:center; color:#333;">250</div>
+              </div>
+              <div class="form-group" style="flex:1;">
+                <label class="form-label">Low Stock Alert</label>
+                <div class="form-input" style="display:flex; align-items:center; color:#333;">20</div>
+                <div class="form-hint">Alert when stock drops below this</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column: meta -->
+        <div>
+          <div class="card" style="padding:16px 20px; margin-bottom:16px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:#888; margin-bottom:12px;">Organisation</div>
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <div class="form-select" style="display:flex; align-items:center; color:#555;">Apparel</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tags</label>
+              <div class="form-input" style="display:flex; align-items:center; color:#aaa;">apparel, performance, tee...</div>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Visibility</label>
+              <div class="form-select" style="display:flex; align-items:center; color:#555;">Public</div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:16px 20px; margin-bottom:16px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:#888; margin-bottom:12px;">Shipping</div>
+            <div class="form-group">
+              <label class="form-label">Weight (kg)</label>
+              <div class="form-input" style="display:flex; align-items:center; color:#333;">0.35</div>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Shipping Class</label>
+              <div class="form-select" style="display:flex; align-items:center; color:#555;">Standard</div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:16px 20px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:#888; margin-bottom:12px;">Status</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; align-items:center; gap:8px; font-size:12px;">
+                <div style="width:14px; height:14px; background:#c8c8c8; border-radius:50%;"></div>
+                <span>Publish immediately</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; font-size:12px;">
+                <div style="width:14px; height:14px; background:#e8e8e8; border-radius:50%; border:1px solid #ccc;"></div>
+                <span>Save as draft</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; font-size:12px;">
+                <div style="width:14px; height:14px; background:#e8e8e8; border-radius:50%; border:1px solid #ccc;"></div>
+                <span>Schedule</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

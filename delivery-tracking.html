@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Delivery Tracking (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .track-timeline { padding: 0 20px 20px; }
+    .track-step {
+      display: flex; gap: 14px; padding: 10px 0; position: relative;
+    }
+    .track-step::before {
+      content: ''; position: absolute; left: 11px; top: 28px; bottom: -10px;
+      width: 2px; background: #ddd;
+    }
+    .track-step:last-child::before { display: none; }
+    .track-dot {
+      width: 24px; height: 24px; border-radius: 50%; background: #c8c8c8;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      font-size: 10px; color: #fff; font-weight: 700; margin-top: 2px;
+    }
+    .track-dot.done { background: #888; }
+    .track-dot.current { background: #555; }
+    .track-dot.pending { background: #e0e0e0; border: 2px dashed #bbb; }
+    .track-text { flex: 1; }
+    .track-title { font-size: 12px; font-weight: 700; color: #222; }
+    .track-sub { font-size: 11px; color: #888; margin-top: 2px; }
+    .track-date { font-size: 10px; color: #aaa; margin-top: 3px; }
+    .map-placeholder {
+      width: 100%; height: 160px; background: #e8e8e8; border: 1px solid #d0d0d0;
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #aaa;
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item active" href="products.html">Products</a>
+      <a class="sb-sub" href="categories.html">Categories</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+      <a class="sb-sub" href="inventory-alerts.html">Inventory Alerts <span class="badge">4</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+      <a class="sb-sub" href="notification-history.html">Notification History</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="qr-management.html">QR Management</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Shop &rsaquo; <a href="orders.html" style="color:#666;text-decoration:none;">Orders</a> &rsaquo; <a href="order-detail.html" style="color:#666;text-decoration:none;">#ORD-10482</a> &rsaquo; Delivery Tracking</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Delivery Tracking</div>
+          <div class="page-date">Order #ORD-10482 &nbsp;·&nbsp; Alex Morgan</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Notify Customer</div>
+          <a href="order-detail.html" style="text-decoration:none;"><div class="btn-outline">← Back to Order</div></a>
+        </div>
+      </div>
+
+      <div class="row-2col wide-left" style="margin-bottom:20px;">
+        <div>
+          <!-- Status summary -->
+          <div class="kpi-row" style="margin-bottom:16px;">
+            <div class="kpi-card">
+              <div class="kpi-label">Current Status</div>
+              <div class="kpi-value" style="font-size:18px;">In Transit</div>
+              <div class="kpi-trend">Since Jan 20, 2025</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Est. Delivery</div>
+              <div class="kpi-value" style="font-size:18px;">Jan 24</div>
+              <div class="kpi-trend">2–3 business days</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Carrier</div>
+              <div class="kpi-value" style="font-size:18px;">UPS</div>
+              <div class="kpi-trend">Ground Shipping</div>
+            </div>
+          </div>
+
+          <!-- Map placeholder -->
+          <div class="card" style="padding:16px 20px; margin-bottom:16px;">
+            <div class="card-head" style="margin-bottom:12px;">Live Map</div>
+            <div class="map-placeholder">[ Map view — carrier geo data ]</div>
+            <div style="margin-top:10px; font-size:11px; color:#888;">Last updated: Jan 22, 2025 · 2:41 PM &nbsp;·&nbsp; Memphis, TN → New York, NY</div>
+          </div>
+
+          <!-- Timeline -->
+          <div class="card" style="padding:0;">
+            <div class="card-head">Tracking Timeline</div>
+            <div class="track-timeline">
+
+              <div class="track-step">
+                <div class="track-dot done">✓</div>
+                <div class="track-text">
+                  <div class="track-title">Order Placed</div>
+                  <div class="track-sub">Payment confirmed · $49.99</div>
+                  <div class="track-date">Jan 18, 2025 · 10:24 AM</div>
+                </div>
+              </div>
+
+              <div class="track-step">
+                <div class="track-dot done">✓</div>
+                <div class="track-text">
+                  <div class="track-title">Processing</div>
+                  <div class="track-sub">Order picked and packed at warehouse</div>
+                  <div class="track-date">Jan 19, 2025 · 9:10 AM</div>
+                </div>
+              </div>
+
+              <div class="track-step">
+                <div class="track-dot done">✓</div>
+                <div class="track-text">
+                  <div class="track-title">Shipped</div>
+                  <div class="track-sub">Handed to UPS · Tracking: 1Z999AA10123456784</div>
+                  <div class="track-date">Jan 19, 2025 · 4:30 PM</div>
+                </div>
+              </div>
+
+              <div class="track-step">
+                <div class="track-dot current">→</div>
+                <div class="track-text">
+                  <div class="track-title">In Transit</div>
+                  <div class="track-sub">Memphis, TN distribution hub → New York, NY</div>
+                  <div class="track-date">Jan 20, 2025 · 11:48 AM · <strong>Current</strong></div>
+                </div>
+              </div>
+
+              <div class="track-step">
+                <div class="track-dot pending"></div>
+                <div class="track-text">
+                  <div class="track-title" style="color:#aaa;">Out for Delivery</div>
+                  <div class="track-sub" style="color:#ccc;">Estimated Jan 24, 2025</div>
+                </div>
+              </div>
+
+              <div class="track-step">
+                <div class="track-dot pending"></div>
+                <div class="track-text">
+                  <div class="track-title" style="color:#aaa;">Delivered</div>
+                  <div class="track-sub" style="color:#ccc;">Estimated Jan 24, 2025</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Right sidebar -->
+        <div>
+          <div class="card" style="padding:16px 20px; margin-bottom:16px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:#888; margin-bottom:12px;">Shipment Info</div>
+            <div class="detail-row"><span>Tracking #</span><span style="font-family:monospace; font-size:10px;">1Z999AA10123456784</span></div>
+            <div class="detail-row"><span>Carrier</span><span>UPS Ground</span></div>
+            <div class="detail-row"><span>Service</span><span>5-Day Ground</span></div>
+            <div class="detail-row"><span>Shipped</span><span>Jan 19, 2025</span></div>
+            <div class="detail-row"><span>Est. Delivery</span><span>Jan 24, 2025</span></div>
+            <div class="detail-row"><span>Weight</span><span>0.8 kg</span></div>
+            <div class="detail-row"><span>Dims</span><span>30 × 20 × 5 cm</span></div>
+          </div>
+
+          <div class="card" style="padding:16px 20px; margin-bottom:16px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:#888; margin-bottom:12px;">Deliver To</div>
+            <div style="font-size:12px; color:#333; line-height:1.8;">
+              Alex Morgan<br>
+              42 West 10th Street<br>
+              Apt 3B<br>
+              New York, NY 10011<br>
+              United States
+            </div>
+          </div>
+
+          <div class="card" style="padding:16px 20px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:#888; margin-bottom:12px;">Order Items</div>
+            <div style="display:flex; gap:10px; align-items:center; padding:6px 0; border-bottom:1px solid #ececec;">
+              <div style="width:36px; height:36px; background:#d8d8d8; border-radius:2px; flex-shrink:0;"></div>
+              <div>
+                <div style="font-size:12px; font-weight:600;">AthletX Performance Tee</div>
+                <div class="sub-line">Size: M · Black · Qty: 1</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; padding:6px 0;">
+              <div style="width:36px; height:36px; background:#d8d8d8; border-radius:2px; flex-shrink:0;"></div>
+              <div>
+                <div style="font-size:12px; font-weight:600;">AthletX Water Bottle</div>
+                <div class="sub-line">750ml · Qty: 1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AthletX — Support Tickets (Lo-Fi)</title>
+  <title>AthletX — Notification History (Lo-Fi)</title>
   <link rel="stylesheet" href="lofi.css">
   <style>
     .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
     .toolbar-search { flex: 0 0 220px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
     .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
     .toolbar-spacer { flex: 1; }
-    .priority-tag {
-      display: inline-block; padding: 2px 7px;
-      background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px;
-      font-size: 10px; font-weight: 700; color: #555;
-    }
-    .priority-tag.high { background: #ddd; border-color: #bbb; }
+    .date-chips { display: flex; gap: 6px; margin-bottom: 20px; }
+    .date-chip { padding: 5px 14px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; font-size: 11px; font-weight: 600; color: #666; }
+    .date-chip.active { background: #bbb; border-color: #999; color: #111; }
+    .type-tag { font-size: 10px; font-weight: 700; padding: 2px 7px; background: #e4e4e4; color: #555; border-radius: 2px; }
+    .bar-mini-track { width: 80px; height: 5px; background: #e8e8e8; border-radius: 3px; overflow: hidden; }
+    .bar-mini-fill { height: 100%; background: #bbb; border-radius: 3px; }
     .pagination {
       display: flex; align-items: center; justify-content: space-between;
       padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
@@ -81,9 +81,9 @@
     </div>
     <div class="sb-section">
       <div class="sb-label">Support</div>
-      <a class="sb-item active" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
       <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
-      <a class="sb-sub" href="notification-history.html">Notification History</a>
+      <a class="sb-sub active" href="notification-history.html">Notification History</a>
     </div>
     <div class="sb-section">
       <div class="sb-label">Settings</div>
@@ -98,7 +98,7 @@
 
   <div class="main">
     <div class="topbar">
-      <div class="topbar-breadcrumb">Support &rsaquo; Support Tickets</div>
+      <div class="topbar-breadcrumb">Support &rsaquo; Notification History</div>
       <div class="topbar-search"></div>
       <div class="topbar-avatar"></div>
     </div>
@@ -106,36 +106,43 @@
 
       <div class="page-hdr">
         <div>
-          <div class="page-title">Support Tickets</div>
-          <div class="page-date">5 open &nbsp;·&nbsp; 284 total this month</div>
+          <div class="page-title">Notification History</div>
+          <div class="page-date">All push notifications sent — delivery and engagement stats</div>
         </div>
         <div class="hdr-actions">
           <div class="btn-outline">Export</div>
-          <div class="btn-solid">+ New Ticket</div>
+          <a href="push-notifications.html" style="text-decoration:none;"><div class="btn-solid">+ Send New</div></a>
         </div>
       </div>
 
       <div class="kpi-row" style="margin-bottom:20px;">
         <div class="kpi-card">
-          <div class="kpi-label">Open</div>
-          <div class="kpi-value">5</div>
-          <div class="kpi-trend">Needs response</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Resolved (7D)</div>
+          <div class="kpi-label">Sent (30D)</div>
           <div class="kpi-value">48</div>
-          <div class="kpi-trend">↑ <span>12%</span> vs prior week</div>
+          <div class="kpi-trend">Across all notification types</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Avg Response Time</div>
-          <div class="kpi-value">3.2h</div>
-          <div class="kpi-trend">↓ <span>0.8h</span> improvement</div>
+          <div class="kpi-label">Avg Open Rate</div>
+          <div class="kpi-value">22.4%</div>
+          <div class="kpi-trend">↑ <span>3.2%</span> vs last month</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">CSAT Score</div>
-          <div class="kpi-value">4.6 ★</div>
-          <div class="kpi-trend">From 284 ratings</div>
+          <div class="kpi-label">Avg Click-Through</div>
+          <div class="kpi-value">8.1%</div>
+          <div class="kpi-trend">Of opened notifications</div>
         </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Opt-Out Rate</div>
+          <div class="kpi-value">0.4%</div>
+          <div class="kpi-trend">Per notification sent</div>
+        </div>
+      </div>
+
+      <div class="date-chips">
+        <div class="date-chip">7D</div>
+        <div class="date-chip active">30D</div>
+        <div class="date-chip">90D</div>
+        <div class="date-chip">All Time</div>
       </div>
 
       <div class="toolbar">
@@ -150,119 +157,120 @@
         <table>
           <thead>
             <tr>
-              <th>Ticket ID</th>
-              <th>Subject</th>
-              <th>User</th>
+              <th>Title</th>
               <th>Type</th>
-              <th>Priority</th>
-              <th>Assigned To</th>
-              <th>Status</th>
+              <th>Audience</th>
+              <th>Sent</th>
+              <th>Delivered</th>
               <th>Opened</th>
+              <th>Open Rate</th>
+              <th>CTR</th>
+              <th>Sent By</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><span style="font-family:monospace; font-size:11px; color:#888;">#TKT-2841</span></td>
+              <td><div class="name-line">New content from Jerome Parker</div><div class="sub-line">Advanced Passing Drills just posted</div></td>
+              <td><span class="type-tag">Content Alert</span></td>
+              <td>Jerome subs</td>
+              <td>Jan 20, 2025</td>
+              <td>12,380</td>
+              <td>3,240</td>
               <td>
-                <div class="name-line">Can't access purchased content</div>
-                <div class="sub-line">Player issue</div>
+                26.2%
+                <div class="bar-mini-track" style="margin-top:3px;"><div class="bar-mini-fill" style="width:100%;"></div></div>
               </td>
-              <td>Alex Morgan</td>
-              <td><span class="status-tag">Player</span></td>
-              <td><span class="priority-tag high">High</span></td>
-              <td>Sarah K.</td>
-              <td><span class="badge">Open</span></td>
-              <td>2h ago</td>
+              <td>9.4%</td>
+              <td>Auto</td>
+              <td><span style="font-size:11px; color:#666;">View</span></td>
             </tr>
             <tr>
-              <td><span style="font-family:monospace; font-size:11px; color:#888;">#TKT-2840</span></td>
+              <td><div class="name-line">Your subscription renews tomorrow</div><div class="sub-line">Review your active plan</div></td>
+              <td><span class="type-tag" style="background:#e0e0e0;">Billing</span></td>
+              <td>All users</td>
+              <td>Jan 19, 2025</td>
+              <td>28,240</td>
+              <td>5,820</td>
               <td>
-                <div class="name-line">Payout not received for December</div>
-                <div class="sub-line">Coach billing issue</div>
+                20.6%
+                <div class="bar-mini-track" style="margin-top:3px;"><div class="bar-mini-fill" style="width:79%;"></div></div>
               </td>
-              <td>Jerome Parker</td>
-              <td><span class="status-tag">Coach</span></td>
-              <td><span class="priority-tag high">High</span></td>
-              <td>Mike R.</td>
-              <td><span class="badge">Open</span></td>
-              <td>4h ago</td>
+              <td>6.2%</td>
+              <td>Auto</td>
+              <td><span style="font-size:11px; color:#666;">View</span></td>
             </tr>
             <tr>
-              <td><span style="font-family:monospace; font-size:11px; color:#888;">#TKT-2839</span></td>
+              <td><div class="name-line">January Sale — 20% off all plans</div><div class="sub-line">This week only. Use code JAN25</div></td>
+              <td><span class="type-tag" style="background:#d8d8d8;">Promo</span></td>
+              <td>All users</td>
+              <td>Jan 15, 2025</td>
+              <td>42,180</td>
+              <td>10,840</td>
               <td>
-                <div class="name-line">Video upload failing — error 503</div>
-                <div class="sub-line">Coach technical issue</div>
+                25.7%
+                <div class="bar-mini-track" style="margin-top:3px;"><div class="bar-mini-fill" style="width:98%;"></div></div>
               </td>
-              <td>Sarah Chen</td>
-              <td><span class="status-tag">Coach</span></td>
-              <td><span class="priority-tag">Medium</span></td>
-              <td>Unassigned</td>
-              <td><span class="badge">Open</span></td>
-              <td>6h ago</td>
+              <td>14.8%</td>
+              <td>Imran A.</td>
+              <td><span style="font-size:11px; color:#666;">View</span></td>
             </tr>
             <tr>
-              <td><span style="font-family:monospace; font-size:11px; color:#888;">#TKT-2838</span></td>
+              <td><div class="name-line">Your coach is going live soon</div><div class="sub-line">Jerome Parker · 7PM tonight</div></td>
+              <td><span class="type-tag">Event</span></td>
+              <td>Jerome subs</td>
+              <td>Jan 14, 2025</td>
+              <td>11,940</td>
+              <td>4,280</td>
               <td>
-                <div class="name-line">Refund request — Elite Playbook Bundle</div>
-                <div class="sub-line">Order dispute</div>
+                35.8%
+                <div class="bar-mini-track" style="margin-top:3px;"><div class="bar-mini-fill" style="width:100%;"></div></div>
               </td>
-              <td>Aisha Williams</td>
-              <td><span class="status-tag">Player</span></td>
-              <td><span class="priority-tag">Medium</span></td>
-              <td>Sarah K.</td>
-              <td><span class="badge">Open</span></td>
-              <td>Yesterday</td>
+              <td>18.2%</td>
+              <td>Imran A.</td>
+              <td><span style="font-size:11px; color:#666;">View</span></td>
             </tr>
             <tr>
-              <td><span style="font-family:monospace; font-size:11px; color:#888;">#TKT-2837</span></td>
+              <td><div class="name-line">Payment failed — update your card</div><div class="sub-line">Keep your subscription active</div></td>
+              <td><span class="type-tag" style="background:#e0e0e0;">Billing</span></td>
+              <td>Failed payments</td>
+              <td>Jan 12, 2025</td>
+              <td>84</td>
+              <td>62</td>
               <td>
-                <div class="name-line">Account suspended incorrectly</div>
-                <div class="sub-line">Account access</div>
+                73.8%
+                <div class="bar-mini-track" style="margin-top:3px;"><div class="bar-mini-fill" style="width:100%;"></div></div>
               </td>
-              <td>Carlos Vega</td>
-              <td><span class="status-tag">Coach</span></td>
-              <td><span class="priority-tag high">High</span></td>
-              <td>Mike R.</td>
-              <td><span class="badge">Open</span></td>
-              <td>Yesterday</td>
+              <td>48.4%</td>
+              <td>Auto</td>
+              <td><span style="font-size:11px; color:#666;">View</span></td>
             </tr>
             <tr>
-              <td><span style="font-family:monospace; font-size:11px; color:#888;">#TKT-2836</span></td>
+              <td><div class="name-line">Welcome to AthletX!</div><div class="sub-line">Get started with your first subscription</div></td>
+              <td><span class="type-tag" style="background:#e4e4e4;">Onboarding</span></td>
+              <td>New signups</td>
+              <td>Jan 10, 2025</td>
+              <td>840</td>
+              <td>182</td>
               <td>
-                <div class="name-line">Unable to update billing info</div>
-                <div class="sub-line">Billing</div>
+                21.7%
+                <div class="bar-mini-track" style="margin-top:3px;"><div class="bar-mini-fill" style="width:83%;"></div></div>
               </td>
-              <td>Tyler Brooks</td>
-              <td><span class="status-tag">Player</span></td>
-              <td><span class="priority-tag">Low</span></td>
-              <td>Sarah K.</td>
-              <td><span class="status-tag">Resolved</span></td>
-              <td>Jan 22</td>
-            </tr>
-            <tr>
-              <td><span style="font-family:monospace; font-size:11px; color:#888;">#TKT-2835</span></td>
-              <td>
-                <div class="name-line">Subscriber count discrepancy</div>
-                <div class="sub-line">Coach reporting</div>
-              </td>
-              <td>Andrew Hierholze</td>
-              <td><span class="status-tag">Coach</span></td>
-              <td><span class="priority-tag">Low</span></td>
-              <td>Mike R.</td>
-              <td><span class="status-tag">Resolved</span></td>
-              <td>Jan 21</td>
+              <td>11.0%</td>
+              <td>Auto</td>
+              <td><span style="font-size:11px; color:#666;">View</span></td>
             </tr>
           </tbody>
         </table>
         <div class="pagination">
-          <span>Showing 1–7 of 284 tickets this month</span>
+          <span>Showing 1–6 of 48 notifications</span>
           <div class="page-btns">
             <div class="page-btn">‹</div>
             <div class="page-btn active">1</div>
             <div class="page-btn">2</div>
             <div class="page-btn">3</div>
             <div class="page-btn">…</div>
-            <div class="page-btn">41</div>
+            <div class="page-btn">8</div>
             <div class="page-btn">›</div>
           </div>
         </div>

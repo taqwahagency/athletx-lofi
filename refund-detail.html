@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Refund Detail (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .reason-box {
+      background: #f0f0f0; border: 1px solid #d0d0d0; border-radius: 2px;
+      padding: 12px 14px; font-size: 12px; color: #444; line-height: 1.6;
+    }
+    .timeline-item { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid #ececec; font-size: 12px; }
+    .timeline-item:last-child { border-bottom: none; }
+    .tl-dot { width: 8px; height: 8px; background: #bbb; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+    .evidence-thumb { width: 72px; height: 56px; background: #d8d8d8; border-radius: 2px; border: 1px solid #c8c8c8; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; color: #aaa; margin-right: 8px; vertical-align: top; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item active" href="products.html">Products</a>
+      <a class="sb-sub" href="categories.html">Categories</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+      <a class="sb-sub" href="inventory-alerts.html">Inventory Alerts <span class="badge">4</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+      <a class="sb-sub" href="notification-history.html">Notification History</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="qr-management.html">QR Management</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Shop &rsaquo; <a href="refunds.html" style="color:#666;text-decoration:none;">Refunds</a> &rsaquo; REF-10482</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Refund Request — REF-10482</div>
+          <div class="page-date">Submitted Jan 20, 2025 &nbsp;·&nbsp; Alex Morgan</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-solid">Approve Refund</div>
+          <div class="btn-outline">Reject</div>
+          <a href="refunds.html" style="text-decoration:none;"><div class="btn-outline">← Back</div></a>
+        </div>
+      </div>
+
+      <div class="row-2col wide-left">
+        <div>
+          <!-- Reason + evidence -->
+          <div class="card" style="padding:16px 20px; margin-bottom:16px;">
+            <div class="card-head" style="margin-bottom:10px;">Customer Reason</div>
+            <div class="reason-box">
+              "The t-shirt I received is the wrong size. I ordered a Medium but received a Small. The tag clearly shows 'S'. I need either an exchange or a full refund."
+            </div>
+            <div style="margin-top:14px; font-size:11px; font-weight:700; color:#888; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Customer-Provided Evidence</div>
+            <div>
+              <div class="evidence-thumb">IMG 1</div>
+              <div class="evidence-thumb">IMG 2</div>
+            </div>
+          </div>
+
+          <!-- Order items -->
+          <div class="card" style="padding:0; margin-bottom:16px;">
+            <div class="card-head">Items in Refund Request</div>
+            <table>
+              <thead>
+                <tr>
+                  <th colspan="2">Product</th>
+                  <th>Ordered</th>
+                  <th>Received</th>
+                  <th>Price</th>
+                  <th>Refund?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width:44px; padding-right:0;"><div style="width:36px; height:36px; background:#d8d8d8; border-radius:2px;"></div></td>
+                  <td><div class="name-line">AthletX Performance Tee</div><div class="sub-line">Black · SKU: ATX-TEE-001</div></td>
+                  <td>Size M</td>
+                  <td style="color:#c00;">Size S</td>
+                  <td>$34.99</td>
+                  <td><span class="status-tag">Include</span></td>
+                </tr>
+                <tr>
+                  <td style="width:44px; padding-right:0;"><div style="width:36px; height:36px; background:#d8d8d8; border-radius:2px;"></div></td>
+                  <td><div class="name-line">AthletX Water Bottle</div><div class="sub-line">750ml · SKU: ATX-BTL-002</div></td>
+                  <td>750ml</td>
+                  <td>750ml</td>
+                  <td>$14.99</td>
+                  <td><span class="status-tag" style="background:#e8e8e8; color:#aaa;">Exclude</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Timeline -->
+          <div class="card" style="padding:16px 20px;">
+            <div class="card-head" style="margin-bottom:10px;">Activity Log</div>
+            <div class="timeline-item"><div class="tl-dot"></div><div><strong>Jan 20, 2025 · 3:24 PM</strong> — Refund request submitted by Alex Morgan</div></div>
+            <div class="timeline-item"><div class="tl-dot"></div><div><strong>Jan 21, 2025 · 9:05 AM</strong> — Auto-assigned to Imran A. for review</div></div>
+            <div class="timeline-item"><div class="tl-dot"></div><div><strong>Jan 22, 2025 · 10:14 AM</strong> — Reviewed by Imran A. — awaiting decision</div></div>
+          </div>
+        </div>
+
+        <!-- Right sidebar -->
+        <div>
+          <div class="card" style="padding:16px 20px; margin-bottom:16px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:#888; margin-bottom:12px;">Refund Summary</div>
+            <div class="detail-row"><span>Refund ID</span><span style="font-family:monospace; font-size:10px;">REF-10482</span></div>
+            <div class="detail-row"><span>Original Order</span><span><a href="order-detail.html" style="color:#555;">#ORD-10482</a></span></div>
+            <div class="detail-row"><span>Request Date</span><span>Jan 20, 2025</span></div>
+            <div class="detail-row"><span>Type</span><span>Wrong item received</span></div>
+            <div class="detail-row"><span>Status</span><span><span class="status-tag" style="background:#e8e8e8; color:#888;">Pending Review</span></span></div>
+            <div style="margin-top:14px; border-top:1px solid #ececec; padding-top:12px;">
+              <div class="detail-row"><span>Original Amount</span><span>$49.98</span></div>
+              <div class="detail-row"><span>Items Excluded</span><span>− $14.99</span></div>
+              <div class="detail-row" style="font-weight:700;"><span>Refund Amount</span><span>$34.99</span></div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:16px 20px; margin-bottom:16px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:#888; margin-bottom:12px;">Customer</div>
+            <div class="detail-row"><span>Name</span><span>Alex Morgan</span></div>
+            <div class="detail-row"><span>Player ID</span><span>PLR-00112</span></div>
+            <div class="detail-row"><span>Email</span><span style="font-size:10px; color:#666;">alex.morgan@email.com</span></div>
+            <div class="detail-row"><span>Past Refunds</span><span>1</span></div>
+            <div class="detail-row"><span>Total Orders</span><span>8</span></div>
+          </div>
+
+          <div class="card" style="padding:16px 20px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:#888; margin-bottom:12px;">Admin Notes</div>
+            <div style="width:100%; height:80px; background:#f0f0f0; border:1px solid #c8c8c8; border-radius:2px; padding:8px 10px; font-size:11px; color:#aaa;">Add internal note...</div>
+            <div style="margin-top:8px; display:flex; gap:8px;">
+              <div class="btn-solid" style="font-size:11px; padding:6px 12px;">Approve $34.99</div>
+              <div class="btn-outline" style="font-size:11px; padding:6px 12px; color:#c00; border-color:#c00;">Reject</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

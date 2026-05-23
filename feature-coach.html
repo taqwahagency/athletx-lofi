@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Feature a Coach (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .featured-slot {
+      background: #f0f0f0; border: 1px solid #c8c8c8; border-radius: 2px;
+      padding: 14px 16px; display: flex; align-items: center; gap: 12px;
+      margin-bottom: 10px;
+    }
+    .slot-num {
+      width: 24px; height: 24px; background: #c8c8c8; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; color: #555; flex-shrink: 0;
+    }
+    .featured-av { width: 40px; height: 40px; background: #c8c8c8; border-radius: 50%; flex-shrink: 0; }
+    .featured-av.empty { background: #e0e0e0; border: 1px dashed #ccc; }
+    .slot-sport { font-size: 10px; font-weight: 700; padding: 2px 6px; background: #ddd; color: #555; border-radius: 2px; }
+    .placement-tag { font-size: 10px; font-weight: 700; padding: 2px 7px; background: #e0e0e0; color: #555; border-radius: 2px; }
+    .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .toolbar-search { flex: 0 0 240px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn { width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #555; }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item active" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="categories.html">Categories</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+      <a class="sb-sub" href="inventory-alerts.html">Inventory Alerts <span class="badge">4</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+      <a class="sb-sub" href="notification-history.html">Notification History</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="qr-management.html">QR Management</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Coach Management &rsaquo; <a href="coach-list.html" style="color:#666;text-decoration:none;">Coach List</a> &rsaquo; Feature a Coach</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Feature a Coach</div>
+          <div class="page-date">Control featured coach slots on the home screen and discovery</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-solid">Save Changes</div>
+          <a href="coach-list.html" style="text-decoration:none;"><div class="btn-outline">← Back</div></a>
+        </div>
+      </div>
+
+      <div class="row-2col wide-left" style="margin-bottom:20px;">
+        <div>
+          <!-- Current Featured Slots -->
+          <div class="card" style="padding:0; margin-bottom:20px;">
+            <div class="card-head">Featured Slots — Home Screen <span style="font-size:11px; color:#aaa; font-weight:400; margin-left:8px;">3 of 4 filled</span></div>
+            <div style="padding:12px 16px;">
+
+              <div class="featured-slot">
+                <div class="slot-num">1</div>
+                <div class="featured-av"></div>
+                <div style="flex:1;">
+                  <div style="font-weight:700; font-size:12px;">Jerome Parker</div>
+                  <div style="font-size:11px; color:#888;">Football · Tier 1 · 12,540 subscribers</div>
+                </div>
+                <span class="placement-tag">Home · Slot 1</span>
+                <div style="display:flex; gap:6px; align-items:center; margin-left:8px;">
+                  <span style="font-size:11px; color:#666; cursor:default;">↑ ↓</span>
+                  <span style="font-size:11px; color:#c00; cursor:default;">Remove</span>
+                </div>
+              </div>
+
+              <div class="featured-slot">
+                <div class="slot-num">2</div>
+                <div class="featured-av"></div>
+                <div style="flex:1;">
+                  <div style="font-weight:700; font-size:12px;">Sarah Chen</div>
+                  <div style="font-size:11px; color:#888;">Yoga · Tier 2 · 5,100 subscribers</div>
+                </div>
+                <span class="placement-tag">Home · Slot 2</span>
+                <div style="display:flex; gap:6px; align-items:center; margin-left:8px;">
+                  <span style="font-size:11px; color:#666; cursor:default;">↑ ↓</span>
+                  <span style="font-size:11px; color:#c00; cursor:default;">Remove</span>
+                </div>
+              </div>
+
+              <div class="featured-slot">
+                <div class="slot-num">3</div>
+                <div class="featured-av"></div>
+                <div style="flex:1;">
+                  <div style="font-weight:700; font-size:12px;">Marcus Johnson</div>
+                  <div style="font-size:11px; color:#888;">Basketball · Tier 2 · 7,200 subscribers</div>
+                </div>
+                <span class="placement-tag">Home · Slot 3</span>
+                <div style="display:flex; gap:6px; align-items:center; margin-left:8px;">
+                  <span style="font-size:11px; color:#666; cursor:default;">↑ ↓</span>
+                  <span style="font-size:11px; color:#c00; cursor:default;">Remove</span>
+                </div>
+              </div>
+
+              <div class="featured-slot" style="border:1px dashed #ccc; background:#f8f8f8;">
+                <div class="slot-num" style="background:#e8e8e8; color:#aaa;">4</div>
+                <div class="featured-av empty"></div>
+                <div style="flex:1; color:#aaa; font-size:12px;">Empty slot — add a coach below</div>
+                <span class="placement-tag" style="color:#bbb;">Home · Slot 4</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Discovery Banner -->
+          <div class="card" style="padding:0;">
+            <div class="card-head">Discovery Banner <span style="font-size:11px; color:#aaa; font-weight:400; margin-left:8px;">1 of 1 filled</span></div>
+            <div style="padding:12px 16px;">
+              <div class="featured-slot">
+                <div class="slot-num">1</div>
+                <div class="featured-av"></div>
+                <div style="flex:1;">
+                  <div style="font-weight:700; font-size:12px;">Andrew Hierholze</div>
+                  <div style="font-size:11px; color:#888;">Football · Tier 1 · 8,200 subscribers</div>
+                </div>
+                <span class="placement-tag">Discovery Banner</span>
+                <span style="font-size:11px; color:#c00; cursor:default; margin-left:8px;">Remove</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:16px 20px;">
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:#888; letter-spacing:0.5px; margin-bottom:12px;">Feature Rules</div>
+          <div class="detail-row"><span>Max Home Slots</span><span>4</span></div>
+          <div class="detail-row"><span>Max Discovery</span><span>1</span></div>
+          <div class="detail-row"><span>Auto-Rotate</span><span>Off</span></div>
+          <div class="detail-row"><span>Eligibility</span><span>Tier 1 &amp; 2 only</span></div>
+          <div class="detail-row"><span>Duration</span><span>Manual / no expiry</span></div>
+          <div style="margin-top:16px; font-size:11px; color:#888; line-height:1.6;">
+            Featured coaches appear at the top of the home screen and in the Discover section. Only Tier 1 and Tier 2 coaches are eligible.
+          </div>
+        </div>
+      </div>
+
+      <!-- All eligible coaches -->
+      <div class="card">
+        <div class="card-head">Eligible Coaches — Add to Feature Slot</div>
+        <div style="padding:0 16px 12px; border-bottom:1px solid #ececec;">
+          <div class="toolbar" style="margin-bottom:0;">
+            <div class="toolbar-search"></div>
+            <div class="toolbar-select"></div>
+            <div class="toolbar-spacer"></div>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Coach</th>
+              <th>Sport</th>
+              <th>Tier</th>
+              <th>Subscribers</th>
+              <th>Monthly Revenue</th>
+              <th>Currently Featured</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="name-line">Jerome Parker</div><div class="sub-line">COA-00124</div></td>
+              <td>Football</td>
+              <td><span class="tier-tag">Tier 1</span></td>
+              <td>12,540</td>
+              <td>$8,200</td>
+              <td><span class="status-tag">Yes — Slot 1</span></td>
+              <td><span style="font-size:11px; color:#aaa;">Featured</span></td>
+            </tr>
+            <tr>
+              <td><div class="name-line">Andrew Hierholze</div><div class="sub-line">COA-00089</div></td>
+              <td>Football</td>
+              <td><span class="tier-tag">Tier 1</span></td>
+              <td>8,200</td>
+              <td>$6,540</td>
+              <td><span class="status-tag">Yes — Banner</span></td>
+              <td><span style="font-size:11px; color:#aaa;">Featured</span></td>
+            </tr>
+            <tr>
+              <td><div class="name-line">Lisa Park</div><div class="sub-line">COA-00205</div></td>
+              <td>Tennis</td>
+              <td><span class="tier-tag">Tier 1</span></td>
+              <td>10,840</td>
+              <td>$7,180</td>
+              <td><span style="font-size:11px; color:#aaa;">No</span></td>
+              <td><span style="font-size:11px; color:#333; font-weight:600; cursor:default;">+ Add to Slot</span></td>
+            </tr>
+            <tr>
+              <td><div class="name-line">Kevin Wright</div><div class="sub-line">COA-00318</div></td>
+              <td>Basketball</td>
+              <td><span class="tier-tag" style="background:#e0e0e0; color:#666;">Tier 2</span></td>
+              <td>6,820</td>
+              <td>$5,020</td>
+              <td><span style="font-size:11px; color:#aaa;">No</span></td>
+              <td><span style="font-size:11px; color:#333; font-weight:600; cursor:default;">+ Add to Slot</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>Showing 1–4 of 28 eligible coaches</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

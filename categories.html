@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Shop Categories (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .cat-icon { width: 40px; height: 40px; background: #d8d8d8; border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #aaa; }
+    .bar-mini-track { width: 80px; height: 5px; background: #e8e8e8; border-radius: 3px; overflow: hidden; display: inline-block; vertical-align: middle; }
+    .bar-mini-fill { height: 100%; background: #bbb; border-radius: 3px; }
+    .cat-row { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid #ececec; }
+    .cat-row:last-child { border-bottom: none; }
+    .cat-children { padding: 6px 16px 6px 70px; background: #f8f8f8; border-bottom: 1px solid #ececec; }
+    .cat-child-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; font-size: 11px; color: #666; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub active" href="categories.html">Categories</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+      <a class="sb-sub" href="inventory-alerts.html">Inventory Alerts <span class="badge">4</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+      <a class="sb-sub" href="notification-history.html">Notification History</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="qr-management.html">QR Management</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Shop &rsaquo; Categories</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Shop Categories</div>
+          <div class="page-date">Organise products into browseable categories</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-solid">+ Add Category</div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Categories</div>
+          <div class="kpi-value">8</div>
+          <div class="kpi-trend">4 top-level · 12 sub</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Products Listed</div>
+          <div class="kpi-value">284</div>
+          <div class="kpi-trend">Across all categories</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Uncategorised</div>
+          <div class="kpi-value">3</div>
+          <div class="kpi-trend">Needs assignment</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Best-Selling Category</div>
+          <div class="kpi-value">Apparel</div>
+          <div class="kpi-trend">42% of all orders</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:0;">
+        <!-- Header row -->
+        <div style="display:flex; align-items:center; gap:14px; padding:10px 16px; border-bottom:1px solid #e0e0e0; background:#f4f4f4;">
+          <div style="width:40px; flex-shrink:0;"></div>
+          <div style="flex:1; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#aaa;">Category</div>
+          <div style="width:80px; font-size:10px; font-weight:700; text-transform:uppercase; color:#aaa; text-align:center;">Products</div>
+          <div style="width:100px; font-size:10px; font-weight:700; text-transform:uppercase; color:#aaa; text-align:center;">Revenue (30D)</div>
+          <div style="width:80px; font-size:10px; font-weight:700; text-transform:uppercase; color:#aaa; text-align:center;">Status</div>
+          <div style="width:100px;"></div>
+        </div>
+
+        <!-- Apparel -->
+        <div class="cat-row">
+          <div class="cat-icon">👕</div>
+          <div style="flex:1;">
+            <div class="name-line">Apparel</div>
+            <div class="sub-line">T-Shirts, Hoodies, Shorts, Socks</div>
+          </div>
+          <div style="width:80px; text-align:center; font-weight:600;">120</div>
+          <div style="width:100px; text-align:center; font-size:12px;">$24,800 <div class="bar-mini-track" style="margin-top:3px;"><div class="bar-mini-fill" style="width:100%;"></div></div></div>
+          <div style="width:80px; text-align:center;"><span class="status-tag">Active</span></div>
+          <div style="width:100px; font-size:11px; color:#666; text-align:right;">Edit · Hide · Delete</div>
+        </div>
+        <div class="cat-children">
+          <div class="cat-child-row">— T-Shirts <span style="margin-left:auto; color:#888;">48 products</span></div>
+          <div class="cat-child-row">— Hoodies <span style="margin-left:auto; color:#888;">24 products</span></div>
+          <div class="cat-child-row">— Shorts <span style="margin-left:auto; color:#888;">32 products</span></div>
+          <div class="cat-child-row">— Socks <span style="margin-left:auto; color:#888;">16 products</span></div>
+        </div>
+
+        <!-- Equipment -->
+        <div class="cat-row">
+          <div class="cat-icon">⚽</div>
+          <div style="flex:1;">
+            <div class="name-line">Equipment</div>
+            <div class="sub-line">Training gear, balls, resistance bands</div>
+          </div>
+          <div style="width:80px; text-align:center; font-weight:600;">64</div>
+          <div style="width:100px; text-align:center; font-size:12px;">$18,200 <div class="bar-mini-track" style="margin-top:3px;"><div class="bar-mini-fill" style="width:73%;"></div></div></div>
+          <div style="width:80px; text-align:center;"><span class="status-tag">Active</span></div>
+          <div style="width:100px; font-size:11px; color:#666; text-align:right;">Edit · Hide · Delete</div>
+        </div>
+        <div class="cat-children">
+          <div class="cat-child-row">— Training Aids <span style="margin-left:auto; color:#888;">22 products</span></div>
+          <div class="cat-child-row">— Resistance Bands <span style="margin-left:auto; color:#888;">18 products</span></div>
+          <div class="cat-child-row">— Balls <span style="margin-left:auto; color:#888;">24 products</span></div>
+        </div>
+
+        <!-- Nutrition -->
+        <div class="cat-row">
+          <div class="cat-icon">💊</div>
+          <div style="flex:1;">
+            <div class="name-line">Nutrition</div>
+            <div class="sub-line">Protein, vitamins, hydration</div>
+          </div>
+          <div style="width:80px; text-align:center; font-weight:600;">42</div>
+          <div style="width:100px; text-align:center; font-size:12px;">$11,400 <div class="bar-mini-track" style="margin-top:3px;"><div class="bar-mini-fill" style="width:46%;"></div></div></div>
+          <div style="width:80px; text-align:center;"><span class="status-tag">Active</span></div>
+          <div style="width:100px; font-size:11px; color:#666; text-align:right;">Edit · Hide · Delete</div>
+        </div>
+
+        <!-- Digital -->
+        <div class="cat-row">
+          <div class="cat-icon">📱</div>
+          <div style="flex:1;">
+            <div class="name-line">Digital Products</div>
+            <div class="sub-line">Training plans, playbooks, e-books</div>
+          </div>
+          <div style="width:80px; text-align:center; font-weight:600;">38</div>
+          <div style="width:100px; text-align:center; font-size:12px;">$8,600 <div class="bar-mini-track" style="margin-top:3px;"><div class="bar-mini-fill" style="width:35%;"></div></div></div>
+          <div style="width:80px; text-align:center;"><span class="status-tag">Active</span></div>
+          <div style="width:100px; font-size:11px; color:#666; text-align:right;">Edit · Hide · Delete</div>
+        </div>
+
+        <!-- Accessories -->
+        <div class="cat-row">
+          <div class="cat-icon">🎒</div>
+          <div style="flex:1;">
+            <div class="name-line">Accessories</div>
+            <div class="sub-line">Bags, water bottles, towels</div>
+          </div>
+          <div style="width:80px; text-align:center; font-weight:600;">20</div>
+          <div style="width:100px; text-align:center; font-size:12px;">$4,200 <div class="bar-mini-track" style="margin-top:3px;"><div class="bar-mini-fill" style="width:17%;"></div></div></div>
+          <div style="width:80px; text-align:center;"><span class="status-tag" style="background:#e8e8e8; color:#aaa;">Hidden</span></div>
+          <div style="width:100px; font-size:11px; color:#666; text-align:right;">Edit · Show · Delete</div>
+        </div>
+
+        <!-- Uncategorised -->
+        <div class="cat-row" style="background:#fefefe;">
+          <div class="cat-icon" style="background:#f0f0f0;">—</div>
+          <div style="flex:1;">
+            <div class="name-line" style="color:#aaa;">Uncategorised</div>
+            <div class="sub-line">Products without a category</div>
+          </div>
+          <div style="width:80px; text-align:center; font-weight:600; color:#aaa;">3</div>
+          <div style="width:100px; text-align:center; font-size:12px; color:#aaa;">—</div>
+          <div style="width:80px; text-align:center;"><span class="status-tag" style="background:#e8e8e8; color:#888;">Needs Fix</span></div>
+          <div style="width:100px; font-size:11px; color:#666; text-align:right;"><a href="products.html" style="color:#666; text-decoration:none;">View Products</a></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

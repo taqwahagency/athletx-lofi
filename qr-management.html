@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — QR Code Management (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .toolbar-search { flex: 0 0 220px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .qr-box {
+      width: 64px; height: 64px; background: #e0e0e0; border: 1px solid #ccc;
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      font-size: 10px; color: #aaa; flex-shrink: 0;
+    }
+    .type-tag { font-size: 10px; font-weight: 700; padding: 2px 7px; background: #e4e4e4; color: #555; border-radius: 2px; }
+    .bar-mini-track { width: 80px; height: 5px; background: #e8e8e8; border-radius: 3px; overflow: hidden; display: inline-block; vertical-align: middle; }
+    .bar-mini-fill { height: 100%; background: #bbb; border-radius: 3px; }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn { width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #555; }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="categories.html">Categories</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+      <a class="sb-sub" href="inventory-alerts.html">Inventory Alerts <span class="badge">4</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+      <a class="sb-sub" href="notification-history.html">Notification History</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub active" href="qr-management.html">QR Management</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Settings &rsaquo; QR Code Management</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">QR Code Management</div>
+          <div class="page-date">All generated QR codes — coach referral, promo, and event links</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-solid">+ Generate QR Code</div>
+          <div class="btn-outline">Export</div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Active Codes</div>
+          <div class="kpi-value">284</div>
+          <div class="kpi-trend">Across all types</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Total Scans (30D)</div>
+          <div class="kpi-value">18,420</div>
+          <div class="kpi-trend">↑ <span>24%</span> vs last month</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Conversions (30D)</div>
+          <div class="kpi-value">2,840</div>
+          <div class="kpi-trend">15.4% scan-to-sub rate</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Expired / Inactive</div>
+          <div class="kpi-value">41</div>
+          <div class="kpi-trend">Needs cleanup</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-search"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-spacer"></div>
+        <div style="display:flex; gap:8px;">
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px; background:#bbb; border-color:#999; font-weight:600;">All</div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Coach Referral</div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Promo</div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Event</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>QR Preview</th>
+              <th>Name / Label</th>
+              <th>Type</th>
+              <th>Linked To</th>
+              <th>Created</th>
+              <th>Scans</th>
+              <th>Conversions</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="qr-box">QR</div></td>
+              <td><div class="name-line">Jerome Parker — Referral</div><div class="sub-line">athletx.app/ref/jerome-parker</div></td>
+              <td><span class="type-tag">Coach Referral</span></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Jerome Parker</a></td>
+              <td>Jan 1, 2025</td>
+              <td>4,820 <div class="bar-mini-track" style="width:60px; margin-top:3px;"><div class="bar-mini-fill" style="width:100%;"></div></div></td>
+              <td>742 <span style="color:#aaa; font-size:10px;">(15.4%)</span></td>
+              <td><span class="status-tag">Active</span></td>
+              <td><a href="qr-performance.html" style="font-size:11px; color:#666; text-decoration:none;">Stats · Download · Deactivate</a></td>
+            </tr>
+            <tr>
+              <td><div class="qr-box">QR</div></td>
+              <td><div class="name-line">Andrew Hierholze — Referral</div><div class="sub-line">athletx.app/ref/andrew-h</div></td>
+              <td><span class="type-tag">Coach Referral</span></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Andrew Hierholze</a></td>
+              <td>Jan 3, 2025</td>
+              <td>3,210 <div class="bar-mini-track" style="width:60px; margin-top:3px;"><div class="bar-mini-fill" style="width:66%;"></div></div></td>
+              <td>488 <span style="color:#aaa; font-size:10px;">(15.2%)</span></td>
+              <td><span class="status-tag">Active</span></td>
+              <td><a href="qr-performance.html" style="font-size:11px; color:#666; text-decoration:none;">Stats · Download · Deactivate</a></td>
+            </tr>
+            <tr>
+              <td><div class="qr-box">QR</div></td>
+              <td><div class="name-line">January Promo — 20% Off</div><div class="sub-line">athletx.app/promo/jan25</div></td>
+              <td><span class="type-tag" style="background:#d8d8d8;">Promo</span></td>
+              <td><a href="promo-codes.html" style="text-decoration:none; color:#555;">JAN25 — 20% off</a></td>
+              <td>Jan 1, 2025</td>
+              <td>2,840 <div class="bar-mini-track" style="width:60px; margin-top:3px;"><div class="bar-mini-fill" style="width:58%;"></div></div></td>
+              <td>320 <span style="color:#aaa; font-size:10px;">(11.3%)</span></td>
+              <td><span class="status-tag">Active</span></td>
+              <td><a href="qr-performance.html" style="font-size:11px; color:#666; text-decoration:none;">Stats · Download · Deactivate</a></td>
+            </tr>
+            <tr>
+              <td><div class="qr-box">QR</div></td>
+              <td><div class="name-line">Sarah Chen — Referral</div><div class="sub-line">athletx.app/ref/sarah-chen</div></td>
+              <td><span class="type-tag">Coach Referral</span></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Sarah Chen</a></td>
+              <td>Dec 15, 2024</td>
+              <td>1,980 <div class="bar-mini-track" style="width:60px; margin-top:3px;"><div class="bar-mini-fill" style="width:41%;"></div></div></td>
+              <td>284 <span style="color:#aaa; font-size:10px;">(14.3%)</span></td>
+              <td><span class="status-tag">Active</span></td>
+              <td><a href="qr-performance.html" style="font-size:11px; color:#666; text-decoration:none;">Stats · Download · Deactivate</a></td>
+            </tr>
+            <tr>
+              <td><div class="qr-box" style="opacity:0.5;">QR</div></td>
+              <td><div class="name-line" style="color:#aaa;">Black Friday Promo 2024</div><div class="sub-line">athletx.app/promo/bf24</div></td>
+              <td><span class="type-tag" style="background:#d8d8d8;">Promo</span></td>
+              <td><span style="font-size:11px; color:#aaa;">BF24 — expired</span></td>
+              <td>Nov 20, 2024</td>
+              <td>8,420</td>
+              <td>1,240 <span style="color:#aaa; font-size:10px;">(14.7%)</span></td>
+              <td><span class="status-tag" style="background:#e8e8e8; color:#aaa;">Expired</span></td>
+              <td><span style="font-size:11px; color:#aaa;">Stats · Delete</span></td>
+            </tr>
+            <tr>
+              <td><div class="qr-box">QR</div></td>
+              <td><div class="name-line">Athlete Summit — Check-In</div><div class="sub-line">athletx.app/event/summit25</div></td>
+              <td><span class="type-tag" style="background:#e0e0e0;">Event</span></td>
+              <td><span style="font-size:11px; color:#555;">Summit 2025 Event</span></td>
+              <td>Jan 10, 2025</td>
+              <td>420 <div class="bar-mini-track" style="width:60px; margin-top:3px;"><div class="bar-mini-fill" style="width:9%;"></div></div></td>
+              <td>—</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><a href="qr-performance.html" style="font-size:11px; color:#666; text-decoration:none;">Stats · Download · Deactivate</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>Showing 1–6 of 284 QR codes</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <div class="page-btn">…</div>
+            <div class="page-btn">48</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

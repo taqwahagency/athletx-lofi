@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Referral Chain Detail (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .chain-card {
+      background: #f0f0f0; border: 1px solid #c8c8c8; border-radius: 2px;
+      padding: 16px 20px; margin-bottom: 20px;
+      display: flex; align-items: flex-start; gap: 0;
+    }
+    .chain-node {
+      display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1;
+    }
+    .chain-av {
+      width: 40px; height: 40px; background: #c8c8c8; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 10px; color: #888;
+    }
+    .chain-label { font-size: 10px; color: #aaa; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .chain-name { font-size: 12px; font-weight: 700; color: #222; }
+    .chain-sub { font-size: 10px; color: #888; }
+    .chain-arrow {
+      font-size: 18px; color: #bbb; align-self: center; padding: 0 8px; flex-shrink: 0;
+    }
+    .split-row {
+      display: flex; gap: 12px; margin-bottom: 20px;
+    }
+    .split-block {
+      flex: 1; background: #f0f0f0; border: 1px solid #c8c8c8; border-radius: 2px;
+      padding: 12px 16px;
+    }
+    .split-block-label { font-size: 10px; color: #aaa; font-weight: 600; text-transform: uppercase; margin-bottom: 4px; }
+    .split-block-pct { font-size: 22px; font-weight: 700; color: #333; }
+    .split-block-amount { font-size: 11px; color: #888; margin-top: 2px; }
+    .timeline-row {
+      display: flex; gap: 0; align-items: center; padding: 10px 16px;
+      border-bottom: 1px solid #ececec; font-size: 12px;
+    }
+    .timeline-row:last-child { border-bottom: none; }
+    .tl-month { width: 90px; color: #888; font-size: 11px; }
+    .tl-amount { width: 80px; font-weight: 600; color: #222; }
+    .tl-coach { width: 80px; color: #555; font-size: 11px; }
+    .tl-platform { width: 80px; color: #555; font-size: 11px; }
+    .tl-referrer { width: 80px; font-weight: 700; color: #222; font-size: 11px; }
+    .tl-status { flex: 1; }
+    .progress-bar-track {
+      width: 100%; height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; margin-top: 4px;
+    }
+    .progress-bar-fill { height: 100%; background: #aaa; border-radius: 4px; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub active" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Revenue &rsaquo; <a href="commission-tracker.html" style="color:#666;text-decoration:none;">Commission Tracker</a> &rsaquo; Referral Chain</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Referral Chain Detail</div>
+          <div class="page-date">Full commission breakdown for this referral</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export</div>
+          <a href="commission-tracker.html" style="text-decoration:none;"><div class="btn-outline">← Back</div></a>
+        </div>
+      </div>
+
+      <!-- Chain visualization -->
+      <div class="chain-card">
+        <div class="chain-node">
+          <div class="chain-label">Referrer</div>
+          <div class="chain-av"></div>
+          <div class="chain-name">Marcus Hill</div>
+          <div class="chain-sub">PLR-00320</div>
+          <div class="chain-sub" style="margin-top:4px; font-weight:700; color:#333;">Earns 5%</div>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-node">
+          <div class="chain-label">Referred Player</div>
+          <div class="chain-av"></div>
+          <div class="chain-name">Tyler Brooks</div>
+          <div class="chain-sub">PLR-00481</div>
+          <div class="chain-sub" style="margin-top:4px; color:#aaa;">Subscriber</div>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-node">
+          <div class="chain-label">Coach</div>
+          <div class="chain-av"></div>
+          <div class="chain-name">Jerome Parker</div>
+          <div class="chain-sub">COA-00124 · Football</div>
+          <div class="chain-sub" style="margin-top:4px; font-weight:700; color:#333;">Earns 70%</div>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-node">
+          <div class="chain-label">Platform</div>
+          <div class="chain-av" style="background:#d8d8d8;"></div>
+          <div class="chain-name">AthletX</div>
+          <div class="chain-sub">Platform fee</div>
+          <div class="chain-sub" style="margin-top:4px; font-weight:700; color:#333;">Earns 25%</div>
+        </div>
+      </div>
+
+      <!-- Summary row -->
+      <div class="row-2col wide-left" style="margin-bottom:20px;">
+        <div>
+          <div class="split-row">
+            <div class="split-block">
+              <div class="split-block-label">Monthly Sub Value</div>
+              <div class="split-block-pct">$10.00</div>
+              <div class="split-block-amount">Per month · active 10 months</div>
+            </div>
+            <div class="split-block">
+              <div class="split-block-label">Total Referrer Earned</div>
+              <div class="split-block-pct">$5.00</div>
+              <div class="split-block-amount">10 × $0.50</div>
+            </div>
+            <div class="split-block">
+              <div class="split-block-label">Remaining</div>
+              <div class="split-block-pct">2 mo</div>
+              <div class="split-block-amount">Expires Feb 2025</div>
+            </div>
+          </div>
+
+          <!-- Progress -->
+          <div class="card" style="padding:16px 20px;">
+            <div style="font-size:11px; color:#888; margin-bottom:8px;">Referral Window Progress — 10 of 12 months complete</div>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill" style="width:83%;"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top:6px; font-size:10px; color:#aaa;">
+              <span>Started: Feb 2024</span>
+              <span>Expires: Feb 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:16px 20px;">
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:#888; letter-spacing:0.5px; margin-bottom:12px;">Chain Info</div>
+          <div class="detail-row"><span>Chain ID</span><span>REF-20240202-481</span></div>
+          <div class="detail-row"><span>Referral Date</span><span>Feb 2, 2024</span></div>
+          <div class="detail-row"><span>Expiry Date</span><span>Feb 2, 2025</span></div>
+          <div class="detail-row"><span>Sub Plan</span><span>Monthly · $10.00</span></div>
+          <div class="detail-row"><span>Status</span><span><span class="status-tag">Active</span></span></div>
+          <div class="detail-row"><span>Referrer Payout</span><span>Monthly · next: Feb 1</span></div>
+        </div>
+      </div>
+
+      <!-- Monthly breakdown -->
+      <div class="card">
+        <div class="card-head">Monthly Commission Breakdown</div>
+        <div style="padding: 0 16px; display:flex; gap:0; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#aaa; padding-top:12px; padding-bottom:8px; border-bottom:1px solid #ececec;">
+          <div style="width:90px;">Month</div>
+          <div style="width:80px;">Sub Value</div>
+          <div style="width:80px;">Coach (70%)</div>
+          <div style="width:80px;">Platform (25%)</div>
+          <div style="width:80px;">Referrer (5%)</div>
+          <div style="flex:1;">Referrer Status</div>
+        </div>
+        <div class="timeline-row">
+          <div class="tl-month">Feb 2024</div>
+          <div class="tl-amount">$10.00</div>
+          <div class="tl-coach">$7.00</div>
+          <div class="tl-platform">$2.50</div>
+          <div class="tl-referrer">$0.50</div>
+          <div class="tl-status"><span class="status-tag">Paid</span></div>
+        </div>
+        <div class="timeline-row">
+          <div class="tl-month">Mar 2024</div>
+          <div class="tl-amount">$10.00</div>
+          <div class="tl-coach">$7.00</div>
+          <div class="tl-platform">$2.50</div>
+          <div class="tl-referrer">$0.50</div>
+          <div class="tl-status"><span class="status-tag">Paid</span></div>
+        </div>
+        <div class="timeline-row">
+          <div class="tl-month">Apr 2024</div>
+          <div class="tl-amount">$10.00</div>
+          <div class="tl-coach">$7.00</div>
+          <div class="tl-platform">$2.50</div>
+          <div class="tl-referrer">$0.50</div>
+          <div class="tl-status"><span class="status-tag">Paid</span></div>
+        </div>
+        <div class="timeline-row">
+          <div class="tl-month">May 2024</div>
+          <div class="tl-amount">$10.00</div>
+          <div class="tl-coach">$7.00</div>
+          <div class="tl-platform">$2.50</div>
+          <div class="tl-referrer">$0.50</div>
+          <div class="tl-status"><span class="status-tag">Paid</span></div>
+        </div>
+        <div class="timeline-row">
+          <div class="tl-month">Jun 2024</div>
+          <div class="tl-amount">$10.00</div>
+          <div class="tl-coach">$7.00</div>
+          <div class="tl-platform">$2.50</div>
+          <div class="tl-referrer">$0.50</div>
+          <div class="tl-status"><span class="status-tag">Paid</span></div>
+        </div>
+        <div class="timeline-row">
+          <div class="tl-month">Jul 2024</div>
+          <div class="tl-amount">$10.00</div>
+          <div class="tl-coach">$7.00</div>
+          <div class="tl-platform">$2.50</div>
+          <div class="tl-referrer">$0.50</div>
+          <div class="tl-status"><span class="status-tag">Paid</span></div>
+        </div>
+        <div class="timeline-row">
+          <div class="tl-month">Aug 2024</div>
+          <div class="tl-amount">$10.00</div>
+          <div class="tl-coach">$7.00</div>
+          <div class="tl-platform">$2.50</div>
+          <div class="tl-referrer">$0.50</div>
+          <div class="tl-status"><span class="status-tag">Paid</span></div>
+        </div>
+        <div class="timeline-row">
+          <div class="tl-month">Sep 2024</div>
+          <div class="tl-amount">$10.00</div>
+          <div class="tl-coach">$7.00</div>
+          <div class="tl-platform">$2.50</div>
+          <div class="tl-referrer">$0.50</div>
+          <div class="tl-status"><span class="status-tag">Paid</span></div>
+        </div>
+        <div class="timeline-row">
+          <div class="tl-month">Oct 2024</div>
+          <div class="tl-amount">$10.00</div>
+          <div class="tl-coach">$7.00</div>
+          <div class="tl-platform">$2.50</div>
+          <div class="tl-referrer">$0.50</div>
+          <div class="tl-status"><span class="status-tag">Paid</span></div>
+        </div>
+        <div class="timeline-row">
+          <div class="tl-month">Nov 2024</div>
+          <div class="tl-amount">$10.00</div>
+          <div class="tl-coach">$7.00</div>
+          <div class="tl-platform">$2.50</div>
+          <div class="tl-referrer">$0.50</div>
+          <div class="tl-status"><span class="status-tag">Paid</span></div>
+        </div>
+        <div class="timeline-row" style="background:#f8f8f8;">
+          <div class="tl-month">Dec 2024</div>
+          <div class="tl-amount">$10.00</div>
+          <div class="tl-coach">$7.00</div>
+          <div class="tl-platform">$2.50</div>
+          <div class="tl-referrer">$0.50</div>
+          <div class="tl-status"><span class="status-tag" style="background:#e8e8e8; color:#888;">Pending</span></div>
+        </div>
+        <div class="timeline-row" style="background:#f8f8f8; color:#bbb;">
+          <div class="tl-month" style="color:#ccc;">Jan 2025</div>
+          <div class="tl-amount" style="color:#ccc;">$10.00</div>
+          <div class="tl-coach" style="color:#ccc;">$7.00</div>
+          <div class="tl-platform" style="color:#ccc;">$2.50</div>
+          <div class="tl-referrer" style="color:#ccc;">$0.50</div>
+          <div class="tl-status"><span style="font-size:10px; color:#ccc;">Upcoming</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

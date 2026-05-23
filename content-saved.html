@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Most Saved &amp; Downloaded (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .toolbar-search { flex: 0 0 220px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 120px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .date-chips { display: flex; gap: 6px; margin-bottom: 20px; }
+    .date-chip { padding: 5px 14px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; font-size: 11px; font-weight: 600; color: #666; }
+    .date-chip.active { background: #bbb; border-color: #999; color: #111; }
+    .type-tag { font-size: 10px; font-weight: 700; padding: 2px 7px; background: #e4e4e4; color: #555; border-radius: 2px; }
+    .rank-num { font-size: 16px; font-weight: 700; color: #bbb; width: 28px; text-align: center; flex-shrink: 0; }
+    .rank-num.top { color: #888; }
+    .thumb { width: 48px; height: 36px; background: #d0d0d0; border-radius: 2px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #aaa; }
+    .bar-row { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+    .bar-mini-track { width: 80px; height: 5px; background: #e8e8e8; border-radius: 3px; overflow: hidden; }
+    .bar-mini-fill { height: 100%; background: #bbb; border-radius: 3px; }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn { width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #555; }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub active" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Analytics &rsaquo; <a href="content-performance.html" style="color:#666;text-decoration:none;">Content Performance</a> &rsaquo; Most Saved &amp; Downloaded</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Most Saved &amp; Downloaded</div>
+          <div class="page-date">Top content by player saves and offline downloads</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export</div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Saves (30D)</div>
+          <div class="kpi-value">84,200</div>
+          <div class="kpi-trend">↑ <span>22%</span> vs last month</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Total Downloads (30D)</div>
+          <div class="kpi-value">38,480</div>
+          <div class="kpi-trend">↑ <span>18%</span> vs last month</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Save Rate (avg)</div>
+          <div class="kpi-value">14.2%</div>
+          <div class="kpi-trend">Per view</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Download Rate (avg)</div>
+          <div class="kpi-value">6.5%</div>
+          <div class="kpi-trend">Per view</div>
+        </div>
+      </div>
+
+      <div class="date-chips">
+        <div class="date-chip">7D</div>
+        <div class="date-chip active">30D</div>
+        <div class="date-chip">90D</div>
+        <div class="date-chip">All Time</div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-search"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-spacer"></div>
+        <div style="display:flex; gap:8px;">
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px; background:#bbb; border-color:#999; font-weight:600;">By Saves</div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">By Downloads</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th colspan="2">Content</th>
+              <th>Coach</th>
+              <th>Type</th>
+              <th>Saves</th>
+              <th>Save Rate</th>
+              <th>Downloads</th>
+              <th>DL Rate</th>
+              <th>Views</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="rank-num top">1</span></td>
+              <td style="width:50px; padding-right:0;"><div class="thumb">▶</div></td>
+              <td><div class="name-line">Advanced Passing Drills</div><div class="sub-line">18m 42s · Premium</div></td>
+              <td>Jerome Parker</td>
+              <td><span class="type-tag">Video</span></td>
+              <td><strong>8,240</strong><div class="bar-row" style="margin-top:3px;"><div class="bar-mini-track"><div class="bar-mini-fill" style="width:100%;"></div></div></div></td>
+              <td>22.4%</td>
+              <td>3,420</td>
+              <td>9.3%</td>
+              <td>36,800</td>
+              <td><a href="post-detail.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num top">2</span></td>
+              <td style="width:50px; padding-right:0;"><div class="thumb">▶</div></td>
+              <td><div class="name-line">Basketball IQ — Reading the Court</div><div class="sub-line">32m 18s · Premium</div></td>
+              <td>Andrew Hierholze</td>
+              <td><span class="type-tag">Video</span></td>
+              <td><strong>6,820</strong><div class="bar-row" style="margin-top:3px;"><div class="bar-mini-track"><div class="bar-mini-fill" style="width:83%;"></div></div></div></td>
+              <td>19.8%</td>
+              <td>2,940</td>
+              <td>8.5%</td>
+              <td>34,440</td>
+              <td><a href="post-detail.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">3</span></td>
+              <td style="width:50px; padding-right:0;"><div class="thumb" style="font-size:12px;">IMG</div></td>
+              <td><div class="name-line">Full-Body Yoga Flow — 60 min</div><div class="sub-line">Image series · Premium</div></td>
+              <td>Sarah Chen</td>
+              <td><span class="type-tag">Image</span></td>
+              <td><strong>5,410</strong><div class="bar-row" style="margin-top:3px;"><div class="bar-mini-track"><div class="bar-mini-fill" style="width:66%;"></div></div></div></td>
+              <td>18.2%</td>
+              <td>4,820</td>
+              <td>16.2%</td>
+              <td>29,740</td>
+              <td><a href="post-detail.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">4</span></td>
+              <td style="width:50px; padding-right:0;"><div class="thumb">▶</div></td>
+              <td><div class="name-line">Pre-Season Fitness Routine</div><div class="sub-line">24m 10s · Premium</div></td>
+              <td>Jerome Parker</td>
+              <td><span class="type-tag">Video</span></td>
+              <td><strong>4,980</strong><div class="bar-row" style="margin-top:3px;"><div class="bar-mini-track"><div class="bar-mini-fill" style="width:60%;"></div></div></div></td>
+              <td>16.4%</td>
+              <td>2,100</td>
+              <td>6.9%</td>
+              <td>30,400</td>
+              <td><a href="post-detail.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">5</span></td>
+              <td style="width:50px; padding-right:0;"><div class="thumb">▶</div></td>
+              <td><div class="name-line">Soccer: Set-Piece Masterclass</div><div class="sub-line">45m 00s · Premium</div></td>
+              <td>Marcus Johnson</td>
+              <td><span class="type-tag">Video</span></td>
+              <td><strong>4,200</strong><div class="bar-row" style="margin-top:3px;"><div class="bar-mini-track"><div class="bar-mini-fill" style="width:51%;"></div></div></div></td>
+              <td>15.8%</td>
+              <td>1,840</td>
+              <td>6.9%</td>
+              <td>26,600</td>
+              <td><a href="post-detail.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">6</span></td>
+              <td style="width:50px; padding-right:0;"><div class="thumb">▶</div></td>
+              <td><div class="name-line">Tennis Serve Mechanics</div><div class="sub-line">28m 30s · Premium</div></td>
+              <td>Lisa Park</td>
+              <td><span class="type-tag">Video</span></td>
+              <td><strong>3,840</strong><div class="bar-row" style="margin-top:3px;"><div class="bar-mini-track"><div class="bar-mini-fill" style="width:47%;"></div></div></div></td>
+              <td>14.9%</td>
+              <td>1,620</td>
+              <td>6.3%</td>
+              <td>25,800</td>
+              <td><a href="post-detail.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>Showing 1–6 of 1,284 content pieces</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <div class="page-btn">…</div>
+            <div class="page-btn">214</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

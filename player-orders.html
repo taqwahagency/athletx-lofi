@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Player Order History (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .date-chips { display: flex; gap: 6px; margin-bottom: 20px; }
+    .date-chip {
+      padding: 5px 14px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px;
+      font-size: 11px; font-weight: 600; color: #666;
+    }
+    .date-chip.active { background: #bbb; border-color: #999; color: #111; }
+    .player-banner {
+      background: #f0f0f0; border: 1px solid #c8c8c8; border-radius: 2px;
+      padding: 14px 20px; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .player-av { width: 44px; height: 44px; background: #c8c8c8; border-radius: 50%; flex-shrink: 0; }
+    .refund-tag {
+      font-size: 10px; font-weight: 700; padding: 2px 7px;
+      background: #e4e4e4; color: #888; border-radius: 2px;
+    }
+    .refund-tag.pending { background: #d8d8d8; color: #555; }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn {
+      width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc;
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #555;
+    }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+    .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item active" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Players &rsaquo; <a href="player-list.html" style="color:#666;text-decoration:none;">Player List</a> &rsaquo; <a href="player-profile.html" style="color:#666;text-decoration:none;">Alex Morgan</a> &rsaquo; Order History</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Player Order History</div>
+          <div class="page-date">Alex Morgan &nbsp;·&nbsp; All shop purchases</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export CSV</div>
+        </div>
+      </div>
+
+      <!-- Player banner -->
+      <div class="player-banner">
+        <div class="player-av"></div>
+        <div style="flex:1;">
+          <div style="font-weight:700; font-size:13px;">Alex Morgan</div>
+          <div style="font-size:11px; color:#888;">PLY-00482 &nbsp;·&nbsp; Football &nbsp;·&nbsp; Active</div>
+        </div>
+        <div style="display:flex; gap:24px; font-size:12px; text-align:right;">
+          <div><div style="font-size:10px; color:#aaa; margin-bottom:2px;">Total Orders</div><div style="font-weight:700;">7</div></div>
+          <div><div style="font-size:10px; color:#aaa; margin-bottom:2px;">Total Spent</div><div style="font-weight:700;">$482.93</div></div>
+          <div><div style="font-size:10px; color:#aaa; margin-bottom:2px;">Refunds</div><div style="font-weight:700;">1</div></div>
+        </div>
+        <a href="player-profile.html" style="font-size:11px; color:#555; text-decoration:none; margin-left:16px;">← Back to Profile</a>
+      </div>
+
+      <div class="date-chips">
+        <div class="date-chip">7D</div>
+        <div class="date-chip">30D</div>
+        <div class="date-chip active">All Time</div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-select"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-spacer"></div>
+        <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Filter</div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Payment</th>
+              <th>Order Date</th>
+              <th>Delivery</th>
+              <th>Refund</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-00481</span></td>
+              <td><div class="name-line">Premium Football Playbook</div><div class="sub-line">Digital · PDF + Video</div></td>
+              <td>Digital</td>
+              <td><strong>$34.99</strong></td>
+              <td>Stripe</td>
+              <td>Jan 22, 2025</td>
+              <td><span class="status-tag">Delivered</span></td>
+              <td><span style="font-size:11px; color:#aaa;">None</span></td>
+              <td><a href="order-detail.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-00464</span></td>
+              <td><div class="name-line">AthletX Training Tee</div><div class="sub-line">Size: L · Black</div></td>
+              <td>Apparel</td>
+              <td><strong>$49.98</strong></td>
+              <td>Stripe</td>
+              <td>Jan 15, 2025</td>
+              <td><span class="status-tag">Delivered</span></td>
+              <td><span style="font-size:11px; color:#aaa;">None</span></td>
+              <td><a href="order-detail.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-00441</span></td>
+              <td><div class="name-line">Pro Football Cleats</div><div class="sub-line">Size: 10 · White</div></td>
+              <td>Footwear</td>
+              <td><strong>$129.99</strong></td>
+              <td>Apple Pay</td>
+              <td>Dec 28, 2024</td>
+              <td><span class="status-tag">Delivered</span></td>
+              <td><span class="refund-tag pending">Requested</span></td>
+              <td><a href="order-detail.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-00418</span></td>
+              <td><div class="name-line">Training Resistance Bands</div><div class="sub-line">Set of 5</div></td>
+              <td>Equipment</td>
+              <td><strong>$24.99</strong></td>
+              <td>Stripe</td>
+              <td>Dec 10, 2024</td>
+              <td><span class="status-tag">Delivered</span></td>
+              <td><span style="font-size:11px; color:#aaa;">None</span></td>
+              <td><a href="order-detail.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-00392</span></td>
+              <td><div class="name-line">AthletX Track Jacket</div><div class="sub-line">Size: M · Navy</div></td>
+              <td>Apparel</td>
+              <td><strong>$74.99</strong></td>
+              <td>Google Pay</td>
+              <td>Nov 22, 2024</td>
+              <td><span class="status-tag">Delivered</span></td>
+              <td><span style="font-size:11px; color:#aaa;">None</span></td>
+              <td><a href="order-detail.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-00371</span></td>
+              <td><div class="name-line">Nutrition Strategy Guide</div><div class="sub-line">Digital · PDF</div></td>
+              <td>Digital</td>
+              <td><strong>$19.99</strong></td>
+              <td>Stripe</td>
+              <td>Nov 5, 2024</td>
+              <td><span class="status-tag">Delivered</span></td>
+              <td><span style="font-size:11px; color:#aaa;">None</span></td>
+              <td><a href="order-detail.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+            <tr>
+              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-00344</span></td>
+              <td><div class="name-line">Football Jersey — Home</div><div class="sub-line">Size: L · Red/White</div></td>
+              <td>Apparel</td>
+              <td><strong>$89.99</strong></td>
+              <td>Stripe</td>
+              <td>Oct 18, 2024</td>
+              <td><span class="status-tag">Delivered</span></td>
+              <td><span style="font-size:11px; color:#aaa;">None</span></td>
+              <td><a href="order-detail.html" style="font-size:11px; color:#666; text-decoration:none;">View</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>Showing 1–7 of 7 orders</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Coach Comparison (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .compare-table th { padding: 12px 16px; background: #e4e4e4; border-bottom: 1px solid #c8c8c8; text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #777; }
+    .compare-table td { padding: 11px 16px; border-bottom: 1px solid #e8e8e8; color: #333; }
+    .compare-table .metric-col { background: #f0f0f0; font-weight: 600; color: #555; font-size: 11px; width: 200px; }
+    .compare-table .coach-col { text-align: center; }
+    .compare-table .section-row td { background: #e8e8e8; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #888; padding: 8px 16px; }
+    .coach-header { text-align: center; padding: 16px 12px; }
+    .coach-header-av { width: 48px; height: 48px; background: #c8c8c8; border-radius: 50%; margin: 0 auto 8px; }
+    .coach-header-name { font-size: 13px; font-weight: 700; color: #111; }
+    .coach-header-sub { font-size: 11px; color: #888; margin-top: 2px; }
+    .best { font-weight: 700; color: #222; background: #e8e8e8; }
+    .bar-mini { height: 6px; background: #bbb; border-radius: 3px; margin-top: 4px; }
+    .add-coach-col { background: #f8f8f8; text-align: center; vertical-align: middle; color: #bbb; font-size: 11px; border: 1px dashed #ccc; }
+    .date-chips { display: flex; gap: 6px; margin-bottom: 20px; }
+    .date-chip { padding: 5px 14px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; font-size: 11px; font-weight: 600; color: #666; }
+    .date-chip.active { background: #bbb; border-color: #999; color: #111; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item active" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Analytics &rsaquo; <a href="coach-performance.html" style="color:#666;text-decoration:none;">Coach Performance</a> &rsaquo; Compare Coaches</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Coach Comparison</div>
+          <div class="page-date">Side-by-side performance metrics</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export Comparison</div>
+          <a href="coach-performance.html" style="text-decoration:none;"><div class="btn-outline">← Back</div></a>
+        </div>
+      </div>
+
+      <div class="date-chips">
+        <div class="date-chip">7D</div>
+        <div class="date-chip active">30D</div>
+        <div class="date-chip">90D</div>
+        <div class="date-chip">6M</div>
+        <div class="date-chip">1Y</div>
+      </div>
+
+      <div class="card">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th style="width:200px;">Metric</th>
+              <th class="coach-col">Jerome Parker</th>
+              <th class="coach-col">Andrew Hierholze</th>
+              <th class="coach-col">Sarah Chen</th>
+              <th style="width:120px; background:#f8f8f8; border-bottom:1px solid #e8e8e8; text-align:center; color:#bbb;">+ Add Coach</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Coach header row -->
+            <tr>
+              <td class="metric-col" style="font-size:10px; color:#aaa;">Overview</td>
+              <td class="coach-col">
+                <div class="coach-header">
+                  <div class="coach-header-av"></div>
+                  <div class="coach-header-name">Jerome Parker</div>
+                  <div class="coach-header-sub">Football · Tier 1</div>
+                  <span class="tier-tag" style="margin-top:4px; display:inline-block;">Tier 1</span>
+                </div>
+              </td>
+              <td class="coach-col">
+                <div class="coach-header">
+                  <div class="coach-header-av"></div>
+                  <div class="coach-header-name">Andrew Hierholze</div>
+                  <div class="coach-header-sub">Football · Tier 1</div>
+                  <span class="tier-tag" style="margin-top:4px; display:inline-block;">Tier 1</span>
+                </div>
+              </td>
+              <td class="coach-col">
+                <div class="coach-header">
+                  <div class="coach-header-av"></div>
+                  <div class="coach-header-name">Sarah Chen</div>
+                  <div class="coach-header-sub">Yoga · Tier 2</div>
+                  <span class="tier-tag" style="margin-top:4px; display:inline-block;">Tier 2</span>
+                </div>
+              </td>
+              <td class="add-coach-col">
+                <div style="font-size:22px; color:#ccc;">+</div>
+                <div style="font-size:11px; color:#bbb; margin-top:4px;">Add Coach</div>
+              </td>
+            </tr>
+
+            <!-- Revenue section -->
+            <tr class="section-row"><td colspan="5">Revenue</td></tr>
+            <tr>
+              <td class="metric-col">Total Revenue (30D)</td>
+              <td class="coach-col best">$8,200</td>
+              <td class="coach-col">$6,540</td>
+              <td class="coach-col">$4,100</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="metric-col">Monthly Growth</td>
+              <td class="coach-col best">↑ 12.4%</td>
+              <td class="coach-col">↑ 8.2%</td>
+              <td class="coach-col">↑ 14.1%</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="metric-col">Avg Subscription Price</td>
+              <td class="coach-col">$10.00</td>
+              <td class="coach-col best">$19.99</td>
+              <td class="coach-col">$9.00</td>
+              <td></td>
+            </tr>
+
+            <!-- Subscribers section -->
+            <tr class="section-row"><td colspan="5">Subscribers</td></tr>
+            <tr>
+              <td class="metric-col">Active Subscribers</td>
+              <td class="coach-col best">12,540</td>
+              <td class="coach-col">8,200</td>
+              <td class="coach-col">5,100</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="metric-col">New This Month</td>
+              <td class="coach-col best">+842</td>
+              <td class="coach-col">+540</td>
+              <td class="coach-col">+720</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="metric-col">Churn Rate</td>
+              <td class="coach-col best">1.8%</td>
+              <td class="coach-col">2.4%</td>
+              <td class="coach-col">2.1%</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="metric-col">Retention Rate</td>
+              <td class="coach-col best">72%</td>
+              <td class="coach-col">68%</td>
+              <td class="coach-col">70%</td>
+              <td></td>
+            </tr>
+
+            <!-- Content section -->
+            <tr class="section-row"><td colspan="5">Content Performance</td></tr>
+            <tr>
+              <td class="metric-col">Total Posts</td>
+              <td class="coach-col best">48</td>
+              <td class="coach-col">36</td>
+              <td class="coach-col">42</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="metric-col">Avg Views / Post</td>
+              <td class="coach-col best">14,200</td>
+              <td class="coach-col">11,800</td>
+              <td class="coach-col">8,400</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="metric-col">Avg Watch Time</td>
+              <td class="coach-col best">6m 20s</td>
+              <td class="coach-col">5m 45s</td>
+              <td class="coach-col">4m 10s</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="metric-col">Avg Completion Rate</td>
+              <td class="coach-col best">78%</td>
+              <td class="coach-col">71%</td>
+              <td class="coach-col">68%</td>
+              <td></td>
+            </tr>
+
+            <!-- Conversion section -->
+            <tr class="section-row"><td colspan="5">Conversion</td></tr>
+            <tr>
+              <td class="metric-col">Conversion Rate</td>
+              <td class="coach-col best">18.5%</td>
+              <td class="coach-col">15.2%</td>
+              <td class="coach-col">11.8%</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="metric-col">Profile Visits → Subs</td>
+              <td class="coach-col best">22.4%</td>
+              <td class="coach-col">18.0%</td>
+              <td class="coach-col">14.2%</td>
+              <td></td>
+            </tr>
+
+            <!-- Actions row -->
+            <tr>
+              <td class="metric-col" style="color:#aaa; font-size:10px;">Quick Links</td>
+              <td class="coach-col" style="font-size:11px;"><a href="coach-profile.html" style="color:#555; text-decoration:none;">Profile</a> &nbsp;·&nbsp; <a href="coach-analytics.html" style="color:#555; text-decoration:none;">Analytics</a></td>
+              <td class="coach-col" style="font-size:11px;"><a href="coach-profile.html" style="color:#555; text-decoration:none;">Profile</a> &nbsp;·&nbsp; <a href="coach-analytics.html" style="color:#555; text-decoration:none;">Analytics</a></td>
+              <td class="coach-col" style="font-size:11px;"><a href="coach-profile.html" style="color:#555; text-decoration:none;">Profile</a> &nbsp;·&nbsp; <a href="coach-analytics.html" style="color:#555; text-decoration:none;">Analytics</a></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

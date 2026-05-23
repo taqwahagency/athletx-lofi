@@ -3,13 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AthletX — Refunds (Lo-Fi)</title>
+  <title>AthletX — Price Change Requests (Lo-Fi)</title>
   <link rel="stylesheet" href="lofi.css">
   <style>
     .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
-    .toolbar-search { flex: 0 0 200px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
     .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
     .toolbar-spacer { flex: 1; }
+    .arrow-tag {
+      font-size: 11px; font-weight: 700; color: #888;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .price-old { color: #aaa; text-decoration: line-through; }
+    .price-new { color: #222; font-weight: 700; }
+    .diff-tag {
+      font-size: 10px; font-weight: 700; padding: 2px 6px;
+      background: #ddd; color: #555; border-radius: 2px;
+    }
     .pagination {
       display: flex; align-items: center; justify-content: space-between;
       padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
@@ -39,7 +48,7 @@
       <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
       <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
       <a class="sb-sub" href="payout-management.html">Payout Management</a>
-      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+      <a class="sb-sub active" href="price-changes.html">Price Changes <span class="badge">3</span></a>
     </div>
     <div class="sb-section">
       <div class="sb-label">Analytics</div>
@@ -69,11 +78,11 @@
       <div class="sb-label">Shop</div>
       <a class="sb-item" href="products.html">Products</a>
       <a class="sb-sub" href="orders.html">Orders</a>
-      <a class="sb-sub active" href="refunds.html">Refunds <span class="badge">6</span></a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
     </div>
     <div class="sb-section">
       <div class="sb-label">Support</div>
-      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge" style="opacity:0.4;">5</span></a>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
       <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
     </div>
     <div class="sb-section">
@@ -88,7 +97,7 @@
 
   <div class="main">
     <div class="topbar">
-      <div class="topbar-breadcrumb">Shop &rsaquo; Refunds</div>
+      <div class="topbar-breadcrumb">Coach Management &rsaquo; Price Change Requests</div>
       <div class="topbar-search"></div>
       <div class="topbar-avatar"></div>
     </div>
@@ -96,8 +105,8 @@
 
       <div class="page-hdr">
         <div>
-          <div class="page-title">Refunds</div>
-          <div class="page-date">6 pending refund requests</div>
+          <div class="page-title">Price Change Requests</div>
+          <div class="page-date">Subscription pricing updates requested by coaches</div>
         </div>
         <div class="hdr-actions">
           <div class="btn-outline">Export</div>
@@ -106,128 +115,153 @@
 
       <div class="kpi-row" style="margin-bottom:20px;">
         <div class="kpi-card">
-          <div class="kpi-label">Pending</div>
-          <div class="kpi-value">6</div>
+          <div class="kpi-label">Pending Review</div>
+          <div class="kpi-value">3</div>
           <div class="kpi-trend">Awaiting approval</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Refunded (Jan)</div>
-          <div class="kpi-value">43</div>
-          <div class="kpi-trend">$1,248 total</div>
+          <div class="kpi-label">Approved (30D)</div>
+          <div class="kpi-value">18</div>
+          <div class="kpi-trend">Avg change: +$4.20</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Refund Rate</div>
-          <div class="kpi-value">5.1%</div>
-          <div class="kpi-trend">↓ <span>0.4%</span> vs last month</div>
+          <div class="kpi-label">Rejected (30D)</div>
+          <div class="kpi-value">5</div>
+          <div class="kpi-trend">Most common: too large</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Avg Refund</div>
-          <div class="kpi-value">$29.02</div>
-          <div class="kpi-trend">Mostly subscriptions</div>
+          <div class="kpi-label">Avg Processing Time</div>
+          <div class="kpi-value">1.4d</div>
+          <div class="kpi-trend">Last 30 days</div>
         </div>
       </div>
 
       <div class="toolbar">
-        <div class="toolbar-search"></div>
         <div class="toolbar-select"></div>
         <div class="toolbar-spacer"></div>
         <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Filter</div>
       </div>
 
-      <div class="card">
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-head">Pending Requests <span class="badge">3</span></div>
         <table>
           <thead>
             <tr>
-              <th>Order ID</th>
-              <th>Player</th>
-              <th>Product</th>
-              <th>Amount</th>
-              <th>Reason</th>
-              <th>Requested</th>
-              <th>Status</th>
+              <th>Coach</th>
+              <th>Sport / Tier</th>
+              <th>Current Price</th>
+              <th>Requested Price</th>
+              <th>Change</th>
+              <th>Subscribers Affected</th>
+              <th>Submitted</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-08835</span></td>
-              <td><div class="name-line">Aisha Williams</div></td>
-              <td>Elite Playbook Bundle</td>
-              <td>$49.00</td>
-              <td>Not as described</td>
-              <td>Jan 22</td>
-              <td><span class="badge">Pending</span></td>
+              <td><a href="coach-profile.html" style="text-decoration:none;"><div class="name-line">Jerome Parker</div><div class="sub-line">COA-00124</div></a></td>
+              <td><div style="font-size:11px;">Football</div><div class="sub-line">Tier 1</div></td>
+              <td><span class="price-old">$10.00</span></td>
+              <td><span class="price-new">$15.00</span></td>
+              <td><span class="diff-tag">+$5.00 (+50%)</span></td>
+              <td>12,540</td>
+              <td>Jan 20, 2025</td>
               <td>
-                <div style="display:flex; gap:8px; font-size:11px;">
-                  <span style="color:#555;">Approve</span>
-                  <span style="color:#aaa;">Deny</span>
-                </div>
+                <span style="font-size:11px; font-weight:600; color:#333; cursor:default;">Approve</span>
+                &nbsp;·&nbsp;
+                <span style="font-size:11px; color:#888; cursor:default;">Reject</span>
               </td>
             </tr>
             <tr>
-              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-08820</span></td>
-              <td><div class="name-line">Daniel Lee</div></td>
-              <td>1-on-1 Coaching Session</td>
-              <td>$120.00</td>
-              <td>Coach cancelled</td>
-              <td>Jan 21</td>
-              <td><span class="badge">Pending</span></td>
+              <td><div class="name-line">Sarah Chen</div><div class="sub-line">COA-00218</div></td>
+              <td><div style="font-size:11px;">Yoga</div><div class="sub-line">Tier 2</div></td>
+              <td><span class="price-old">$9.00</span></td>
+              <td><span class="price-new">$12.00</span></td>
+              <td><span class="diff-tag">+$3.00 (+33%)</span></td>
+              <td>3,280</td>
+              <td>Jan 19, 2025</td>
               <td>
-                <div style="display:flex; gap:8px; font-size:11px;">
-                  <span style="color:#555;">Approve</span>
-                  <span style="color:#aaa;">Deny</span>
-                </div>
+                <span style="font-size:11px; font-weight:600; color:#333; cursor:default;">Approve</span>
+                &nbsp;·&nbsp;
+                <span style="font-size:11px; color:#888; cursor:default;">Reject</span>
               </td>
             </tr>
             <tr>
-              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-08814</span></td>
-              <td><div class="name-line">James Okafor</div></td>
-              <td>Pro Subscription</td>
-              <td>$29.00</td>
-              <td>Accidental charge</td>
-              <td>Jan 21</td>
-              <td><span class="badge">Pending</span></td>
+              <td><div class="name-line">Marcus Johnson</div><div class="sub-line">COA-00341</div></td>
+              <td><div style="font-size:11px;">Basketball</div><div class="sub-line">Tier 2</div></td>
+              <td><span class="price-old">$14.99</span></td>
+              <td><span class="price-new">$29.99</span></td>
+              <td><span class="diff-tag">+$15.00 (+100%)</span></td>
+              <td>5,840</td>
+              <td>Jan 18, 2025</td>
               <td>
-                <div style="display:flex; gap:8px; font-size:11px;">
-                  <span style="color:#555;">Approve</span>
-                  <span style="color:#aaa;">Deny</span>
-                </div>
+                <span style="font-size:11px; font-weight:600; color:#333; cursor:default;">Approve</span>
+                &nbsp;·&nbsp;
+                <span style="font-size:11px; color:#888; cursor:default;">Reject</span>
               </td>
             </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          Recent History
+          <span class="card-head-sub">Last 30 days — approved &amp; rejected</span>
+        </div>
+        <table>
+          <thead>
             <tr>
-              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-08790</span></td>
-              <td><div class="name-line">Maya Singh</div></td>
-              <td>Tennis Serve Drills eBook</td>
-              <td>$19.00</td>
-              <td>Wrong product</td>
-              <td>Jan 20</td>
+              <th>Coach</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Change</th>
+              <th>Decision</th>
+              <th>Decided By</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="name-line">Lisa Park</div></td>
+              <td>$9.00</td>
+              <td>$12.00</td>
+              <td><span class="diff-tag">+$3.00</span></td>
               <td><span class="status-tag">Approved</span></td>
-              <td><span style="font-size:11px; color:#aaa;">Processed</span></td>
+              <td>Imran A.</td>
+              <td>Jan 15, 2025</td>
             </tr>
             <tr>
-              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-08772</span></td>
-              <td><div class="name-line">Tom Walsh</div></td>
-              <td>Pro Subscription</td>
-              <td>$29.00</td>
-              <td>Dissatisfied</td>
-              <td>Jan 19</td>
+              <td><div class="name-line">Andrew Hierholze</div></td>
+              <td>$19.99</td>
+              <td>$34.99</td>
+              <td><span class="diff-tag">+$15.00</span></td>
+              <td><span class="status-tag" style="background:#e8e8e8; color:#aaa;">Rejected</span></td>
+              <td>Sarah A.</td>
+              <td>Jan 12, 2025</td>
+            </tr>
+            <tr>
+              <td><div class="name-line">Mike Torres</div></td>
+              <td>$7.99</td>
+              <td>$9.99</td>
+              <td><span class="diff-tag">+$2.00</span></td>
               <td><span class="status-tag">Approved</span></td>
-              <td><span style="font-size:11px; color:#aaa;">Processed</span></td>
+              <td>Imran A.</td>
+              <td>Jan 10, 2025</td>
             </tr>
             <tr>
-              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-08761</span></td>
-              <td><div class="name-line">Nina Patel</div></td>
-              <td>30-Day Yoga Challenge Kit</td>
-              <td>$24.00</td>
-              <td>Duplicate order</td>
-              <td>Jan 18</td>
-              <td><span class="badge" style="background:#e0e0e0; color:#999;">Denied</span></td>
-              <td><span style="font-size:11px; color:#aaa;">Closed</span></td>
+              <td><div class="name-line">Kevin Wright</div></td>
+              <td>$14.99</td>
+              <td>$24.99</td>
+              <td><span class="diff-tag">+$10.00</span></td>
+              <td><span class="status-tag">Approved</span></td>
+              <td>Imran A.</td>
+              <td>Jan 8, 2025</td>
             </tr>
           </tbody>
         </table>
         <div class="pagination">
-          <span>Showing 1–6 of 43 refunds this month</span>
+          <span>Showing 1–4 of 23 historical requests</span>
           <div class="page-btns">
             <div class="page-btn">‹</div>
             <div class="page-btn active">1</div>

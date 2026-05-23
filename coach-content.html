@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Coach Content List (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .toolbar-search { flex: 0 0 220px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 120px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .coach-banner {
+      background: #f0f0f0; border: 1px solid #c8c8c8; border-radius: 2px;
+      padding: 14px 20px; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .coach-av { width: 44px; height: 44px; background: #c8c8c8; border-radius: 50%; flex-shrink: 0; }
+    .type-tag {
+      font-size: 10px; font-weight: 700; padding: 2px 7px;
+      background: #e4e4e4; color: #555; border-radius: 2px;
+    }
+    .access-tag {
+      font-size: 10px; font-weight: 700; padding: 2px 7px;
+      background: #ddd; color: #666; border-radius: 2px;
+    }
+    .thumb { width: 48px; height: 36px; background: #d0d0d0; border-radius: 2px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #aaa; }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn { width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #555; }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item active" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Coach Management &rsaquo; <a href="coach-list.html" style="color:#666;text-decoration:none;">Coach List</a> &rsaquo; <a href="coach-profile.html" style="color:#666;text-decoration:none;">Jerome Parker</a> &rsaquo; Content</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Coach Content List</div>
+          <div class="page-date">Jerome Parker &nbsp;·&nbsp; All published &amp; scheduled posts</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export</div>
+          <a href="coach-profile.html" style="text-decoration:none;"><div class="btn-outline">← Back to Profile</div></a>
+        </div>
+      </div>
+
+      <!-- Coach banner -->
+      <div class="coach-banner">
+        <div class="coach-av"></div>
+        <div style="flex:1;">
+          <div style="font-weight:700; font-size:13px;">Jerome Parker</div>
+          <div style="font-size:11px; color:#888;">Football &nbsp;·&nbsp; Tier 1 &nbsp;·&nbsp; COA-00124</div>
+        </div>
+        <div style="display:flex; gap:24px; font-size:12px; text-align:right;">
+          <div><div style="font-size:10px; color:#aaa; margin-bottom:2px;">Total Content</div><div style="font-weight:700;">48</div></div>
+          <div><div style="font-size:10px; color:#aaa; margin-bottom:2px;">Total Views</div><div style="font-weight:700;">284K</div></div>
+          <div><div style="font-size:10px; color:#aaa; margin-bottom:2px;">Removed</div><div style="font-weight:700; color:#aaa;">2</div></div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-search"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-spacer"></div>
+        <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Filter</div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Title</th>
+              <th>Type</th>
+              <th>Access</th>
+              <th>Status</th>
+              <th>Published</th>
+              <th>Views</th>
+              <th>Saves</th>
+              <th>Downloads</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="width:50px; padding-right:0;"><div class="thumb">▶</div></td>
+              <td><div class="name-line">Advanced Passing Drills</div><div class="sub-line">Duration: 18m 42s</div></td>
+              <td><span class="type-tag">Video</span></td>
+              <td><span class="access-tag">Premium</span></td>
+              <td><span class="status-tag">Published</span></td>
+              <td>Jan 20, 2025</td>
+              <td>12,840</td>
+              <td>2,104</td>
+              <td>842</td>
+              <td><span style="font-size:11px; color:#666;">View · Remove</span></td>
+            </tr>
+            <tr>
+              <td style="width:50px; padding-right:0;"><div class="thumb">▶</div></td>
+              <td><div class="name-line">Pre-Season Fitness Routine</div><div class="sub-line">Duration: 24m 10s</div></td>
+              <td><span class="type-tag">Video</span></td>
+              <td><span class="access-tag">Premium</span></td>
+              <td><span class="status-tag">Published</span></td>
+              <td>Jan 14, 2025</td>
+              <td>9,420</td>
+              <td>1,840</td>
+              <td>620</td>
+              <td><span style="font-size:11px; color:#666;">View · Remove</span></td>
+            </tr>
+            <tr>
+              <td style="width:50px; padding-right:0;"><div class="thumb">▶</div></td>
+              <td><div class="name-line">Highlight: Match Day Skills</div><div class="sub-line">Duration: 0m 28s</div></td>
+              <td><span class="type-tag">Highlight</span></td>
+              <td><span class="access-tag" style="color:#aaa;">Free</span></td>
+              <td><span class="status-tag">Published</span></td>
+              <td>Jan 10, 2025</td>
+              <td>48,200</td>
+              <td>3,200</td>
+              <td>—</td>
+              <td><span style="font-size:11px; color:#666;">View · Remove</span></td>
+            </tr>
+            <tr>
+              <td style="width:50px; padding-right:0;"><div class="thumb">▶</div></td>
+              <td><div class="name-line">Defending Under Pressure</div><div class="sub-line">Duration: 21m 05s</div></td>
+              <td><span class="type-tag">Video</span></td>
+              <td><span class="access-tag">Premium</span></td>
+              <td><span class="status-tag" style="background:#e8e8e8; color:#aaa;">Scheduled</span></td>
+              <td>Jan 28, 2025</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td><span style="font-size:11px; color:#666;">View · Remove</span></td>
+            </tr>
+            <tr>
+              <td style="width:50px; padding-right:0;"><div class="thumb" style="font-size:12px;">IMG</div></td>
+              <td><div class="name-line">Weekly Training Plan — Week 3</div><div class="sub-line">Image + caption</div></td>
+              <td><span class="type-tag">Image</span></td>
+              <td><span class="access-tag">Premium</span></td>
+              <td><span class="status-tag">Published</span></td>
+              <td>Jan 8, 2025</td>
+              <td>5,810</td>
+              <td>1,020</td>
+              <td>440</td>
+              <td><span style="font-size:11px; color:#666;">View · Remove</span></td>
+            </tr>
+            <tr>
+              <td style="width:50px; padding-right:0;"><div class="thumb">▶</div></td>
+              <td><div class="name-line">1v1 Dribbling Technique</div><div class="sub-line">Duration: 0m 30s</div></td>
+              <td><span class="type-tag">Highlight</span></td>
+              <td><span class="access-tag" style="color:#aaa;">Free</span></td>
+              <td><span class="status-tag">Published</span></td>
+              <td>Jan 4, 2025</td>
+              <td>32,400</td>
+              <td>2,480</td>
+              <td>—</td>
+              <td><span style="font-size:11px; color:#666;">View · Remove</span></td>
+            </tr>
+            <tr>
+              <td style="width:50px; padding-right:0;"><div class="thumb">▶</div></td>
+              <td>
+                <div class="name-line" style="color:#aaa; text-decoration:line-through;">Controversial Drill Method</div>
+                <div class="sub-line" style="color:#c00;">Removed — Policy violation · Jan 2, 2025</div>
+              </td>
+              <td><span class="type-tag" style="color:#aaa;">Video</span></td>
+              <td><span class="access-tag" style="color:#aaa;">Premium</span></td>
+              <td><span class="status-tag" style="background:#e8e8e8; color:#aaa;">Removed</span></td>
+              <td>Jan 1, 2025</td>
+              <td>280</td>
+              <td>12</td>
+              <td>4</td>
+              <td><span style="font-size:11px; color:#aaa;">View</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>Showing 1–7 of 48 posts</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <div class="page-btn">…</div>
+            <div class="page-btn">7</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

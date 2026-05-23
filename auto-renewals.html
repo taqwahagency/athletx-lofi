@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Auto-Renewals (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .toolbar-search { flex: 0 0 220px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .date-chips { display: flex; gap: 6px; margin-bottom: 20px; }
+    .date-chip { padding: 5px 14px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; font-size: 11px; font-weight: 600; color: #666; }
+    .date-chip.active { background: #bbb; border-color: #999; color: #111; }
+    .upcoming-tag {
+      font-size: 10px; font-weight: 700; padding: 2px 7px;
+      background: #e0e0e0; color: #555; border-radius: 2px;
+    }
+    .upcoming-tag.soon { background: #c8c8c8; color: #222; }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn { width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #555; }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+      <a class="sb-sub" href="price-changes.html">Price Changes <span class="badge">3</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+      <a class="sb-sub" href="reports.html">Reports</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub active" href="auto-renewals.html">Auto-Renewals</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+      <a class="sb-sub" href="commission-tracker.html">Commission Tracker</a>
+      <a class="sb-sub" href="commission-log.html">Commission Log</a>
+      <a class="sb-sub" href="promo-codes.html">Promo Codes</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="platform-settings.html">Platform Settings</a>
+      <a class="sb-sub" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+      <a class="sb-sub" href="email-templates.html">Email Templates</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Revenue &rsaquo; <a href="subscriptions.html" style="color:#666;text-decoration:none;">Subscriptions</a> &rsaquo; Auto-Renewals</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Auto-Renewal Monitor</div>
+          <div class="page-date">Active, failed, and upcoming subscription renewals</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export</div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Active Auto-Renewals</div>
+          <div class="kpi-value">28,440</div>
+          <div class="kpi-trend">↑ <span>3.2%</span> vs last month</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Renewals Today</div>
+          <div class="kpi-value">142</div>
+          <div class="kpi-trend">$1,840 expected</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Failed This Month</div>
+          <div class="kpi-value">84</div>
+          <div class="kpi-trend">$920 at risk</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Recovery Rate</div>
+          <div class="kpi-value">61%</div>
+          <div class="kpi-trend">Failed → retried &amp; recovered</div>
+        </div>
+      </div>
+
+      <div class="date-chips">
+        <div class="date-chip">Today</div>
+        <div class="date-chip active">7D</div>
+        <div class="date-chip">30D</div>
+        <div class="date-chip">All</div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-search"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-spacer"></div>
+        <div style="display:flex; gap:8px;">
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px; background:#bbb; border-color:#999; font-weight:600;">All</div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Active</div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Failed</div>
+          <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Upcoming</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Coach</th>
+              <th>Plan / Amount</th>
+              <th>Payment Method</th>
+              <th>Last Renewed</th>
+              <th>Next Renewal</th>
+              <th>Attempts</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="name-line">Alex Morgan</div><div class="sub-line">PLR-00112</div></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Jerome Parker</a></td>
+              <td><div style="font-weight:600; font-size:12px;">$10.00</div><div class="sub-line">Monthly</div></td>
+              <td><div style="font-size:12px;">•••• 4242</div><div class="sub-line">Visa</div></td>
+              <td>Jan 1, 2025</td>
+              <td><span class="upcoming-tag soon">Today</span></td>
+              <td>—</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">View</span></td>
+            </tr>
+            <tr>
+              <td><div class="name-line">Jordan Lee</div><div class="sub-line">PLR-00204</div></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Andrew Hierholze</a></td>
+              <td><div style="font-weight:600; font-size:12px;">$19.99</div><div class="sub-line">Monthly</div></td>
+              <td><div style="font-size:12px;">•••• 8810</div><div class="sub-line">Mastercard</div></td>
+              <td>Jan 3, 2025</td>
+              <td><span class="upcoming-tag soon">Jan 28</span></td>
+              <td>—</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">View</span></td>
+            </tr>
+            <tr>
+              <td><div class="name-line">Casey Rivera</div><div class="sub-line">PLR-00388</div></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Sarah Chen</a></td>
+              <td><div style="font-weight:600; font-size:12px;">$9.00</div><div class="sub-line">Monthly</div></td>
+              <td><div style="font-size:12px;">•••• 3301</div><div class="sub-line">Visa</div></td>
+              <td>Dec 22, 2024</td>
+              <td><span class="upcoming-tag">Jan 22</span></td>
+              <td>3 <span style="color:#aaa; font-size:10px;">retries</span></td>
+              <td><span class="status-tag" style="background:#e0e0e0; color:#c00;">Failed</span></td>
+              <td><span style="font-size:11px; color:#666;">Retry · View</span></td>
+            </tr>
+            <tr>
+              <td><div class="name-line">Devon Clark</div><div class="sub-line">PLR-00441</div></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Marcus Johnson</a></td>
+              <td><div style="font-weight:600; font-size:12px;">$14.99</div><div class="sub-line">Monthly</div></td>
+              <td><div style="font-size:12px;">•••• 7720</div><div class="sub-line">Amex</div></td>
+              <td>Jan 5, 2025</td>
+              <td><span class="upcoming-tag soon">Jan 30</span></td>
+              <td>—</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">View</span></td>
+            </tr>
+            <tr>
+              <td><div class="name-line">Riley Nguyen</div><div class="sub-line">PLR-00519</div></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Lisa Park</a></td>
+              <td><div style="font-weight:600; font-size:12px;">$12.00</div><div class="sub-line">Monthly</div></td>
+              <td><div style="font-size:12px;">•••• 5514</div><div class="sub-line">Visa</div></td>
+              <td>Jan 8, 2025</td>
+              <td><span class="upcoming-tag">Feb 8</span></td>
+              <td>—</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">View</span></td>
+            </tr>
+            <tr>
+              <td><div class="name-line">Morgan Bailey</div><div class="sub-line">PLR-00602</div></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Kevin Wright</a></td>
+              <td><div style="font-weight:600; font-size:12px;">$9.99</div><div class="sub-line">Monthly</div></td>
+              <td><div style="font-size:12px;">•••• 0092</div><div class="sub-line">Mastercard</div></td>
+              <td>Dec 18, 2024</td>
+              <td>—</td>
+              <td>2 <span style="color:#aaa; font-size:10px;">retries</span></td>
+              <td><span class="status-tag" style="background:#e0e0e0; color:#c00;">Failed</span></td>
+              <td><span style="font-size:11px; color:#666;">Retry · View</span></td>
+            </tr>
+            <tr>
+              <td><div class="name-line">Quinn Foster</div><div class="sub-line">PLR-00714</div></td>
+              <td><a href="coach-profile.html" style="text-decoration:none; color:#555;">Mike Torres</a></td>
+              <td><div style="font-weight:600; font-size:12px;">$7.99</div><div class="sub-line">Monthly</div></td>
+              <td><div style="font-size:12px;">•••• 6680</div><div class="sub-line">Visa</div></td>
+              <td>Jan 12, 2025</td>
+              <td><span class="upcoming-tag">Feb 12</span></td>
+              <td>—</td>
+              <td><span class="status-tag" style="background:#e8e8e8; color:#aaa;">Cancelled</span></td>
+              <td><span style="font-size:11px; color:#666;">View</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>Showing 1–7 of 28,440 renewals</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <div class="page-btn">…</div>
+            <div class="page-btn">4,063</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Admin Accounts (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .toolbar-search { flex: 0 0 200px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .role-tag { display: inline-block; padding: 2px 8px; background: #e0e0e0; border: 1px solid #ccc; border-radius: 2px; font-size: 10px; font-weight: 700; color: #444; }
+    .role-tag.super { background: #ccc; border-color: #aaa; color: #222; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item active" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Settings &rsaquo; Admin Accounts</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Admin Accounts</div>
+          <div class="page-date">8 admin users</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-solid">+ Invite Admin</div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Admins</div>
+          <div class="kpi-value">8</div>
+          <div class="kpi-trend">Across 3 roles</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Super Admins</div>
+          <div class="kpi-value">2</div>
+          <div class="kpi-trend">Full access</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Active Today</div>
+          <div class="kpi-value">4</div>
+          <div class="kpi-trend">Currently online</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Pending Invite</div>
+          <div class="kpi-value">1</div>
+          <div class="kpi-trend">Awaiting acceptance</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-search"></div>
+        <div class="toolbar-spacer"></div>
+        <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Filter by Role</div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Admin</th>
+              <th>Role</th>
+              <th>Email</th>
+              <th>Last Active</th>
+              <th>2FA</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Imran Khan</div>
+                    <div class="sub-line">You</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="role-tag super">Super Admin</span></td>
+              <td>imran@athletx.com</td>
+              <td>Now</td>
+              <td><span class="status-tag">Enabled</span></td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#aaa;">—</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Sarah K.</div>
+                    <div class="sub-line">Coach Ops</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="role-tag super">Super Admin</span></td>
+              <td>sarah.k@athletx.com</td>
+              <td>1h ago</td>
+              <td><span class="status-tag">Enabled</span></td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Mike R.</div>
+                    <div class="sub-line">Support Lead</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="role-tag">Admin</span></td>
+              <td>mike.r@athletx.com</td>
+              <td>3h ago</td>
+              <td><span class="status-tag">Enabled</span></td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Jessica T.</div>
+                    <div class="sub-line">Finance</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="role-tag">Admin</span></td>
+              <td>jessica.t@athletx.com</td>
+              <td>Today</td>
+              <td><span class="status-tag">Enabled</span></td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">David L.</div>
+                    <div class="sub-line">Moderation</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="role-tag">Moderator</span></td>
+              <td>david.l@athletx.com</td>
+              <td>Yesterday</td>
+              <td><span class="badge" style="background:#e0e0e0; color:#999;">Disabled</span></td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">Ana P.</div>
+                    <div class="sub-line">Moderation</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="role-tag">Moderator</span></td>
+              <td>ana.p@athletx.com</td>
+              <td>Jan 20</td>
+              <td><span class="status-tag">Enabled</span></td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="avatar-cell">
+                  <div class="avatar-box"></div>
+                  <div>
+                    <div class="name-line">New Admin</div>
+                    <div class="sub-line">Pending invite</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="role-tag">Admin</span></td>
+              <td>newadmin@athletx.com</td>
+              <td>—</td>
+              <td>—</td>
+              <td><span class="badge">Pending</span></td>
+              <td><span style="font-size:11px; color:#666;">Resend</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

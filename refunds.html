@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Refunds (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .toolbar-search { flex: 0 0 200px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn { width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #555; }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub active" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge" style="opacity:0.4;">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Shop &rsaquo; Refunds</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Refunds</div>
+          <div class="page-date">6 pending refund requests</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export</div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Pending</div>
+          <div class="kpi-value">6</div>
+          <div class="kpi-trend">Awaiting approval</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Refunded (Jan)</div>
+          <div class="kpi-value">43</div>
+          <div class="kpi-trend">$1,248 total</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Refund Rate</div>
+          <div class="kpi-value">5.1%</div>
+          <div class="kpi-trend">↓ <span>0.4%</span> vs last month</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Avg Refund</div>
+          <div class="kpi-value">$29.02</div>
+          <div class="kpi-trend">Mostly subscriptions</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-search"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-spacer"></div>
+        <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Filter</div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Player</th>
+              <th>Product</th>
+              <th>Amount</th>
+              <th>Reason</th>
+              <th>Requested</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-08835</span></td>
+              <td><div class="name-line">Aisha Williams</div></td>
+              <td>Elite Playbook Bundle</td>
+              <td>$49.00</td>
+              <td>Not as described</td>
+              <td>Jan 22</td>
+              <td><span class="badge">Pending</span></td>
+              <td>
+                <div style="display:flex; gap:8px; font-size:11px;">
+                  <span style="color:#555;">Approve</span>
+                  <span style="color:#aaa;">Deny</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-08820</span></td>
+              <td><div class="name-line">Daniel Lee</div></td>
+              <td>1-on-1 Coaching Session</td>
+              <td>$120.00</td>
+              <td>Coach cancelled</td>
+              <td>Jan 21</td>
+              <td><span class="badge">Pending</span></td>
+              <td>
+                <div style="display:flex; gap:8px; font-size:11px;">
+                  <span style="color:#555;">Approve</span>
+                  <span style="color:#aaa;">Deny</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-08814</span></td>
+              <td><div class="name-line">James Okafor</div></td>
+              <td>Pro Subscription</td>
+              <td>$29.00</td>
+              <td>Accidental charge</td>
+              <td>Jan 21</td>
+              <td><span class="badge">Pending</span></td>
+              <td>
+                <div style="display:flex; gap:8px; font-size:11px;">
+                  <span style="color:#555;">Approve</span>
+                  <span style="color:#aaa;">Deny</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-08790</span></td>
+              <td><div class="name-line">Maya Singh</div></td>
+              <td>Tennis Serve Drills eBook</td>
+              <td>$19.00</td>
+              <td>Wrong product</td>
+              <td>Jan 20</td>
+              <td><span class="status-tag">Approved</span></td>
+              <td><span style="font-size:11px; color:#aaa;">Processed</span></td>
+            </tr>
+            <tr>
+              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-08772</span></td>
+              <td><div class="name-line">Tom Walsh</div></td>
+              <td>Pro Subscription</td>
+              <td>$29.00</td>
+              <td>Dissatisfied</td>
+              <td>Jan 19</td>
+              <td><span class="status-tag">Approved</span></td>
+              <td><span style="font-size:11px; color:#aaa;">Processed</span></td>
+            </tr>
+            <tr>
+              <td><span style="font-family:monospace; font-size:11px; color:#888;">ORD-08761</span></td>
+              <td><div class="name-line">Nina Patel</div></td>
+              <td>30-Day Yoga Challenge Kit</td>
+              <td>$24.00</td>
+              <td>Duplicate order</td>
+              <td>Jan 18</td>
+              <td><span class="badge" style="background:#e0e0e0; color:#999;">Denied</span></td>
+              <td><span style="font-size:11px; color:#aaa;">Closed</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>Showing 1–6 of 43 refunds this month</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Activity Log (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .toolbar-search { flex: 0 0 220px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .date-chips { display: flex; gap: 6px; margin-bottom: 20px; }
+    .date-chip { padding: 5px 14px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; font-size: 11px; font-weight: 600; color: #666; }
+    .date-chip.active { background: #bbb; border-color: #999; color: #111; }
+    .log-row {
+      display: grid;
+      grid-template-columns: 140px 120px 1fr 140px;
+      gap: 12px;
+      align-items: start;
+      padding: 11px 20px;
+      border-bottom: 1px solid #eee;
+      font-size: 12px;
+    }
+    .log-row:last-child { border-bottom: none; }
+    .log-time { color: #aaa; font-size: 10px; padding-top: 1px; }
+    .log-actor { font-weight: 600; color: #444; }
+    .log-action { color: #333; }
+    .log-action span { color: #888; font-size: 11px; display: block; margin-top: 2px; }
+    .log-target { font-size: 11px; color: #888; }
+    .action-tag {
+      display: inline-block; padding: 1px 6px;
+      background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px;
+      font-size: 10px; font-weight: 600; color: #555; white-space: nowrap;
+    }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn { width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #555; }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub active" href="activity-log.html">Activity Log</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Settings &rsaquo; Activity Log</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Activity Log</div>
+          <div class="page-date">Complete admin action history</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export CSV</div>
+        </div>
+      </div>
+
+      <div class="date-chips">
+        <div class="date-chip">Today</div>
+        <div class="date-chip active">7D</div>
+        <div class="date-chip">30D</div>
+        <div class="date-chip">90D</div>
+        <div class="date-chip">Custom</div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Actions (7D)</div>
+          <div class="kpi-value">284</div>
+          <div class="kpi-trend">Across 6 admins</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Most Active Admin</div>
+          <div class="kpi-value" style="font-size:14px;">Sarah K.</div>
+          <div class="kpi-trend">142 actions</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">High-Risk Actions</div>
+          <div class="kpi-value">8</div>
+          <div class="kpi-trend">Deletions, suspensions</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Today</div>
+          <div class="kpi-value">24</div>
+          <div class="kpi-trend">Since midnight</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-search"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-spacer"></div>
+        <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Filter</div>
+      </div>
+
+      <div class="card">
+        <!-- Column headers -->
+        <div style="display:grid; grid-template-columns:140px 120px 1fr 140px; gap:12px; padding:10px 20px; background:#f5f5f5; border-bottom:1px solid #e0e0e0; font-size:11px; font-weight:700; color:#888;">
+          <div>Timestamp</div>
+          <div>Admin</div>
+          <div>Action</div>
+          <div>Target</div>
+        </div>
+
+        <div class="log-row">
+          <div class="log-time">Today, 10:42 AM</div>
+          <div class="log-actor">Sarah K.</div>
+          <div class="log-action"><span class="action-tag">Approved</span> Coach verification <span>Jerome Parker — all 4 docs approved</span></div>
+          <div class="log-target">Coach #C-00142</div>
+        </div>
+        <div class="log-row">
+          <div class="log-time">Today, 9:18 AM</div>
+          <div class="log-actor">Mike R.</div>
+          <div class="log-action"><span class="action-tag">Resolved</span> Support ticket <span>#TKT-2836 — billing issue closed</span></div>
+          <div class="log-target">Ticket #TKT-2836</div>
+        </div>
+        <div class="log-row">
+          <div class="log-time">Today, 8:55 AM</div>
+          <div class="log-actor">Sarah K.</div>
+          <div class="log-action"><span class="action-tag">Approved</span> Refund request <span>ORD-08835 — $49.00 refunded to Aisha Williams</span></div>
+          <div class="log-target">Order #ORD-08835</div>
+        </div>
+        <div class="log-row">
+          <div class="log-time">Today, 8:30 AM</div>
+          <div class="log-actor">System</div>
+          <div class="log-action"><span class="action-tag">Sent</span> Push notification <span>"New content from Jerome Parker" — 12,548 recipients</span></div>
+          <div class="log-target">All Players</div>
+        </div>
+        <div class="log-row">
+          <div class="log-time">Yesterday, 4:10 PM</div>
+          <div class="log-actor">Mike R.</div>
+          <div class="log-action"><span class="action-tag">Suspended</span> Coach account <span>Carlos Vega — payout hold applied</span></div>
+          <div class="log-target">Coach #C-00091</div>
+        </div>
+        <div class="log-row">
+          <div class="log-time">Yesterday, 2:48 PM</div>
+          <div class="log-actor">Sarah K.</div>
+          <div class="log-action"><span class="action-tag">Updated</span> Tier assignment <span>Carlos Vega demoted Tier 2 → Tier 3</span></div>
+          <div class="log-target">Coach #C-00091</div>
+        </div>
+        <div class="log-row">
+          <div class="log-time">Yesterday, 11:22 AM</div>
+          <div class="log-actor">Jessica T.</div>
+          <div class="log-action"><span class="action-tag">Exported</span> Revenue report <span>January 2025 full export — CSV</span></div>
+          <div class="log-target">Revenue Report</div>
+        </div>
+        <div class="log-row">
+          <div class="log-time">Jan 22, 3:40 PM</div>
+          <div class="log-actor">Sarah K.</div>
+          <div class="log-action"><span class="action-tag">Approved</span> Price change request <span>Jerome Parker $12 → $15/mo</span></div>
+          <div class="log-target">Coach #C-00142</div>
+        </div>
+        <div class="log-row">
+          <div class="log-time">Jan 22, 1:15 PM</div>
+          <div class="log-actor">Mike R.</div>
+          <div class="log-action"><span class="action-tag">Created</span> Admin account <span>Invited new admin — newadmin@athletx.com</span></div>
+          <div class="log-target">Admin Account</div>
+        </div>
+        <div class="log-row">
+          <div class="log-time">Jan 21, 9:00 AM</div>
+          <div class="log-actor">System</div>
+          <div class="log-action"><span class="action-tag">Processed</span> Payout run <span>January 2025 — $284,600 to 1,198 coaches</span></div>
+          <div class="log-target">All Coaches</div>
+        </div>
+        <div class="log-row">
+          <div class="log-time">Jan 20, 5:30 PM</div>
+          <div class="log-actor">Imran K.</div>
+          <div class="log-action"><span class="action-tag">Updated</span> Tier settings <span>Tier 1 min subscribers changed 4,000 → 5,000</span></div>
+          <div class="log-target">Tier Settings</div>
+        </div>
+        <div class="log-row">
+          <div class="log-time">Jan 20, 2:10 PM</div>
+          <div class="log-actor">Ana P.</div>
+          <div class="log-action"><span class="action-tag">Removed</span> Content flagged <span>Post by Carlos Vega — community guidelines violation</span></div>
+          <div class="log-target">Post #P-48821</div>
+        </div>
+
+        <div class="pagination">
+          <span>Showing 1–12 of 284 actions</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <div class="page-btn">…</div>
+            <div class="page-btn">24</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

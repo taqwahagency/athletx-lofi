@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Push Notifications (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .notif-card {
+      border: 1px solid #d8d8d8; border-radius: 2px; margin-bottom: 12px; overflow: hidden;
+    }
+    .notif-card-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px; background: #f5f5f5; border-bottom: 1px solid #e0e0e0;
+      font-size: 12px;
+    }
+    .notif-title { font-weight: 700; color: #222; }
+    .notif-body { padding: 12px 16px; font-size: 12px; color: #444; }
+    .notif-meta { font-size: 11px; color: #aaa; margin-top: 8px; display: flex; gap: 16px; }
+    .field-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 0; border-bottom: 1px solid #eee; font-size: 12px;
+    }
+    .field-row:last-child { border-bottom: none; }
+    .field-label { font-weight: 600; color: #333; }
+    .field-desc { font-size: 11px; color: #888; margin-top: 2px; }
+    .field-input {
+      width: 160px; height: 30px; background: #e8e8e8; border: 1px solid #bbb;
+      border-radius: 2px; flex-shrink: 0;
+    }
+    .toggle-box { width: 36px; height: 20px; background: #bbb; border-radius: 10px; flex-shrink: 0; }
+    .audience-tag { display: inline-block; padding: 2px 7px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 10px; font-size: 10px; font-weight: 600; color: #555; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub active" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Support &rsaquo; Push Notifications</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Push Notifications</div>
+          <div class="page-date">Send and manage platform notifications</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-solid">+ New Notification</div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Sent (7D)</div>
+          <div class="kpi-value">48</div>
+          <div class="kpi-trend">To 12,548 users</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Avg Open Rate</div>
+          <div class="kpi-value">42%</div>
+          <div class="kpi-trend">↑ <span>3.2%</span> vs last week</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Avg Click Rate</div>
+          <div class="kpi-value">18%</div>
+          <div class="kpi-trend">↑ <span>1.8%</span> vs last week</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Scheduled</div>
+          <div class="kpi-value">3</div>
+          <div class="kpi-trend">Next: Today 3PM</div>
+        </div>
+      </div>
+
+      <div class="row-2col wide-left">
+        <div>
+          <!-- Compose -->
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Compose Notification</div>
+            <div class="card-body">
+              <div class="field-row">
+                <div><div class="field-label">Title</div><div class="field-desc">Max 50 characters</div></div>
+                <div class="field-input"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Message</div><div class="field-desc">Max 150 characters</div></div>
+              </div>
+              <div style="width:100%; height:64px; background:#e8e8e8; border:1px solid #bbb; border-radius:2px; margin-bottom:12px;"></div>
+              <div class="field-row">
+                <div><div class="field-label">Audience</div><div class="field-desc">Who receives this notification</div></div>
+                <div class="field-input"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Schedule</div><div class="field-desc">Send now or schedule for later</div></div>
+                <div class="field-input"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Deep Link</div><div class="field-desc">Optional in-app destination</div></div>
+                <div class="field-input"></div>
+              </div>
+              <div style="margin-top:12px; display:flex; gap:8px; justify-content:flex-end;">
+                <div class="btn-outline" style="font-size:12px;">Preview</div>
+                <div class="btn-solid" style="font-size:12px;">Send Now</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent sent -->
+          <div class="card">
+            <div class="card-head">Recent Notifications</div>
+            <div class="notif-card" style="margin:12px 20px 4px;">
+              <div class="notif-card-head">
+                <div class="notif-title">🏆 New content from Jerome Parker</div>
+                <span class="audience-tag">All Players</span>
+              </div>
+              <div class="notif-body">
+                Footwork Drills Vol. 4 is now live. Watch now and level up your game!
+                <div class="notif-meta">
+                  <span>Sent: Today 8:30 AM</span>
+                  <span>Delivered: 12,548</span>
+                  <span>Opened: 5,270 (42%)</span>
+                  <span>Clicked: 2,259 (18%)</span>
+                </div>
+              </div>
+            </div>
+            <div class="notif-card" style="margin:4px 20px 4px;">
+              <div class="notif-card-head">
+                <div class="notif-title">💰 Price change coming Jan 25</div>
+                <span class="audience-tag">Parker Subscribers</span>
+              </div>
+              <div class="notif-body">
+                Jerome Parker's subscription price will change from $12 to $15/mo on Jan 25.
+                <div class="notif-meta">
+                  <span>Sent: Jan 20, 9:00 AM</span>
+                  <span>Delivered: 12,548</span>
+                  <span>Opened: 5,520 (44%)</span>
+                  <span>Clicked: 1,632 (13%)</span>
+                </div>
+              </div>
+            </div>
+            <div class="notif-card" style="margin:4px 20px 16px;">
+              <div class="notif-card-head">
+                <div class="notif-title">📱 AthletX v2.4 is here</div>
+                <span class="audience-tag">All Users</span>
+              </div>
+              <div class="notif-body">
+                New features: offline downloads, faster video, and improved search. Update now!
+                <div class="notif-meta">
+                  <span>Sent: Jan 15, 12:00 PM</span>
+                  <span>Delivered: 25,096</span>
+                  <span>Opened: 11,293 (45%)</span>
+                  <span>Clicked: 5,144 (20%)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right -->
+        <div>
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Notification Settings</div>
+            <div class="card-body">
+              <div class="field-row">
+                <div><div class="field-label">Daily send limit</div><div class="field-desc">Max notifications per user per day</div></div>
+                <div class="toggle-box"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Quiet hours</div><div class="field-desc">No sends 10pm–7am local time</div></div>
+                <div class="toggle-box"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">A/B testing</div><div class="field-desc">Test two versions, send winner</div></div>
+                <div class="toggle-box"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">Scheduled Queue</div>
+            <div class="card-body" style="padding:0;">
+              <div class="pa-row" style="padding:10px 16px;">
+                <div>
+                  <div style="font-size:12px; font-weight:600; color:#222;">Monthly renewal reminder</div>
+                  <div class="sub-line">Today 3:00 PM &nbsp;·&nbsp; All Players</div>
+                </div>
+                <span style="font-size:11px; color:#888;">Cancel</span>
+              </div>
+              <div class="pa-row" style="padding:10px 16px;">
+                <div>
+                  <div style="font-size:12px; font-weight:600; color:#222;">Price change final reminder</div>
+                  <div class="sub-line">Jan 24, 9:00 AM &nbsp;·&nbsp; Parker Subs</div>
+                </div>
+                <span style="font-size:11px; color:#888;">Cancel</span>
+              </div>
+              <div class="pa-row" style="padding:10px 16px; border-bottom:none;">
+                <div>
+                  <div style="font-size:12px; font-weight:600; color:#222;">New coach spotlight</div>
+                  <div class="sub-line">Jan 26, 10:00 AM &nbsp;·&nbsp; All Players</div>
+                </div>
+                <span style="font-size:11px; color:#888;">Cancel</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

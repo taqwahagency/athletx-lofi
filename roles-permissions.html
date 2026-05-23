@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Roles &amp; Permissions (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .perm-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .perm-table th { padding: 10px 12px; background: #f0f0f0; border: 1px solid #ddd; font-size: 11px; font-weight: 700; color: #555; text-align: center; }
+    .perm-table th:first-child { text-align: left; width: 200px; }
+    .perm-table td { padding: 9px 12px; border: 1px solid #eee; color: #444; vertical-align: middle; }
+    .perm-table td:not(:first-child) { text-align: center; }
+    .perm-table tr:hover td { background: #fafafa; }
+    .check-yes { width: 16px; height: 16px; background: #aaa; border-radius: 2px; display: inline-block; }
+    .check-no  { width: 16px; height: 16px; background: #e0e0e0; border: 1px solid #ccc; border-radius: 2px; display: inline-block; }
+    .section-row td { background: #f5f5f5; font-weight: 700; color: #333; font-size: 11px; letter-spacing: 0.5px; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub active" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Settings &rsaquo; Roles &amp; Permissions</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Roles &amp; Permissions</div>
+          <div class="page-date">3 roles defined</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Cancel</div>
+          <div class="btn-solid">Save Changes</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">Permission Matrix</div>
+        <div style="overflow-x: auto; padding: 0;">
+          <table class="perm-table">
+            <thead>
+              <tr>
+                <th>Permission</th>
+                <th>Super Admin</th>
+                <th>Admin</th>
+                <th>Moderator</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="section-row"><td colspan="4">DASHBOARD &amp; ANALYTICS</td></tr>
+              <tr><td>View Dashboard</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td></tr>
+              <tr><td>View Analytics</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td></tr>
+              <tr><td>Export Reports</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td></tr>
+
+              <tr class="section-row"><td colspan="4">PLAYER MANAGEMENT</td></tr>
+              <tr><td>View Players</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td></tr>
+              <tr><td>Edit Players</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td></tr>
+              <tr><td>Suspend Players</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td></tr>
+              <tr><td>Delete Players</td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td><td><div class="check-no"></div></td></tr>
+
+              <tr class="section-row"><td colspan="4">COACH MANAGEMENT</td></tr>
+              <tr><td>View Coaches</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td></tr>
+              <tr><td>Verify / Approve Coaches</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td></tr>
+              <tr><td>Manage Tier Assignments</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td></tr>
+              <tr><td>Manage Payouts</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td></tr>
+
+              <tr class="section-row"><td colspan="4">CONTENT &amp; MODERATION</td></tr>
+              <tr><td>View Content</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td></tr>
+              <tr><td>Flag / Remove Content</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td></tr>
+              <tr><td>Manage Scheduled Posts</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td></tr>
+
+              <tr class="section-row"><td colspan="4">REVENUE &amp; SHOP</td></tr>
+              <tr><td>View Revenue</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td></tr>
+              <tr><td>Manage Refunds</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td></tr>
+              <tr><td>Manage Products</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td></tr>
+
+              <tr class="section-row"><td colspan="4">SETTINGS</td></tr>
+              <tr><td>Manage Admin Accounts</td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td><td><div class="check-no"></div></td></tr>
+              <tr><td>Edit Roles &amp; Permissions</td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td><td><div class="check-no"></div></td></tr>
+              <tr><td>View Activity Log</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td></tr>
+              <tr><td>Edit Tier Settings</td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td><td><div class="check-no"></div></td></tr>
+              <tr><td>Send Push Notifications</td><td><div class="check-yes"></div></td><td><div class="check-yes"></div></td><td><div class="check-no"></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

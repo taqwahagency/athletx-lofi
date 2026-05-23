@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Products (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .toolbar-search { flex: 0 0 200px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-select { flex: 0 0 130px; height: 32px; background: #e8e8e8; border: 1px solid #bbb; border-radius: 2px; }
+    .toolbar-spacer { flex: 1; }
+    .product-thumb { width: 48px; height: 48px; background: #ddd; border-radius: 2px; flex-shrink: 0; }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn { width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #555; }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+    .cat-tag { display: inline-block; padding: 2px 7px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 10px; font-size: 10px; font-weight: 600; color: #555; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item active" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge" style="opacity:0.4;">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge" style="opacity:0.4;">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Shop &rsaquo; Products</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Products</div>
+          <div class="page-date">284 products listed across all coaches</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export</div>
+          <div class="btn-solid">+ Add Product</div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Products</div>
+          <div class="kpi-value">284</div>
+          <div class="kpi-trend">↑ <span>12</span> this month</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Active Listings</div>
+          <div class="kpi-value">261</div>
+          <div class="kpi-trend">92% of total</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Shop Revenue (Jan)</div>
+          <div class="kpi-value">$18,400</div>
+          <div class="kpi-trend">↑ <span>9.4%</span> vs last month</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Orders (Jan)</div>
+          <div class="kpi-value">842</div>
+          <div class="kpi-trend">↑ <span>6.2%</span> vs last month</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-search"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-select"></div>
+        <div class="toolbar-spacer"></div>
+        <div class="btn-outline" style="height:32px; padding:0 12px; display:flex; align-items:center; font-size:12px;">Filter</div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Coach</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Sales (Jan)</th>
+              <th>Revenue</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="product-thumb"></div>
+                  <div>
+                    <div class="name-line">Elite Playbook Bundle</div>
+                    <div class="sub-line">Digital download &nbsp;·&nbsp; PDF + Video</div>
+                  </div>
+                </div>
+              </td>
+              <td>Jerome Parker</td>
+              <td><span class="cat-tag">Digital</span></td>
+              <td>$49.00</td>
+              <td>124</td>
+              <td>$6,076</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="product-thumb"></div>
+                  <div>
+                    <div class="name-line">1-on-1 Coaching Session</div>
+                    <div class="sub-line">60 min live session</div>
+                  </div>
+                </div>
+              </td>
+              <td>Jerome Parker</td>
+              <td><span class="cat-tag">Session</span></td>
+              <td>$120.00</td>
+              <td>18</td>
+              <td>$2,160</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="product-thumb"></div>
+                  <div>
+                    <div class="name-line">3-Point Masterclass Pack</div>
+                    <div class="sub-line">10-part video series</div>
+                  </div>
+                </div>
+              </td>
+              <td>Andrew Hierholze</td>
+              <td><span class="cat-tag">Digital</span></td>
+              <td>$39.00</td>
+              <td>86</td>
+              <td>$3,354</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="product-thumb"></div>
+                  <div>
+                    <div class="name-line">30-Day Yoga Challenge Kit</div>
+                    <div class="sub-line">PDF guide + planner</div>
+                  </div>
+                </div>
+              </td>
+              <td>Sarah Chen</td>
+              <td><span class="cat-tag">Digital</span></td>
+              <td>$24.00</td>
+              <td>142</td>
+              <td>$3,408</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="product-thumb"></div>
+                  <div>
+                    <div class="name-line">Tennis Serve Drills eBook</div>
+                    <div class="sub-line">PDF &nbsp;·&nbsp; 84 pages</div>
+                  </div>
+                </div>
+              </td>
+              <td>Marcus Johnson</td>
+              <td><span class="cat-tag">Digital</span></td>
+              <td>$19.00</td>
+              <td>68</td>
+              <td>$1,292</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="product-thumb"></div>
+                  <div>
+                    <div class="name-line">Swim Training Log</div>
+                    <div class="sub-line">Physical &nbsp;·&nbsp; Shipped</div>
+                  </div>
+                </div>
+              </td>
+              <td>Lisa Park</td>
+              <td><span class="cat-tag">Physical</span></td>
+              <td>$22.00</td>
+              <td>54</td>
+              <td>$1,188</td>
+              <td><span class="status-tag">Active</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div class="product-thumb"></div>
+                  <div>
+                    <div class="name-line">Boxing Conditioning Plan</div>
+                    <div class="sub-line">12-week program PDF</div>
+                  </div>
+                </div>
+              </td>
+              <td>Carlos Vega</td>
+              <td><span class="cat-tag">Digital</span></td>
+              <td>$29.00</td>
+              <td>0</td>
+              <td>$0</td>
+              <td><span class="status-tag">Inactive</span></td>
+              <td><span style="font-size:11px; color:#666;">Edit</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>Showing 1–7 of 284 products</span>
+          <div class="page-btns">
+            <div class="page-btn">‹</div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <div class="page-btn">…</div>
+            <div class="page-btn">41</div>
+            <div class="page-btn">›</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

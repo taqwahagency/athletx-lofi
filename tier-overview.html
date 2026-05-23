@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Tier Overview (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .tier-card {
+      border: 1px solid #c8c8c8; border-radius: 2px; padding: 20px; background: #f9f9f9; margin-bottom: 12px;
+    }
+    .tier-card-head {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+    }
+    .tier-name { font-size: 15px; font-weight: 700; color: #111; }
+    .tier-count { font-size: 12px; color: #888; }
+    .req-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .req-tag {
+      padding: 3px 9px; background: #e8e8e8; border: 1px solid #ccc; border-radius: 2px;
+      font-size: 10px; font-weight: 600; color: #555;
+    }
+    .bar-row {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 12px;
+    }
+    .bar-label { width: 120px; flex-shrink: 0; color: #555; font-size: 11px; }
+    .bar-track { flex: 1; height: 16px; background: #e8e8e8; border-radius: 2px; overflow: hidden; }
+    .bar-fill { height: 100%; background: #bbb; border-radius: 2px; }
+    .bar-val { width: 40px; flex-shrink: 0; font-size: 11px; color: #666; text-align: right; }
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-top: 1px solid #e4e4e4; font-size: 11px; color: #888;
+    }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn {
+      width: 28px; height: 28px; background: #e8e8e8; border: 1px solid #ccc;
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #555;
+    }
+    .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item active" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge" style="opacity:0.4;">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge" style="opacity:0.4;">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Coach Tiers &rsaquo; Tier Overview</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Tier Overview</div>
+          <div class="page-date">1,198 active coaches across 3 tiers</div>
+        </div>
+        <div class="hdr-actions">
+          <a class="btn-outline" href="tier-settings.html">Tier Settings</a>
+          <a class="btn-outline" href="underperformer-alerts.html">Alerts <span class="badge">8</span></a>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Tier 1 Coaches</div>
+          <div class="kpi-value">240</div>
+          <div class="kpi-trend">20% of active coaches</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Tier 2 Coaches</div>
+          <div class="kpi-value">502</div>
+          <div class="kpi-trend">42% of active coaches</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Tier 3 Coaches</div>
+          <div class="kpi-value">456</div>
+          <div class="kpi-trend">38% of active coaches</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Underperformers</div>
+          <div class="kpi-value">8</div>
+          <div class="kpi-trend">At risk of demotion</div>
+        </div>
+      </div>
+
+      <div class="row-2col">
+        <div>
+          <!-- Tier definitions -->
+          <div class="tier-card">
+            <div class="tier-card-head">
+              <div>
+                <div class="tier-name">Tier 1 — Elite</div>
+                <div class="tier-count">240 coaches</div>
+              </div>
+              <span class="tier-tag">Tier 1</span>
+            </div>
+            <div style="font-size:12px; color:#666; margin-bottom:10px;">
+              Highest-performing coaches with largest subscriber base and consistent content output.
+            </div>
+            <div style="font-size:11px; color:#aaa; margin-bottom:4px;">Requirements</div>
+            <div class="req-row">
+              <span class="req-tag">≥ 5,000 subscribers</span>
+              <span class="req-tag">≥ 80% avg rating</span>
+              <span class="req-tag">≥ 8 posts/month</span>
+              <span class="req-tag">80% revenue split</span>
+            </div>
+            <div style="margin-top:14px;">
+              <div class="detail-row"><div class="detail-key">Avg Revenue</div><div class="detail-val">$5,840 / month</div></div>
+              <div class="detail-row"><div class="detail-key">Avg Subscribers</div><div class="detail-val">9,200</div></div>
+              <div class="detail-row"><div class="detail-key">Avg Rating</div><div class="detail-val">4.8 ★</div></div>
+            </div>
+          </div>
+
+          <div class="tier-card">
+            <div class="tier-card-head">
+              <div>
+                <div class="tier-name">Tier 2 — Growth</div>
+                <div class="tier-count">502 coaches</div>
+              </div>
+              <span class="tier-tag">Tier 2</span>
+            </div>
+            <div style="font-size:12px; color:#666; margin-bottom:10px;">
+              Mid-level coaches growing their audience with strong engagement metrics.
+            </div>
+            <div style="font-size:11px; color:#aaa; margin-bottom:4px;">Requirements</div>
+            <div class="req-row">
+              <span class="req-tag">1,000–4,999 subs</span>
+              <span class="req-tag">≥ 70% avg rating</span>
+              <span class="req-tag">≥ 5 posts/month</span>
+              <span class="req-tag">80% revenue split</span>
+            </div>
+            <div style="margin-top:14px;">
+              <div class="detail-row"><div class="detail-key">Avg Revenue</div><div class="detail-val">$2,480 / month</div></div>
+              <div class="detail-row"><div class="detail-key">Avg Subscribers</div><div class="detail-val">3,100</div></div>
+              <div class="detail-row"><div class="detail-key">Avg Rating</div><div class="detail-val">4.5 ★</div></div>
+            </div>
+          </div>
+
+          <div class="tier-card">
+            <div class="tier-card-head">
+              <div>
+                <div class="tier-name">Tier 3 — Starter</div>
+                <div class="tier-count">456 coaches</div>
+              </div>
+              <span class="tier-tag">Tier 3</span>
+            </div>
+            <div style="font-size:12px; color:#666; margin-bottom:10px;">
+              New or smaller coaches building their presence on the platform.
+            </div>
+            <div style="font-size:11px; color:#aaa; margin-bottom:4px;">Requirements</div>
+            <div class="req-row">
+              <span class="req-tag">&lt; 1,000 subs</span>
+              <span class="req-tag">≥ 60% avg rating</span>
+              <span class="req-tag">≥ 2 posts/month</span>
+              <span class="req-tag">75% revenue split</span>
+            </div>
+            <div style="margin-top:14px;">
+              <div class="detail-row"><div class="detail-key">Avg Revenue</div><div class="detail-val">$680 / month</div></div>
+              <div class="detail-row"><div class="detail-key">Avg Subscribers</div><div class="detail-val">520</div></div>
+              <div class="detail-row"><div class="detail-key">Avg Rating</div><div class="detail-val">4.2 ★</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <!-- Tier distribution chart -->
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Distribution</div>
+            <div class="card-body" style="padding:16px 20px;">
+              <div class="bar-row">
+                <div class="bar-label">Tier 1 (240)</div>
+                <div class="bar-track"><div class="bar-fill" style="width:20%;"></div></div>
+                <div class="bar-val">20%</div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label">Tier 2 (502)</div>
+                <div class="bar-track"><div class="bar-fill" style="width:42%;"></div></div>
+                <div class="bar-val">42%</div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label">Tier 3 (456)</div>
+                <div class="bar-track"><div class="bar-fill" style="width:38%;"></div></div>
+                <div class="bar-val">38%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent tier changes -->
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head">Recent Tier Changes</div>
+            <div class="card-body" style="padding:0;">
+              <div class="pa-row" style="padding:10px 16px;">
+                <div>
+                  <div style="font-size:12px; font-weight:600; color:#222;">Jerome Parker — promoted</div>
+                  <div class="sub-line">Tier 2 → Tier 1 &nbsp;·&nbsp; Jan 1, 2025</div>
+                </div>
+                <span class="tier-tag">Tier 1</span>
+              </div>
+              <div class="pa-row" style="padding:10px 16px;">
+                <div>
+                  <div style="font-size:12px; font-weight:600; color:#222;">Carlos Vega — demoted</div>
+                  <div class="sub-line">Tier 2 → Tier 3 &nbsp;·&nbsp; Jan 1, 2025</div>
+                </div>
+                <span class="tier-tag">Tier 3</span>
+              </div>
+              <div class="pa-row" style="padding:10px 16px;">
+                <div>
+                  <div style="font-size:12px; font-weight:600; color:#222;">Sarah Chen — promoted</div>
+                  <div class="sub-line">Tier 3 → Tier 2 &nbsp;·&nbsp; Dec 1, 2024</div>
+                </div>
+                <span class="tier-tag">Tier 2</span>
+              </div>
+              <div class="pa-row" style="padding:10px 16px; border-bottom:none;">
+                <div>
+                  <div style="font-size:12px; font-weight:600; color:#222;">Mike Torres — at risk</div>
+                  <div class="sub-line">Tier 3 — underperformer flag &nbsp;·&nbsp; Jan 20, 2025</div>
+                </div>
+                <span class="badge">Watch</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">Tier Revenue Contribution</div>
+            <div class="card-body" style="padding:16px 20px;">
+              <div class="bar-row">
+                <div class="bar-label">Tier 1 (20%)</div>
+                <div class="bar-track"><div class="bar-fill" style="width:58%;"></div></div>
+                <div class="bar-val">58% rev</div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label">Tier 2 (42%)</div>
+                <div class="bar-track"><div class="bar-fill" style="width:32%;"></div></div>
+                <div class="bar-val">32% rev</div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label">Tier 3 (38%)</div>
+                <div class="bar-track"><div class="bar-fill" style="width:10%;"></div></div>
+                <div class="bar-val">10% rev</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

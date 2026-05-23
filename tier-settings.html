@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Tier Settings (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .settings-section { margin-bottom: 20px; }
+    .field-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 0; border-bottom: 1px solid #eee; font-size: 12px;
+    }
+    .field-row:last-child { border-bottom: none; }
+    .field-label { font-weight: 600; color: #333; }
+    .field-desc { font-size: 11px; color: #888; margin-top: 2px; }
+    .field-input {
+      width: 140px; height: 30px; background: #e8e8e8; border: 1px solid #bbb;
+      border-radius: 2px; flex-shrink: 0;
+    }
+    .toggle-box {
+      width: 36px; height: 20px; background: #bbb; border-radius: 10px; flex-shrink: 0;
+    }
+    .toggle-box.off { background: #ddd; }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub active" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge" style="opacity:0.4;">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge" style="opacity:0.4;">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Coach Tiers &rsaquo; Tier Settings</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Tier Settings</div>
+          <div class="page-date">Configure tier thresholds and automation rules</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Cancel</div>
+          <div class="btn-solid">Save Changes</div>
+        </div>
+      </div>
+
+      <div class="row-2col">
+        <div>
+
+          <!-- Tier 1 settings -->
+          <div class="card settings-section">
+            <div class="card-head">Tier 1 — Elite Requirements</div>
+            <div class="card-body">
+              <div class="field-row">
+                <div><div class="field-label">Min Subscribers</div><div class="field-desc">Minimum subscriber count to qualify</div></div>
+                <div class="field-input"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Min Avg Rating</div><div class="field-desc">Minimum average rating (out of 5)</div></div>
+                <div class="field-input"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Min Posts / Month</div><div class="field-desc">Content pieces required per month</div></div>
+                <div class="field-input"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Revenue Split (Coach %)</div><div class="field-desc">Coach's share of subscription revenue</div></div>
+                <div class="field-input"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tier 2 settings -->
+          <div class="card settings-section">
+            <div class="card-head">Tier 2 — Growth Requirements</div>
+            <div class="card-body">
+              <div class="field-row">
+                <div><div class="field-label">Min Subscribers</div><div class="field-desc">Minimum subscriber count to qualify</div></div>
+                <div class="field-input"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Min Avg Rating</div><div class="field-desc">Minimum average rating (out of 5)</div></div>
+                <div class="field-input"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Min Posts / Month</div><div class="field-desc">Content pieces required per month</div></div>
+                <div class="field-input"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Revenue Split (Coach %)</div><div class="field-desc">Coach's share of subscription revenue</div></div>
+                <div class="field-input"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tier 3 settings -->
+          <div class="card settings-section">
+            <div class="card-head">Tier 3 — Starter Requirements</div>
+            <div class="card-body">
+              <div class="field-row">
+                <div><div class="field-label">Min Posts / Month</div><div class="field-desc">Minimum activity to remain active</div></div>
+                <div class="field-input"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Min Avg Rating</div><div class="field-desc">Minimum average rating (out of 5)</div></div>
+                <div class="field-input"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Revenue Split (Coach %)</div><div class="field-desc">Coach's share of subscription revenue</div></div>
+                <div class="field-input"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div>
+          <!-- Automation rules -->
+          <div class="card settings-section">
+            <div class="card-head">Automation Rules</div>
+            <div class="card-body">
+              <div class="field-row">
+                <div><div class="field-label">Auto-promote coaches</div><div class="field-desc">Automatically promote when thresholds met</div></div>
+                <div class="toggle-box"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Auto-demote coaches</div><div class="field-desc">Automatically demote after 2 missed cycles</div></div>
+                <div class="toggle-box off"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Review cycle</div><div class="field-desc">How often tiers are evaluated</div></div>
+                <div class="field-input"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Warning period</div><div class="field-desc">Days before demotion that coach is warned</div></div>
+                <div class="field-input"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alert settings -->
+          <div class="card settings-section">
+            <div class="card-head">Alert Settings</div>
+            <div class="card-body">
+              <div class="field-row">
+                <div><div class="field-label">Email admin on flag</div><div class="field-desc">Notify admin when coach is flagged</div></div>
+                <div class="toggle-box"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Email coach on warning</div><div class="field-desc">Send coach notification on 1st warning</div></div>
+                <div class="toggle-box"></div>
+              </div>
+              <div class="field-row">
+                <div><div class="field-label">Consecutive misses to flag</div><div class="field-desc">Months below threshold before alert</div></div>
+                <div class="field-input"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Danger zone -->
+          <div class="card" style="border: 1px dashed #bbb;">
+            <div class="card-head">Danger Zone</div>
+            <div class="card-body">
+              <div class="field-row">
+                <div><div class="field-label">Reset all tier assignments</div><div class="field-desc">Re-evaluate all coaches against current thresholds</div></div>
+                <div class="btn-outline" style="font-size:11px; padding:5px 12px; flex-shrink:0;">Run Reset</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

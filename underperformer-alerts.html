@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AthletX — Underperformer Alerts (Lo-Fi)</title>
+  <link rel="stylesheet" href="lofi.css">
+  <style>
+    .alert-card {
+      border: 1px solid #c8c8c8; border-radius: 2px; margin-bottom: 12px; overflow: hidden;
+    }
+    .alert-card-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; background: #f0f0f0; border-bottom: 1px solid #ddd;
+    }
+    .alert-coach { display: flex; align-items: center; gap: 10px; }
+    .alert-avatar { width: 36px; height: 36px; background: #ccc; border-radius: 50%; flex-shrink: 0; }
+    .alert-name { font-size: 13px; font-weight: 700; color: #222; }
+    .alert-meta { font-size: 11px; color: #888; }
+    .alert-body { padding: 12px 16px; display: flex; gap: 20px; flex-wrap: wrap; }
+    .alert-stat { min-width: 100px; }
+    .alert-stat-label { font-size: 10px; color: #aaa; margin-bottom: 2px; }
+    .alert-stat-val { font-size: 13px; font-weight: 700; color: #333; }
+    .alert-stat-trend { font-size: 10px; color: #bbb; }
+    .alert-actions { display: flex; gap: 8px; align-items: center; margin-left: auto; }
+    .warn-tag {
+      display: inline-block; padding: 2px 8px;
+      background: #ddd; border: 1px solid #bbb; border-radius: 2px;
+      font-size: 10px; font-weight: 700; color: #555;
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo">AthletX Admin</div>
+    <div class="sb-section">
+      <div class="sb-label">Main</div>
+      <a class="sb-item" href="index.html">Dashboard</a>
+      <a class="sb-item" href="pending.html">Pending Actions <span class="badge">23</span></a>
+      <a class="sb-item" href="search.html">Search</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Players</div>
+      <a class="sb-item" href="player-list.html">Player List</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Management</div>
+      <a class="sb-item" href="coach-list.html">Coach List</a>
+      <a class="sb-sub" href="pending-verifications.html">Pending Verifications <span class="badge">14</span></a>
+      <a class="sb-sub" href="scheduled-posts.html">Scheduled Posts</a>
+      <a class="sb-sub" href="payout-management.html">Payout Management</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Analytics</div>
+      <a class="sb-item" href="coach-performance.html">Coach Performance</a>
+      <a class="sb-sub" href="content-performance.html">Content Performance</a>
+      <a class="sb-sub" href="growth-funnels.html">Growth &amp; Funnels</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Revenue</div>
+      <a class="sb-item" href="subscriptions.html">Subscriptions</a>
+      <a class="sb-sub" href="revenue-split.html">Revenue Split</a>
+      <a class="sb-sub" href="transactions.html">Transactions</a>
+      <a class="sb-sub" href="referral-overview.html">Referral Overview</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Coach Tiers</div>
+      <a class="sb-item" href="tier-overview.html">Tier Overview</a>
+      <a class="sb-sub active" href="underperformer-alerts.html">Underperformer Alerts <span class="badge">8</span></a>
+      <a class="sb-sub" href="tier-settings.html">Tier Settings</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Shop</div>
+      <a class="sb-item" href="products.html">Products</a>
+      <a class="sb-sub" href="orders.html">Orders</a>
+      <a class="sb-sub" href="refunds.html">Refunds <span class="badge" style="opacity:0.4;">6</span></a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Support</div>
+      <a class="sb-item" href="support-tickets.html">Support Tickets <span class="badge" style="opacity:0.4;">5</span></a>
+      <a class="sb-sub" href="push-notifications.html">Push Notifications</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Settings</div>
+      <a class="sb-item" href="admin-accounts.html">Admin Accounts</a>
+      <a class="sb-sub" href="roles-permissions.html">Roles &amp; Permissions</a>
+      <a class="sb-sub" href="activity-log.html">Activity Log</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb">Coach Tiers &rsaquo; Underperformer Alerts</div>
+      <div class="topbar-search"></div>
+      <div class="topbar-avatar"></div>
+    </div>
+    <div class="content">
+
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Underperformer Alerts</div>
+          <div class="page-date">8 coaches flagged for tier demotion review</div>
+        </div>
+        <div class="hdr-actions">
+          <div class="btn-outline">Export</div>
+          <a class="btn-outline" href="tier-settings.html">Alert Settings</a>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Flagged Coaches</div>
+          <div class="kpi-value">8</div>
+          <div class="kpi-trend">Needs review this cycle</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">At Risk of Demotion</div>
+          <div class="kpi-value">3</div>
+          <div class="kpi-trend">2nd consecutive warning</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Demoted This Month</div>
+          <div class="kpi-value">1</div>
+          <div class="kpi-trend">Tier 2 → Tier 3</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Dismissed Alerts</div>
+          <div class="kpi-value">4</div>
+          <div class="kpi-trend">This review cycle</div>
+        </div>
+      </div>
+
+      <!-- Alert cards -->
+      <div class="alert-card">
+        <div class="alert-card-head">
+          <div class="alert-coach">
+            <div class="alert-avatar"></div>
+            <div>
+              <div class="alert-name">Carlos Vega</div>
+              <div class="alert-meta">ID #C-00091 &nbsp;·&nbsp; Boxing &nbsp;·&nbsp; Tier 3</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="badge">2nd Warning</span>
+            <span class="warn-tag">Demotion Risk</span>
+          </div>
+        </div>
+        <div class="alert-body">
+          <div class="alert-stat">
+            <div class="alert-stat-label">Subscribers</div>
+            <div class="alert-stat-val">1,800</div>
+            <div class="alert-stat-trend">↓ 12% this month</div>
+          </div>
+          <div class="alert-stat">
+            <div class="alert-stat-label">Posts This Month</div>
+            <div class="alert-stat-val">1</div>
+            <div class="alert-stat-trend">Min required: 2</div>
+          </div>
+          <div class="alert-stat">
+            <div class="alert-stat-label">Avg Rating</div>
+            <div class="alert-stat-val">3.8 ★</div>
+            <div class="alert-stat-trend">Below 4.0 threshold</div>
+          </div>
+          <div class="alert-stat">
+            <div class="alert-stat-label">Revenue</div>
+            <div class="alert-stat-val">$1,440</div>
+            <div class="alert-stat-trend">↓ 18% vs last month</div>
+          </div>
+          <div class="alert-actions">
+            <div class="btn-outline" style="font-size:11px; padding:5px 12px;">Dismiss</div>
+            <div class="btn-outline" style="font-size:11px; padding:5px 12px;">Warn Coach</div>
+            <div class="btn-solid" style="font-size:11px; padding:5px 12px;">Demote</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-card">
+        <div class="alert-card-head">
+          <div class="alert-coach">
+            <div class="alert-avatar"></div>
+            <div>
+              <div class="alert-name">Mike Torres</div>
+              <div class="alert-meta">ID #C-00108 &nbsp;·&nbsp; Soccer &nbsp;·&nbsp; Tier 3</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="badge">1st Warning</span>
+          </div>
+        </div>
+        <div class="alert-body">
+          <div class="alert-stat">
+            <div class="alert-stat-label">Subscribers</div>
+            <div class="alert-stat-val">3,200</div>
+            <div class="alert-stat-trend">↓ 6% this month</div>
+          </div>
+          <div class="alert-stat">
+            <div class="alert-stat-label">Posts This Month</div>
+            <div class="alert-stat-val">2</div>
+            <div class="alert-stat-trend">Min required: 2 ✓</div>
+          </div>
+          <div class="alert-stat">
+            <div class="alert-stat-label">Avg Rating</div>
+            <div class="alert-stat-val">4.1 ★</div>
+            <div class="alert-stat-trend">Slightly below target</div>
+          </div>
+          <div class="alert-stat">
+            <div class="alert-stat-label">Revenue</div>
+            <div class="alert-stat-val">$2,800</div>
+            <div class="alert-stat-trend">↓ 8% vs last month</div>
+          </div>
+          <div class="alert-actions">
+            <div class="btn-outline" style="font-size:11px; padding:5px 12px;">Dismiss</div>
+            <div class="btn-outline" style="font-size:11px; padding:5px 12px;">Warn Coach</div>
+            <div class="btn-solid" style="font-size:11px; padding:5px 12px;">Demote</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-card">
+        <div class="alert-card-head">
+          <div class="alert-coach">
+            <div class="alert-avatar"></div>
+            <div>
+              <div class="alert-name">Priya Nair</div>
+              <div class="alert-meta">ID #C-00088 &nbsp;·&nbsp; Athletics &nbsp;·&nbsp; Tier 3</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="badge">1st Warning</span>
+          </div>
+        </div>
+        <div class="alert-body">
+          <div class="alert-stat">
+            <div class="alert-stat-label">Subscribers</div>
+            <div class="alert-stat-val">2,100</div>
+            <div class="alert-stat-trend">↓ 4% this month</div>
+          </div>
+          <div class="alert-stat">
+            <div class="alert-stat-label">Posts This Month</div>
+            <div class="alert-stat-val">0</div>
+            <div class="alert-stat-trend">Min required: 2 ✗</div>
+          </div>
+          <div class="alert-stat">
+            <div class="alert-stat-label">Avg Rating</div>
+            <div class="alert-stat-val">4.2 ★</div>
+            <div class="alert-stat-trend">Meets minimum</div>
+          </div>
+          <div class="alert-stat">
+            <div class="alert-stat-label">Revenue</div>
+            <div class="alert-stat-val">$1,680</div>
+            <div class="alert-stat-trend">Stable</div>
+          </div>
+          <div class="alert-actions">
+            <div class="btn-outline" style="font-size:11px; padding:5px 12px;">Dismiss</div>
+            <div class="btn-outline" style="font-size:11px; padding:5px 12px;">Warn Coach</div>
+            <div class="btn-solid" style="font-size:11px; padding:5px 12px;">Demote</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center; padding:16px; font-size:12px; color:#aaa;">
+        Showing 3 of 8 flagged coaches &nbsp;·&nbsp; <span style="color:#555; cursor:pointer;">View all 8 →</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

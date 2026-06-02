@@ -208,6 +208,129 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ════════════════════════════════════════════════════════
+//  PHASE 4 — Forms & Toggles
+// ════════════════════════════════════════════════════════
+
+// ── 4a. Toggle switches (.toggle-box) ────────────────────
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.toggle-box').forEach(toggle => {
+    toggle.style.cursor = 'pointer';
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('on');
+      const isOn = toggle.classList.contains('on');
+      // Find the label next to the toggle
+      const row  = toggle.closest('.force-row, div');
+      const label = row ? (row.textContent.trim().split('\n').pop().trim() || '') : '';
+      showToast(isOn ? `Enabled` : `Disabled`, 'info');
+    });
+  });
+});
+
+// ── 4b. Doc tabs (legal-editor, about-editor) ────────────
+document.addEventListener('click', function (e) {
+  if (!e.target.classList.contains('doc-tab')) return;
+  const tabsContainer = e.target.closest('.doc-tabs');
+  if (!tabsContainer) return;
+  tabsContainer.querySelectorAll('.doc-tab').forEach(t => t.classList.remove('active'));
+  e.target.classList.add('active');
+  showToast(`Switched to ${e.target.textContent.trim()}`, 'info');
+});
+
+// ── 4c. Toolbar selects → real <select> elements ─────────
+document.addEventListener('DOMContentLoaded', function () {
+  // Generic option sets per position in toolbar
+  const optSets = [
+    ['All Statuses', 'Active', 'Pending', 'Inactive', 'Expired'],
+    ['All Sports',   'Football', 'Basketball', 'Tennis', 'Soccer', 'Fitness', 'Swimming'],
+  ];
+
+  document.querySelectorAll('div.toolbar-select').forEach((div, idx) => {
+    const sel = document.createElement('select');
+    sel.className = 'toolbar-select-real';
+    const opts = optSets[idx % optSets.length];
+    opts.forEach(o => {
+      const opt = document.createElement('option');
+      opt.textContent = o;
+      sel.appendChild(opt);
+    });
+    div.parentNode.replaceChild(sel, div);
+  });
+});
+
+// ── 4d. Meta inputs → real <input> elements ───────────────
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('div.meta-input').forEach(div => {
+    const input   = document.createElement('input');
+    input.type    = 'text';
+    input.className = 'meta-input-real';
+    div.parentNode.replaceChild(input, div);
+  });
+});
+
+// ── 4e. Inline filter button groups ──────────────────────
+//  (btn-outline siblings with 2+ buttons — act as radio tabs)
+document.addEventListener('click', function (e) {
+  const btn = e.target;
+  if (btn.tagName === 'A') return;
+  if (!btn.classList.contains('btn-outline') && !btn.classList.contains('btn-solid')) return;
+
+  const parent   = btn.parentElement;
+  const siblings = Array.from(parent.children).filter(c =>
+    (c.classList.contains('btn-outline') || c.classList.contains('btn-solid')) &&
+    c.tagName !== 'A'
+  );
+  if (siblings.length < 2) return;
+
+  // Reset all siblings
+  siblings.forEach(s => {
+    s.style.background   = '#e8e8e8';
+    s.style.borderColor  = '#ccc';
+    s.style.fontWeight   = '400';
+    s.style.color        = '#444';
+  });
+  // Activate clicked
+  btn.style.background  = '#bbb';
+  btn.style.borderColor = '#999';
+  btn.style.fontWeight  = '600';
+  btn.style.color       = '#111';
+});
+
+// ── 4f. FAQ "Add Item" button ─────────────────────────────
+document.addEventListener('click', function (e) {
+  const btn = e.target;
+  if (btn.textContent.trim() !== '+ Add FAQ Item') return;
+
+  const faqList = document.querySelector('.faq-row')?.parentElement;
+  if (!faqList) return;
+
+  const row = document.createElement('div');
+  row.className = 'faq-row';
+  row.innerHTML = `
+    <div class="faq-q" contenteditable="true" style="outline:1px dashed #ccc; padding:2px 4px; min-width:160px;">New FAQ question…</div>
+    <div class="faq-a-bar"></div>
+    <div class="faq-a-bar short"></div>
+    <div class="faq-actions">
+      <div class="faq-btn">Edit</div>
+      <div class="faq-btn">Move Up</div>
+      <div class="faq-btn">Delete</div>
+    </div>`;
+
+  // Insert before the Add button's parent
+  faqList.insertBefore(row, btn.closest('div'));
+  row.querySelector('[contenteditable]').focus();
+  showToast('New FAQ item added', 'info');
+});
+
+// ── 4g. Editor toolbar buttons (B, I, H1, H2…) ───────────
+document.addEventListener('click', function (e) {
+  if (!e.target.classList.contains('et-btn')) return;
+  const label = e.target.textContent.trim();
+  const map   = { B:'Bold', I:'Italic', H1:'Heading 1', H2:'Heading 2',
+                  List:'List', Link:'Link', Image:'Image', Preview:'Preview mode' };
+  showToast(map[label] || label, 'info');
+});
+
+// ════════════════════════════════════════════════════════
 //  7. Chip / Tab toggling
 // ════════════════════════════════════════════════════════
 document.addEventListener('click', function (e) {

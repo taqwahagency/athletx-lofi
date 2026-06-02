@@ -75,12 +75,15 @@
       border-bottom: 1px solid #ddd;
     }
   </style>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+  <script src="app.js"></script>
 </head>
 <body>
-  <div class="shell">
+  <div class="shell" x-data="appShell()">
 
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <div class="sidebar-overlay" :class="{ open: sidebarOpen }" @click="closeSidebar()"></div>
+  <aside class="sidebar" :class="{ open: sidebarOpen }">
       <div class="sb-logo">AthletX Admin</div>
       <div class="sb-section">
         <div class="sb-label">Main</div>
@@ -160,8 +163,9 @@
     <!-- Main -->
     <div class="main">
       <div class="topbar">
+        <button class="hamburger" @click="toggleSidebar()"><span></span><span></span><span></span></button>
         <div class="topbar-breadcrumb">Search</div>
-        <a class="topbar-search" href="search.html"></a>
+        <input class="topbar-search-input" type="text" placeholder="Search..." @keydown.enter="window.location.href='search.html'">
         <a class="topbar-avatar" href="admin-accounts.html"></a>
       </div>
 

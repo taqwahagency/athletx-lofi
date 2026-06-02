@@ -68,10 +68,13 @@
     .page-btn.active { background: #bbb; border-color: #999; color: #111; font-weight: 700; }
     .cb { width: 14px; height: 14px; background: #ddd; border: 1px solid #bbb; border-radius: 2px; flex-shrink: 0; }
   </style>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+  <script src="app.js"></script>
 </head>
 <body>
-<div class="shell">
-  <aside class="sidebar">
+<div class="shell" x-data="appShell()">
+  <div class="sidebar-overlay" :class="{ open: sidebarOpen }" @click="closeSidebar()"></div>
+  <aside class="sidebar" :class="{ open: sidebarOpen }">
     <div class="sb-logo">AthletX Admin</div>
     <div class="sb-section">
       <div class="sb-label">Main</div>
@@ -150,8 +153,9 @@
 
   <div class="main">
     <div class="topbar">
+      <button class="hamburger" @click="toggleSidebar()"><span></span><span></span><span></span></button>
       <div class="topbar-breadcrumb">Coach Management &rsaquo; Pending Verifications &rsaquo; Bulk Approval</div>
-      <a class="topbar-search" href="search.html"></a>
+      <input class="topbar-search-input" type="text" placeholder="Search..." @keydown.enter="window.location.href='search.html'">
       <a class="topbar-avatar" href="admin-accounts.html"></a>
     </div>
     <div class="content">

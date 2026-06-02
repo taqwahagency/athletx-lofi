@@ -626,6 +626,49 @@ a.alert-bar:hover { background: #ddd; border-color: #888; }
 
 .detail-val { color: #222; }
 
+/* ── Phase 2: Table interactivity ───────────────────── */
+
+/* Row hover */
+tbody tr {
+  transition: background 0.1s;
+  cursor: default;
+}
+tbody tr:hover { background: #f0f0f0; }
+
+/* Sortable column headers */
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+th.sortable:hover { background: #d8d8d8; color: #444; }
+th.sort-asc,
+th.sort-desc { background: #d4d4d4; color: #333; }
+.sort-indicator { font-size: 9px; color: #888; margin-left: 2px; }
+
+/* Toolbar search input (small — inside content area) */
+.toolbar-search-input-sm {
+  flex: 0 0 220px;
+  height: 32px;
+  background: #e8e8e8;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  padding: 0 10px;
+  font-size: 12px;
+  color: #333;
+  outline: none;
+  font-family: inherit;
+}
+.toolbar-search-input-sm::placeholder { color: #aaa; }
+.toolbar-search-input-sm:focus {
+  border-color: #888;
+  background: #f5f5f5;
+}
+
+/* Pagination buttons */
+.page-btn { cursor: pointer; }
+.page-btn:hover:not(.active) { background: #d4d4d4; border-color: #aaa; }
+
 /* ── Section divider ─────────────────────────────────── */
 .section-label {
   font-size: 10px;

@@ -515,3 +515,31 @@ td {
   color: #888;
   margin: 20px 0 10px;
 }
+
+/* ── Linked button variants ──────────────────────────── */
+a.btn-outline {
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+a.btn-outline:hover { background: #ddd; border-color: #999; }
+
+a.btn-solid {
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+a.btn-solid:hover { background: #aaa; }
+
+a.topbar-search {
+  display: block;
+  cursor: text;
+}
+a.topbar-avatar {
+  display: block;
+  cursor: pointer;
+}
+a.topbar-avatar:hover { background: #aaa; }

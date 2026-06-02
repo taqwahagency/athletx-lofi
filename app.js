@@ -1,6 +1,8 @@
 // ── AthletX Admin — app.js ────────────────────────────────────────────────────
 
-// ── 1. Alpine: App Shell (mobile sidebar) ─────────────────────────────────────
+// ════════════════════════════════════════════════════════
+//  1. Alpine: App Shell (mobile sidebar)
+// ════════════════════════════════════════════════════════
 document.addEventListener('alpine:init', () => {
   Alpine.data('appShell', () => ({
     sidebarOpen: false,
@@ -9,7 +11,9 @@ document.addEventListener('alpine:init', () => {
   }));
 });
 
-// ── 2. Sidebar Accordion ──────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════
+//  2. Sidebar Accordion
+// ════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function () {
   const sidebar = document.querySelector('.sidebar');
   if (!sidebar) return;
@@ -26,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const label = section.querySelector('.sb-label');
     if (!label || !collapsible.includes(label.textContent.trim())) return;
 
-    // Wrap non-label children
     const items = Array.from(section.children).filter(
       el => !el.classList.contains('sb-label')
     );
@@ -35,13 +38,11 @@ document.addEventListener('DOMContentLoaded', function () {
     items.forEach(item => wrapper.appendChild(item));
     section.appendChild(wrapper);
 
-    // Arrow
     const arrow = document.createElement('span');
     arrow.className = 'sb-arrow';
     label.appendChild(arrow);
     label.classList.add('sb-label-toggle');
 
-    // Auto-open active section
     if (wrapper.querySelector('.active')) {
       wrapper.classList.add('open');
       arrow.textContent = '▾';
@@ -72,7 +73,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// ── 3. Convert toolbar-search DIVs → real inputs ──────────────────────────────
+// ════════════════════════════════════════════════════════
+//  3. Toolbar search DIVs → real inputs
+// ════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('div.toolbar-search').forEach(div => {
     const input = document.createElement('input');
@@ -83,9 +86,10 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// ── 4. Live table row filtering ───────────────────────────────────────────────
+// ════════════════════════════════════════════════════════
+//  4. Live table row filtering
+// ════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function () {
-  // Find the table closest to a search input in the DOM
   function findNearestTable(input) {
     let el = input.parentElement;
     while (el) {
@@ -99,42 +103,33 @@ document.addEventListener('DOMContentLoaded', function () {
   function wireSearch(input) {
     const table = findNearestTable(input);
     if (!table) return;
-
     const paginationSpan = document.querySelector('.pagination > span');
-    let originalCount = '';
-    if (paginationSpan) originalCount = paginationSpan.textContent;
+    const originalCount  = paginationSpan ? paginationSpan.textContent : '';
 
     input.addEventListener('input', function () {
       const q = this.value.toLowerCase().trim();
       let visible = 0;
-
       table.querySelectorAll('tbody tr').forEach(row => {
         const match = !q || row.textContent.toLowerCase().includes(q);
         row.style.display = match ? '' : 'none';
         if (match) visible++;
       });
-
-      // Update pagination text
       if (paginationSpan) {
-        if (q) {
-          paginationSpan.textContent =
-            `${visible} result${visible !== 1 ? 's' : ''} for "${this.value}"`;
-        } else {
-          paginationSpan.textContent = originalCount;
-        }
+        paginationSpan.textContent = q
+          ? `${visible} result${visible !== 1 ? 's' : ''} for "${this.value}"`
+          : originalCount;
       }
     });
   }
 
-  // Wire the topbar search input (already an <input>)
   const topbarInput = document.querySelector('.topbar-search-input');
   if (topbarInput) wireSearch(topbarInput);
-
-  // Wire all toolbar search inputs (converted above)
   document.querySelectorAll('.toolbar-search-input-sm').forEach(wireSearch);
 });
 
-// ── 5. Sortable table columns ─────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════
+//  5. Sortable table columns
+// ════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('table').forEach(table => {
     const tbody   = table.querySelector('tbody');
@@ -142,31 +137,23 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!tbody || !headers.length) return;
 
     let sortCol = -1;
-    let sortDir = 1; // 1 = asc, -1 = desc
+    let sortDir = 1;
 
     headers.forEach((th, i) => {
-      const text = th.textContent.trim();
-      if (!text) return; // skip empty/action columns
-
+      if (!th.textContent.trim()) return;
       th.classList.add('sortable');
-
-      // Sort indicator span
       const indicator = document.createElement('span');
       indicator.className = 'sort-indicator';
-      indicator.textContent = '';
       th.appendChild(indicator);
 
       th.addEventListener('click', () => {
-        // Reset all indicators
         headers.forEach(h => {
           const ind = h.querySelector('.sort-indicator');
           if (ind) ind.textContent = '';
           h.classList.remove('sort-asc', 'sort-desc');
         });
-
         sortDir = (sortCol === i) ? sortDir * -1 : 1;
         sortCol = i;
-
         indicator.textContent = sortDir === 1 ? ' ↑' : ' ↓';
         th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
 
@@ -174,28 +161,24 @@ document.addEventListener('DOMContentLoaded', function () {
         rows.sort((a, b) => {
           const aVal = (a.cells[i]?.textContent || '').trim();
           const bVal = (b.cells[i]?.textContent || '').trim();
-
-          // Numeric sort (handles $, %, commas)
           const aNum = parseFloat(aVal.replace(/[$,%\s]/g, '').replace(/,/g, ''));
           const bNum = parseFloat(bVal.replace(/[$,%\s]/g, '').replace(/,/g, ''));
-
           if (!isNaN(aNum) && !isNaN(bNum)) return (aNum - bNum) * sortDir;
           return aVal.localeCompare(bVal) * sortDir;
         });
-
         rows.forEach(row => tbody.appendChild(row));
       });
     });
   });
 });
 
-// ── 6. Pagination ─────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════
+//  6. Pagination
+// ════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.pagination').forEach(pagination => {
     const allBtns = Array.from(pagination.querySelectorAll('.page-btn'));
     if (!allBtns.length) return;
-
-    const numberedBtns = allBtns.filter(b => !isNaN(parseInt(b.textContent.trim())));
 
     function setActive(btn) {
       allBtns.forEach(b => b.classList.remove('active'));
@@ -224,7 +207,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// ── 7. Chip / Tab toggling ────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════
+//  7. Chip / Tab toggling
+// ════════════════════════════════════════════════════════
 document.addEventListener('click', function (e) {
   const chipTypes = ['date-chip', 'month-chip', 'window-chip', 'chip'];
   for (const type of chipTypes) {
@@ -237,16 +222,356 @@ document.addEventListener('click', function (e) {
   }
 });
 
-// ── 8. Inline filter button groups ───────────────────────────────────────────
-document.addEventListener('click', function (e) {
-  const btn = e.target.closest('.filter-group .btn-outline');
-  if (!btn) return;
-  btn.closest('.filter-group').querySelectorAll('.btn-outline').forEach(b => {
-    b.style.background  = '#e8e8e8';
-    b.style.borderColor = '#ccc';
-    b.style.fontWeight  = '400';
+// ════════════════════════════════════════════════════════
+//  8. PHASE 3 — Toast Notifications
+// ════════════════════════════════════════════════════════
+function showToast(message, type = 'success') {
+  let container = document.querySelector('.toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.className = 'toast-container';
+    document.body.appendChild(container);
+  }
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  const icons = { success: '✓', warning: '⚠', info: 'ℹ' };
+  toast.textContent = `${icons[type] || '✓'}  ${message}`;
+  container.appendChild(toast);
+
+  // Trigger enter animation
+  requestAnimationFrame(() => toast.classList.add('toast-show'));
+
+  setTimeout(() => {
+    toast.classList.remove('toast-show');
+    toast.classList.add('toast-hide');
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+// ════════════════════════════════════════════════════════
+//  9. PHASE 3 — Confirm Modal
+// ════════════════════════════════════════════════════════
+function showConfirm(message, confirmLabel, onConfirm) {
+  let overlay = document.querySelector('.confirm-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.className = 'confirm-overlay';
+    overlay.innerHTML = `
+      <div class="confirm-box">
+        <div class="confirm-message"></div>
+        <div class="confirm-note">This action cannot be undone.</div>
+        <div class="confirm-actions">
+          <button class="confirm-cancel">Cancel</button>
+          <button class="confirm-ok"></button>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+
+    overlay.querySelector('.confirm-cancel').addEventListener('click', () => {
+      overlay.classList.remove('open');
+    });
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) overlay.classList.remove('open');
+    });
+  }
+
+  overlay.querySelector('.confirm-message').textContent = message;
+  const okBtn = overlay.querySelector('.confirm-ok');
+  okBtn.textContent = confirmLabel;
+
+  // Clone to remove old listeners
+  const newOk = okBtn.cloneNode(true);
+  okBtn.replaceWith(newOk);
+  newOk.addEventListener('click', () => {
+    overlay.classList.remove('open');
+    onConfirm();
   });
-  btn.style.background  = '#bbb';
-  btn.style.borderColor = '#999';
-  btn.style.fontWeight  = '600';
+
+  overlay.classList.add('open');
+}
+
+// ════════════════════════════════════════════════════════
+//  10. PHASE 3 — Action Helpers
+// ════════════════════════════════════════════════════════
+function dimRow(el) {
+  const row = el.closest('tr');
+  if (row) {
+    row.style.transition = 'opacity 0.3s';
+    row.style.opacity = '0.45';
+    row.querySelectorAll('.btn-approve, .btn-reject, .btn-outline, .btn-solid, button')
+      .forEach(b => { b.style.opacity = '0.3'; b.style.pointerEvents = 'none'; });
+  }
+}
+
+function removeCard(el) {
+  const card = el.closest('.verification-card, .alert-card, .pa-row, tr');
+  if (!card) return;
+  card.style.transition = 'opacity 0.25s, max-height 0.3s, padding 0.3s, margin 0.3s';
+  card.style.opacity    = '0';
+  card.style.maxHeight  = card.offsetHeight + 'px';
+  requestAnimationFrame(() => {
+    card.style.maxHeight = '0';
+    card.style.padding   = '0';
+    card.style.margin    = '0';
+    card.style.overflow  = 'hidden';
+  });
+  setTimeout(() => card.remove(), 350);
+}
+
+function updateStatusTag(el, label) {
+  const row = el.closest('tr');
+  if (!row) return;
+  const tag = row.querySelector('.status-tag, .pa-tag');
+  if (tag) { tag.textContent = label; tag.style.background = '#d0d0d0'; tag.style.color = '#333'; }
+}
+
+// ════════════════════════════════════════════════════════
+//  11. PHASE 3 — Action Button Event Delegation
+// ════════════════════════════════════════════════════════
+document.addEventListener('click', function (e) {
+  const target = e.target;
+
+  // Skip real navigation links
+  if (target.tagName === 'A' || target.closest('a[href]')) return;
+
+  const text = target.textContent.trim();
+  const cls  = target.className || '';
+
+  // ── Approve ────────────────────────────────────────────
+  if (text === 'Approve' || cls.includes('btn-approve')) {
+    updateStatusTag(target, 'Approved');
+    dimRow(target);
+    showToast('Approved successfully');
+    return;
+  }
+
+  // ── Approve Refund / Approve Selected ─────────────────
+  if (text === 'Approve Refund' || text.startsWith('Approve $')) {
+    showConfirm('Approve this refund?', 'Approve', () => {
+      dimRow(target);
+      showToast('Refund approved');
+    });
+    return;
+  }
+  if (text === 'Approve Selected') {
+    showConfirm('Approve all selected applications?', 'Approve All', () => {
+      showToast('Selected coaches approved');
+    });
+    return;
+  }
+
+  // ── Reject ─────────────────────────────────────────────
+  if (text === 'Reject' || cls.includes('btn-reject')) {
+    showConfirm('Reject this application?', 'Reject', () => {
+      updateStatusTag(target, 'Rejected');
+      dimRow(target);
+      showToast('Application rejected', 'warning');
+    });
+    return;
+  }
+  if (text === 'Reject Selected') {
+    showConfirm('Reject all selected applications?', 'Reject All', () => {
+      showToast('Selected coaches rejected', 'warning');
+    });
+    return;
+  }
+  if (text === 'Reject Application') {
+    showConfirm('Reject this coach application?', 'Reject', () => {
+      showToast('Application rejected', 'warning');
+    });
+    return;
+  }
+
+  // ── Dismiss ────────────────────────────────────────────
+  if (text === 'Dismiss') {
+    removeCard(target);
+    showToast('Alert dismissed', 'info');
+    return;
+  }
+  if (text === 'Dismiss All') {
+    showConfirm('Dismiss all alerts?', 'Dismiss All', () => {
+      document.querySelectorAll('.alert-card').forEach(c => {
+        c.style.transition = 'opacity 0.3s';
+        c.style.opacity = '0';
+        setTimeout(() => c.remove(), 300);
+      });
+      showToast('All alerts dismissed', 'info');
+    });
+    return;
+  }
+
+  // ── Remove (reported content) ──────────────────────────
+  if (text === 'Remove') {
+    showConfirm('Remove this content from the platform?', 'Remove', () => {
+      removeCard(target);
+      showToast('Content removed', 'warning');
+    });
+    return;
+  }
+
+  // ── Suspend ────────────────────────────────────────────
+  if (text === 'Suspend') {
+    showConfirm('Suspend this account? They will lose access immediately.', 'Suspend', () => {
+      dimRow(target);
+      showToast('Account suspended', 'warning');
+    });
+    return;
+  }
+
+  // ── Save Changes ───────────────────────────────────────
+  if (text === 'Save Changes' || text === 'Save Settings') {
+    showToast('Changes saved successfully');
+    return;
+  }
+
+  // ── Save Draft ─────────────────────────────────────────
+  if (text === 'Save Draft') {
+    showToast('Draft saved', 'info');
+    return;
+  }
+
+  // ── Publish ────────────────────────────────────────────
+  if (text === 'Publish') {
+    showConfirm('Publish this page? It will be visible to all users.', 'Publish', () => {
+      showToast('Published successfully');
+    });
+    return;
+  }
+  if (text === 'Publish Now') {
+    showConfirm('Publish this post now?', 'Publish Now', () => {
+      showToast('Post published');
+    });
+    return;
+  }
+  if (text === 'Publish Product') {
+    showConfirm('Publish this product to the shop?', 'Publish', () => {
+      showToast('Product published to shop');
+    });
+    return;
+  }
+
+  // ── Mark All Paid ──────────────────────────────────────
+  if (text === 'Mark All Paid') {
+    showConfirm('Mark all pending commissions as paid?', 'Confirm', () => {
+      document.querySelectorAll('.status-tag').forEach(tag => {
+        if (tag.textContent.trim() === 'Pending') {
+          tag.textContent = 'Paid';
+          tag.style.background = '#d0d0d0';
+        }
+      });
+      showToast('All commissions marked as paid');
+    });
+    return;
+  }
+
+  // ── Mark Resolved ──────────────────────────────────────
+  if (text === 'Mark Resolved') {
+    showToast('Ticket marked as resolved');
+    dimRow(target);
+    return;
+  }
+
+  // ── Close Ticket ───────────────────────────────────────
+  if (text === 'Close Ticket') {
+    showConfirm('Close this support ticket?', 'Close Ticket', () => {
+      showToast('Ticket closed', 'info');
+    });
+    return;
+  }
+
+  // ── Send Reply ─────────────────────────────────────────
+  if (text === 'Send Reply') {
+    showToast('Reply sent');
+    return;
+  }
+
+  // ── Send Now (push notification) ───────────────────────
+  if (text === 'Send Now') {
+    showConfirm('Send this push notification to all users?', 'Send Now', () => {
+      showToast('Push notification sent');
+    });
+    return;
+  }
+
+  // ── Approve & Schedule (payout) ────────────────────────
+  if (text === 'Approve & Schedule' || text === 'Approve &amp; Schedule') {
+    showConfirm('Approve and schedule this payout run?', 'Confirm', () => {
+      showToast('Payout scheduled successfully');
+    });
+    return;
+  }
+
+  // ── Cancel Plan ────────────────────────────────────────
+  if (text === 'Cancel Plan') {
+    showConfirm('Cancel this subscription plan? The player will lose access at period end.', 'Cancel Plan', () => {
+      showToast('Plan cancelled', 'warning');
+    });
+    return;
+  }
+
+  // ── Disable Auto-Renew ─────────────────────────────────
+  if (text === 'Disable Auto-Renew') {
+    showConfirm('Disable auto-renewal for this subscription?', 'Disable', () => {
+      showToast('Auto-renewal disabled', 'warning');
+    });
+    return;
+  }
+
+  // ── Run Reset (tier settings) ──────────────────────────
+  if (text === 'Run Reset') {
+    showConfirm('Run a full tier reset? This will re-evaluate all coaches against current thresholds.', 'Run Reset', () => {
+      showToast('Tier reset running…', 'info');
+    });
+    return;
+  }
+
+  // ── Restore (reported content) ─────────────────────────
+  if (text === 'Restore') {
+    showToast('Content restored', 'info');
+    dimRow(target);
+    return;
+  }
+
+  // ── Deactivate ─────────────────────────────────────────
+  if (text === 'Deactivate') {
+    showConfirm('Deactivate this item?', 'Deactivate', () => {
+      dimRow(target);
+      showToast('Deactivated', 'warning');
+    });
+    return;
+  }
+
+  // ── Purge Cache ────────────────────────────────────────
+  if (text === 'Purge Cache') {
+    showConfirm('Purge the platform cache?', 'Purge', () => {
+      showToast('Cache purged successfully', 'info');
+    });
+    return;
+  }
+
+  // ── Notify Customer / Notify Referrers ─────────────────
+  if (text === 'Notify Customer' || text === 'Notify Referrers') {
+    showToast('Notification sent', 'info');
+    return;
+  }
+
+  // ── Generate Report ────────────────────────────────────
+  if (text === 'Generate Report') {
+    showToast('Generating report…', 'info');
+    return;
+  }
+
+  // ── Run Payout Now ─────────────────────────────────────
+  if (text === 'Run Payout Now') {
+    showConfirm('Run payouts now for all pending coaches?', 'Run Payout', () => {
+      showToast('Payout run initiated');
+    });
+    return;
+  }
+
+  // ── Issue Refund (already a link, but just in case) ────
+  if (text === 'Issue Refund') {
+    showToast('Refund initiated', 'info');
+    return;
+  }
 });

@@ -469,6 +469,9 @@ td {
   border-radius: 2px;
 }
 
+a.alert-bar { cursor: pointer; }
+a.alert-bar:hover { background: #ddd; border-color: #888; }
+
 /* ── Bottom button ───────────────────────────────────── */
 .btn-all {
   display: block;

@@ -100,6 +100,26 @@ document.addEventListener('DOMContentLoaded', function () {
     return document.querySelector('table');
   }
 
+  function getOrCreateEmptyState(table) {
+    let row = table.querySelector('.empty-state-row');
+    if (!row) {
+      row = document.createElement('tr');
+      row.className = 'empty-state-row';
+      row.style.display = 'none';
+      const td = document.createElement('td');
+      td.colSpan = 99;
+      td.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">⊘</div>
+          <div class="empty-title">No results found</div>
+          <div class="empty-sub">Try a different search term or clear the filter</div>
+        </div>`;
+      row.appendChild(td);
+      table.querySelector('tbody').appendChild(row);
+    }
+    return row;
+  }
+
   function wireSearch(input) {
     const table = findNearestTable(input);
     if (!table) return;
@@ -109,11 +129,13 @@ document.addEventListener('DOMContentLoaded', function () {
     input.addEventListener('input', function () {
       const q = this.value.toLowerCase().trim();
       let visible = 0;
-      table.querySelectorAll('tbody tr').forEach(row => {
+      table.querySelectorAll('tbody tr:not(.empty-state-row)').forEach(row => {
         const match = !q || row.textContent.toLowerCase().includes(q);
         row.style.display = match ? '' : 'none';
         if (match) visible++;
       });
+      const emptyRow = getOrCreateEmptyState(table);
+      emptyRow.style.display = (visible === 0 && q) ? '' : 'none';
       if (paginationSpan) {
         paginationSpan.textContent = q
           ? `${visible} result${visible !== 1 ? 's' : ''} for "${this.value}"`
@@ -869,4 +891,93 @@ document.addEventListener('click', function (e) {
     showToast('Refund initiated', 'info');
     return;
   }
+});
+
+// ════════════════════════════════════════════════════════
+//  PHASE 6 — Polish
+// ════════════════════════════════════════════════════════
+
+// ── 6a. Keyboard shortcuts ────────────────────────────────
+document.addEventListener('keydown', function (e) {
+  // Esc → close confirm modal or mobile sidebar
+  if (e.key === 'Escape') {
+    const modal = document.querySelector('.confirm-overlay.open');
+    if (modal) { modal.classList.remove('open'); return; }
+
+    // Close mobile sidebar via Alpine
+    const shell = document.querySelector('[x-data]');
+    if (shell && shell._x_dataStack) {
+      const data = shell._x_dataStack[0];
+      if (data && data.sidebarOpen) { data.sidebarOpen = false; return; }
+    }
+  }
+
+  // / or Ctrl+K → focus topbar search (skip if already in an input)
+  const tag = document.activeElement?.tagName;
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+  if (e.key === '/' || ((e.ctrlKey || e.metaKey) && e.key === 'k')) {
+    e.preventDefault();
+    const searchInput = document.querySelector('.topbar-search-input');
+    if (searchInput) { searchInput.focus(); searchInput.select(); }
+  }
+});
+
+// ── 6b. Toast — click to dismiss early ───────────────────
+// Patch showToast so each toast is clickable
+const _origShowToast = showToast;
+// Override by wrapping the container click
+document.addEventListener('click', function (e) {
+  const toast = e.target.closest('.toast');
+  if (toast) {
+    toast.classList.remove('toast-show');
+    toast.classList.add('toast-hide');
+    setTimeout(() => toast.remove(), 300);
+  }
+});
+
+// ── 6c. Scroll-to-top button ──────────────────────────────
+document.addEventListener('DOMContentLoaded', function () {
+  const content = document.querySelector('.content');
+  if (!content) return;
+
+  const btn = document.createElement('button');
+  btn.className   = 'scroll-top-btn';
+  btn.textContent = '↑';
+  btn.title       = 'Back to top';
+  document.body.appendChild(btn);
+
+  content.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', content.scrollTop > 320);
+  });
+
+  btn.addEventListener('click', () => {
+    content.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+// ── 6d. Sidebar active link scroll into view ──────────────
+document.addEventListener('DOMContentLoaded', function () {
+  const active = document.querySelector('.sidebar .active');
+  if (active) {
+    setTimeout(() => {
+      active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }, 300); // wait for accordion to open first
+  }
+});
+
+// ── 6e. Table row stagger on load (skeleton feel) ─────────
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('tbody tr:not(.empty-state-row)').forEach((row, i) => {
+    row.style.animationDelay = `${50 + i * 35}ms`;
+    row.classList.add('row-stagger');
+  });
+});
+
+// ── 6f. Verification card stagger (non-table pages) ───────
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.verification-card, .alert-card, .kpi-card').forEach((card, i) => {
+    card.style.animationDelay = `${i * 60}ms`;
+    card.classList.add('card-stagger');
+  });
 });

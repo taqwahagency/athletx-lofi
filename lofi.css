@@ -868,6 +868,85 @@ th.sort-desc { background: #d4d4d4; color: #333; }
 }
 .confirm-ok:hover { background: #777; }
 
+/* ── Phase 6: Polish ────────────────────────────────── */
+
+/* Page content fade-in */
+.content {
+  animation: pageIn 0.2s ease both;
+}
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Table row stagger */
+.row-stagger {
+  animation: rowIn 0.28s ease both;
+}
+@keyframes rowIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Card stagger (kpi-card, verification-card, alert-card) */
+.card-stagger {
+  animation: cardIn 0.3s ease both;
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Empty state */
+.empty-state {
+  padding: 40px 20px;
+  text-align: center;
+}
+.empty-icon {
+  font-size: 28px;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+.empty-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #888;
+  margin-bottom: 4px;
+}
+.empty-sub {
+  font-size: 12px;
+  color: #bbb;
+}
+
+/* Scroll-to-top button */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 88px;
+  right: 24px;
+  width: 34px;
+  height: 34px;
+  background: #ccc;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  font-size: 14px;
+  color: #444;
+  cursor: pointer;
+  z-index: 500;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s, transform 0.2s;
+  font-family: inherit;
+}
+.scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scroll-top-btn:hover { background: #bbb; color: #222; }
+
+/* Toast cursor */
+.toast { cursor: pointer; }
+.toast:hover { opacity: 0.9; }
+
 /* ── Section divider ─────────────────────────────────── */
 .section-label {
   font-size: 10px;

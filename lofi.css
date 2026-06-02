@@ -40,6 +40,36 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #888;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Collapsible section label */
+.sb-label-toggle {
+  cursor: pointer;
+  user-select: none;
+  padding-right: 14px;
+}
+.sb-label-toggle:hover { color: #555; }
+
+/* Arrow indicator */
+.sb-arrow {
+  font-size: 10px;
+  color: #aaa;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.sb-label-toggle:hover .sb-arrow { color: #777; }
+
+/* Collapsible wrapper — hidden by default, slides open */
+.sb-collapse {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.22s ease;
+}
+.sb-collapse.open {
+  max-height: 600px;
 }
 
 .sb-item {

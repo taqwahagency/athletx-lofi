@@ -669,6 +669,49 @@ th.sort-desc { background: #d4d4d4; color: #333; }
 .page-btn { cursor: pointer; }
 .page-btn:hover:not(.active) { background: #d4d4d4; border-color: #aaa; }
 
+/* ── Phase 5: Dashboard Live Feel ───────────────────── */
+
+/* KPI count-up — smooth font rendering */
+.kpi-value, .snap-value {
+  font-variant-numeric: tabular-nums;
+  transition: color 0.2s;
+}
+
+/* Chart bars — transition set by JS */
+.bar-a, .bar-b {
+  transform-origin: bottom;
+}
+
+/* Alert close button */
+.alert-close {
+  font-size: 13px;
+  color: #999;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-left: 8px;
+  line-height: 1;
+}
+.alert-close:hover { background: #ddd; color: #555; }
+
+/* Snapshot rows — hover when clickable */
+.snap-row-link:hover {
+  background: #f0f0f0;
+  border-radius: 2px;
+  margin: 0 -8px;
+  padding: 10px 8px;
+}
+.snap-row-link { transition: background 0.15s; }
+
+/* Pending action rows — hover */
+.pa-row { transition: background 0.12s; }
+.pa-row:hover { background: #f2f2f2; border-radius: 2px; }
+
+/* "Full analytics →" and card-head-sub links */
+.chart-total:hover { color: #333; text-decoration: underline; }
+.card-head-sub:hover { color: #444; text-decoration: underline; cursor: pointer; }
+
 /* ── Phase 4: Forms & Toggles ───────────────────────── */
 
 /* Toggle switch — clickable */

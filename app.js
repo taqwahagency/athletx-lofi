@@ -208,6 +208,178 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ════════════════════════════════════════════════════════
+//  PHASE 5 — Dashboard Live Feel
+// ════════════════════════════════════════════════════════
+
+// ── 5a. KPI count-up animation (all pages with .kpi-value) ──
+document.addEventListener('DOMContentLoaded', function () {
+  function countUp(el) {
+    const raw     = el.textContent.trim();
+    const prefix  = raw.startsWith('$') ? '$' : '';
+    const suffix  = raw.endsWith('%')   ? '%' : (raw.endsWith('mo') ? 'mo' : (raw.endsWith('d') && !raw.includes('.') ? 'd' : ''));
+    const cleaned = raw.replace(/[$,%]/g, '').replace(/[a-z]/g, '').replace(/,/g, '');
+    const target  = parseFloat(cleaned);
+    if (isNaN(target)) return;
+
+    const isDecimal = raw.includes('.');
+    const duration  = 900; // ms
+    const start     = performance.now();
+
+    el.textContent = prefix + '0' + suffix;
+
+    function frame(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease     = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const current  = target * ease;
+      const formatted = current >= 1000
+        ? Math.round(current).toLocaleString()
+        : isDecimal ? current.toFixed(1) : Math.round(current).toString();
+      el.textContent = prefix + formatted + suffix;
+      if (progress < 1) requestAnimationFrame(frame);
+      else el.textContent = raw; // restore original exact text
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // Small stagger so cards animate in sequence
+  document.querySelectorAll('.kpi-value, .snap-value').forEach((el, i) => {
+    setTimeout(() => countUp(el), i * 80);
+  });
+});
+
+// ── 5b. Chart bar grow animation ─────────────────────────
+document.addEventListener('DOMContentLoaded', function () {
+  const bars = document.querySelectorAll('.bar-a, .bar-b');
+  if (!bars.length) return;
+
+  // Store target heights and reset to 0
+  bars.forEach(bar => {
+    bar.dataset.targetH = bar.style.height || '0px';
+    bar.style.height    = '0px';
+    bar.style.transition = 'height 0.5s ease';
+  });
+
+  // Stagger grow-in
+  bars.forEach((bar, i) => {
+    setTimeout(() => {
+      bar.style.height = bar.dataset.targetH;
+    }, 100 + i * 40);
+  });
+});
+
+// ── 5c. Dashboard-specific wiring ────────────────────────
+document.addEventListener('DOMContentLoaded', function () {
+  const isDashboard = !!document.querySelector('.chart-bars');
+  if (!isDashboard) return;
+
+  // Alert banner: inject dismiss X button
+  const alertBar = document.querySelector('a.alert-bar');
+  if (alertBar) {
+    const closeBtn = document.createElement('span');
+    closeBtn.textContent = '✕';
+    closeBtn.className   = 'alert-close';
+    alertBar.appendChild(closeBtn);
+
+    closeBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      alertBar.style.transition = 'opacity 0.25s, max-height 0.3s, margin 0.3s, padding 0.3s';
+      alertBar.style.opacity    = '0';
+      alertBar.style.maxHeight  = alertBar.offsetHeight + 'px';
+      requestAnimationFrame(() => {
+        alertBar.style.maxHeight = '0';
+        alertBar.style.padding   = '0';
+        alertBar.style.margin    = '0';
+        alertBar.style.overflow  = 'hidden';
+      });
+      setTimeout(() => alertBar.remove(), 320);
+      showToast('Alert dismissed', 'info');
+    });
+  }
+
+  // "Full analytics →" → coach-performance
+  const fullAnalytics = document.querySelector('.chart-total');
+  if (fullAnalytics) {
+    fullAnalytics.style.cursor = 'pointer';
+    fullAnalytics.style.textDecoration = 'none';
+    fullAnalytics.addEventListener('click', () => {
+      window.location.href = 'coach-performance.html';
+    });
+  }
+
+  // "View all →" in Top Coaches card-head → coach-list
+  document.querySelectorAll('.card-head-sub').forEach(el => {
+    if (el.textContent.includes('View all')) {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', () => window.location.href = 'coach-list.html');
+    }
+  });
+
+  // "All pending actions →" in snapshot → pending.html
+  document.querySelectorAll('.snap-row + *, [style*="border-top"]').forEach(el => {
+    if (el.textContent.includes('All pending actions')) {
+      el.style.cursor = 'pointer';
+      el.querySelector('span') && (el.querySelector('span').style.cursor = 'pointer');
+      el.addEventListener('click', () => window.location.href = 'pending.html');
+    }
+  });
+
+  // "View All 23 Pending Actions" btn-all
+  document.querySelectorAll('.btn-all').forEach(btn => {
+    if (btn.textContent.includes('Pending Actions')) {
+      btn.style.cursor = 'pointer';
+      btn.addEventListener('click', () => window.location.href = 'pending.html');
+    }
+  });
+
+  // Pending Actions "Review →" spans → respective pages
+  const paLinks = {
+    'Coach Verification': 'pending-verifications.html',
+    'Refund':             'refunds.html',
+    'Reported Content':   'reported-content.html',
+    'Inventory':          'inventory-alerts.html',
+    'Support Ticket':     'support-tickets.html',
+    'Price Change':       'price-changes.html',
+  };
+  document.querySelectorAll('.pa-row').forEach(row => {
+    const text    = row.querySelector('.pa-left')?.textContent || '';
+    const reviewEl = row.querySelector('.pa-link');
+    if (!reviewEl) return;
+
+    for (const [key, url] of Object.entries(paLinks)) {
+      if (text.includes(key)) {
+        reviewEl.style.cursor = 'pointer';
+        reviewEl.style.textDecoration = 'none';
+        reviewEl.addEventListener('click', () => window.location.href = url);
+        row.style.cursor = 'pointer';
+        row.addEventListener('click', (e) => {
+          if (!e.target.closest('a')) window.location.href = url;
+        });
+        break;
+      }
+    }
+  });
+
+  // Snapshot rows → clickable links
+  const snapLinks = {
+    'New Players':            'player-list.html',
+    'New Coaches':            'coach-list.html',
+    'Pending Verifications':  'pending-verifications.html',
+    'Open Support Tickets':   'support-tickets.html',
+    'Inventory Alerts':       'inventory-alerts.html',
+    'Reported Content':       'reported-content.html',
+  };
+  document.querySelectorAll('.snap-row').forEach(row => {
+    const label = row.querySelector('.snap-label')?.textContent.trim();
+    const url   = snapLinks[label];
+    if (!url) return;
+    row.style.cursor = 'pointer';
+    row.addEventListener('click', () => window.location.href = url);
+    row.classList.add('snap-row-link');
+  });
+});
+
+// ════════════════════════════════════════════════════════
 //  PHASE 4 — Forms & Toggles
 // ════════════════════════════════════════════════════════
 

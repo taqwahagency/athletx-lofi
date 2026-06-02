@@ -108,6 +108,12 @@ a.sb-item:hover { background: #ccc; color: #111; }
 a.sb-sub { cursor: pointer; }
 a.sb-sub:hover { background: #ccc; color: #333; }
 
+.sb-sub.active {
+  background: #d4d4d4;
+  font-weight: 600;
+  color: #222;
+}
+
 .sb-sub.sb-soon { color: #bbb; }
 
 .badge {
